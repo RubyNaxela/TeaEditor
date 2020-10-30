@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.formdev:flatlaf-intellij-themes:0.43">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.formdev/flatlaf-intellij-themes/0.43/63305688f3f039c868c21d131cd3295e72499ed2/flatlaf-intellij-themes-0.43.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.formdev/flatlaf-intellij-themes/0.43/35ea279a7c037bea7111de81db351741eee32f58/flatlaf-intellij-themes-0.43-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
