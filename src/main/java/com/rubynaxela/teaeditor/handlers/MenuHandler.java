@@ -25,7 +25,6 @@ import com.rubynaxela.teaeditor.ui.dialogs.Dialogs;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-import static com.rubynaxela.teaeditor.util.Reference.Resources.getIcon;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
 public final class MenuHandler {
@@ -50,12 +49,15 @@ public final class MenuHandler {
 
     public static ActionListener closeFile = e -> {
         if (DataManager.dataChanged)
-            if (Dialogs.askYesNoQuestion(getString("dialog.message.save_before_close"),
-                    true, getIcon("dialog.diskette")))
-                saveFile.actionPerformed(null);
-        FileIOHandler.currentFile = null;
-        DataManager.setCurrentData(null);
-        WindowUpdatesManager.masterUpdate();
+            switch (Dialogs.askYesNoCancelQuestion(getString("dialog.message.save_before_close"))) {
+                case POSITIVE:
+                    saveFile.actionPerformed(null);
+                case NEGATIVE:
+                    FileIOHandler.currentFile = null;
+                    DataManager.setCurrentData(null);
+                    WindowUpdatesManager.masterUpdate();
+                    break;
+            }
     };
 
     public static ActionListener undo = e -> Dialogs.showWarning(getString("dialog.message.feature_unavailable"));

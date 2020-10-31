@@ -35,7 +35,7 @@
   "dialog.file_chooser.file_to_save": "Select JSON file to save",
   "dialog.input.color": "Color:",
   "dialog.input.id": "ID:",
-  "dialog.input.id_invalid": "<html><b><i>may only consist of small latin letters</i></b></html>",
+  "dialog.input.id_invalid": "<html><b><i>ID may only consist of small latin letters</i></b></html>",
   "dialog.input.name": "Name:",
   "dialog.message.are_you_sure": "Are you sure?",
   "dialog.message.error.load_faild": "An error occurred while loading the file.",

@@ -22,21 +22,27 @@ import com.formdev.flatlaf.FlatDarculaLaf;
 
 import javax.swing.*;
 
-import static com.rubynaxela.teaeditor.util.OsCheck.OSType.MAC_OS;
 import static com.rubynaxela.teaeditor.util.Reference.OS;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
 public final class LookAndFeel {
 
     public static void init() {
-        if (OS == MAC_OS) {
-            System.setProperty("apple.awt.application.name", getString("window.title"));
-            System.setProperty("apple.laf.useScreenMenuBar", "true");
+        switch (OS) {
+            case MAC_OS:
+                System.setProperty("apple.awt.application.name", getString("window.title"));
+                System.setProperty("apple.laf.useScreenMenuBar", "true");
+                break;
+            case WINDOWS:
+                JFrame.setDefaultLookAndFeelDecorated(true);
+                JDialog.setDefaultLookAndFeelDecorated(true);
+                break;
         }
         try {
             UIManager.setLookAndFeel(new FlatDarculaLaf());
         } catch (Exception e) {
             e.printStackTrace();
         }
+        UIManager.put("CheckBox.icon.style", "filled");
     }
 }

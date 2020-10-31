@@ -35,11 +35,6 @@ import static java.lang.Integer.toHexString;
 public final class Utils {
 
     /**
-     * An instance of the {@link GridBagConstraints} class used exclusively by the {@link Utils#dialogElementPosition} function.
-     */
-    private static final GridBagConstraints gbc = new GridBagConstraints();
-
-    /**
      * Converts a {@link Color} to hexadecimal hashtag notation.
      *
      * @param color an {@code java.awt} {@link Color} object
@@ -80,22 +75,34 @@ public final class Utils {
     /**
      * Returns a {@link GridBagConstraints} object with properties suitable for a dialog pane:
      * <ul>
-     *     <li>{@code x} and {@code y} parameters will translate directly into {@code gridx} and {@code gridy} fields of the
-     *         returned object respectively</li>
-     *     <li></li>
+     *     <li>{@code row} and {@code column} parameters will translate directly into {@code gridy} and {@code gridx} fields
+     *         of the returned object respectively</li>
+     *     <li>if {@code wide} is {@code true}, the {@link GridBagConstraints#gridwidth} field will be set to {@code 2}, which
+     *         means it will take up space of two grid columns</li>
      * </ul>
      *
-     * @param x    horizontal position in the grid
-     * @param y    vertical position in the grid
-     * @param wide determines if a component takes up space of two columns
+     * @param row    vertical position in the grid
+     * @param column horizontal position in the grid
+     * @param wide   determines if a component takes up space of two columns
      * @return a {@code GridBagConstraints} instance
      * @since beta 1.2
      */
-    public static GridBagConstraints dialogElementPosition(int x, int y, boolean wide) {
-        gbc.gridx = x;
-        gbc.gridy = y;
-        gbc.anchor = x == 0 ? GridBagConstraints.WEST : GridBagConstraints.WEST;
-        if (wide) gbc.gridwidth = 2;
+    public static GridBagConstraints dialogElementPosition(int row, int column, boolean wide) {
+        final GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = column;
+        gbc.gridy = row;
+        if (column == 0) {
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.insets = new Insets(5, 0, 5, 5);
+            gbc.fill = GridBagConstraints.BOTH;
+        } else {
+            gbc.anchor = GridBagConstraints.EAST;
+            gbc.insets = new Insets(5, 5, 5, 0);
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+        }
+        if (wide) {
+            gbc.gridwidth = 2;
+        }
         return gbc;
     }
 

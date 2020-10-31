@@ -30,7 +30,6 @@ import java.awt.event.ActionListener;
 import java.util.Objects;
 
 import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlags.*;
-import static com.rubynaxela.teaeditor.util.Reference.Resources.getIcon;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
 public final class ButtonsHandler {
@@ -43,8 +42,7 @@ public final class ButtonsHandler {
         }
     };
     public static ActionListener removeBrand = e -> {
-        if (Dialogs.askYesNoQuestion(getString("dialog.message.are_you_sure"),
-                false, getIcon("dialog.question"))) {
+        if (Dialogs.askYesNoQuestion(getString("dialog.message.are_you_sure"), false)) {
             DataManager.removeBrand(Objects.requireNonNull(ListsManager.getSelectedBrand()).getId());
             WindowUpdatesManager.updateLists();
         }
@@ -68,8 +66,7 @@ public final class ButtonsHandler {
         }
     };
     public static ActionListener removeShelf = e -> {
-        if (Dialogs.askYesNoQuestion(getString("dialog.message.are_you_sure"),
-                false, getIcon("dialog.question"))) {
+        if (Dialogs.askYesNoQuestion(getString("dialog.message.are_you_sure"), false)) {
             DataManager.removeShelf(Objects.requireNonNull(ListsManager.getSelectedShelf()).getId());
             WindowUpdatesManager.updateLists();
         }
@@ -89,8 +86,7 @@ public final class ButtonsHandler {
         Dialogs.showWarning(getString("dialog.message.feature_unavailable"));
     };
     public static ActionListener removeTeaBox = e -> {
-        if (Dialogs.askYesNoQuestion(getString("dialog.message.are_you_sure"),
-                false, getIcon("dialog.question"))) {
+        if (Dialogs.askYesNoQuestion(getString("dialog.message.are_you_sure"), false)) {
             DataManager.removeTeaBox(Objects.requireNonNull(ListsManager.getSelectedShelf()).getId(),
                     Objects.requireNonNull(ListsManager.getSelectedTeaBox()).getId());
             WindowUpdatesManager.updateLists();

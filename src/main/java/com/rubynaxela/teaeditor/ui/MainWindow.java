@@ -31,7 +31,6 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import static com.rubynaxela.teaeditor.util.Reference.Resources.getIcon;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
 public final class MainWindow extends JFrame {
@@ -67,10 +66,14 @@ public final class MainWindow extends JFrame {
             @Override
             public void windowClosing(WindowEvent windowEvent) {
                 if (DataManager.dataChanged)
-                    if (Dialogs.askYesNoQuestion(getString("dialog.message.save_before_close"),
-                            true, getIcon("dialog.diskette")))
-                        MenuHandler.saveFile.actionPerformed(null);
-                System.exit(0);
+                    switch (Dialogs.askYesNoCancelQuestion(getString("dialog.message.save_before_close"))) {
+                        case POSITIVE:
+                            MenuHandler.saveFile.actionPerformed(null);
+                        case NEGATIVE:
+                            System.exit(0);
+                            break;
+                    }
+                else System.exit(0);
             }
         });
     }

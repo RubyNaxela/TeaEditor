@@ -35,7 +35,7 @@
   "dialog.file_chooser.file_to_save": "Wybierz plik do zapisu",
   "dialog.input.color": "Kolor:",
   "dialog.input.id": "ID:",
-  "dialog.input.id_invalid": "<html><b><i>może składać się tylko z małych liter alfabetu łacińskiego</i></b></html>",
+  "dialog.input.id_invalid": "<html><b><i>ID może składać się tylko z małych liter alfabetu łacińskiego</i></b></html>",
   "dialog.input.name": "Nazwa:",
   "dialog.message.are_you_sure": "Czy na pewno?",
   "dialog.message.error.load_faild": "Wystąpił błąd podczas odczytu pliku.",

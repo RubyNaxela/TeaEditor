@@ -67,16 +67,36 @@ public final class Reference {
 
     public static final class Resources {
 
+        /**
+         * Returns a localized string from the given key. If not found in primary dictionary (that is, by default, the
+         * currently used language file), then searches in the backup dictionary (that is, by default, English (US)). If
+         * nothing is found in both, returns the key itself.
+         *
+         * @param key dictionary key of the string
+         * @return localized string
+         * @since alpha 1.4
+         */
         public static String getString(String key) {
-            try {
+            if (primaryDictionary.containsKey(key))
                 return Objects.requireNonNull(primaryDictionary.get(key));
-            } catch (Exception ignored1) {
-                try {
-                    return Objects.requireNonNull(backupDictionary.get(key));
-                } catch (Exception ignored2) {
-                }
-            }
-            return key;
+            else if (backupDictionary.containsKey(key))
+                return Objects.requireNonNull(backupDictionary.get(key));
+            else
+                return key;
+        }
+
+        /**
+         * Returns a localized string from the given key. If not found in primary dictionary (that is, by default, the
+         * currently used language file), then searches in the backup dictionary (that is, by default, English (US)). If
+         * nothing is found in both, returns the fallback value.
+         *
+         * @param key dictionary key of the string
+         * @param fallbackValue the fallback value
+         * @return localized string or the fallback value
+         * @since beta 1.3
+         */
+        public static String getString(String key, String fallbackValue) {
+            return (primaryDictionary.containsKey(key) || backupDictionary.containsKey(key)) ? getString(key) : fallbackValue;
         }
 
         public static Icon getIcon(String key) {

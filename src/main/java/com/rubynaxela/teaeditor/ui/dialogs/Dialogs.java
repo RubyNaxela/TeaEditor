@@ -18,95 +18,111 @@
 
 package com.rubynaxela.teaeditor.ui.dialogs;
 
+import com.formdev.flatlaf.icons.*;
 import com.rubynaxela.teaeditor.datatypes.IdNameColorTriplet;
+import com.rubynaxela.teaeditor.datatypes.Trilean;
 import com.rubynaxela.teaeditor.datatypes.database.AbstractPrimaryElement;
 import com.rubynaxela.teaeditor.ui.components.ColorPreviewBox;
 import com.rubynaxela.teaeditor.ui.components.RGBColorChooser;
 import com.rubynaxela.teaeditor.util.Reference;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Path2D;
+import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
 
 import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlags;
 import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlags.BRAND;
 import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlags.NEW;
-import static com.rubynaxela.teaeditor.util.Reference.Resources.getIcon;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Utils.dialogElementPosition;
 import static com.rubynaxela.teaeditor.util.Utils.getOptionPane;
 
-@SuppressWarnings("unused")
 public final class Dialogs {
 
     public static void showInfo(String message) {
         JOptionPane.showOptionDialog(Reference.window, message, getString("dialog.title.default"),
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                getIcon("dialog.info"), new String[]{getString("button.ok")},
+                new FlatOptionPaneInformationIcon(), new String[]{getString("button.ok")},
                 getString("button.ok"));
     }
 
     public static void showWarning(String message) {
         JOptionPane.showOptionDialog(Reference.window, message, getString("dialog.title.warning"),
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-                getIcon("dialog.warning"), new String[]{getString("button.ok")},
+                new FlatOptionPaneWarningIcon(), new String[]{getString("button.ok")},
                 getString("button.ok"));
     }
 
     public static void showError(String message, boolean exitOnClose) {
-        String title = getString("dialog.title.error");
-        String okButtonText = getString("button.ok");
-        Object okButton = !okButtonText.equals("button.ok") ? okButtonText : "OK";
+        final String title = getString("dialog.title.error");
+        final String okButtonText = getString("button.ok", "OK");
+        Object okButton;
         if (exitOnClose) {
-            okButton = new JButton((String) okButton);
+            okButton = new JButton(okButtonText);
             ((JButton) okButton).addActionListener(e -> System.exit(0));
-        }
+        } else
+            okButton = okButtonText;
         JOptionPane.showOptionDialog(Reference.window, message, !title.equals("dialog.title.error") ? title : "Error",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE,
-                getIcon("dialog.error"), new Object[]{okButton}, okButton);
+                new FlatOptionPaneErrorIcon(), new Object[]{okButton}, okButton);
     }
 
     public static void showError(String message) {
         showError(message, false);
     }
 
-    public static boolean askYesNoQuestion(String message, boolean defaultAnswer, Icon icon) {
+    public static boolean askYesNoQuestion(String message, boolean defaultAnswer) {
         return JOptionPane.showOptionDialog(Reference.window, message, getString("dialog.title.default"),
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
-                icon, new String[]{getString("button.yes"), getString("button.no")},
+                new FlatOptionPaneQuestionIcon(), new String[]{getString("button.yes"), getString("button.no")},
                 defaultAnswer ? getString("button.yes") : getString("button.no")) == 0;
     }
 
+    public static Trilean askYesNoCancelQuestion(String message) {
+        int answer = JOptionPane.showOptionDialog(Reference.window, message, getString("dialog.title.default"),
+                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
+                new FlatOptionPaneQuestionIcon(),
+                new String[]{getString("button.yes"), getString("button.no"), getString("button.cancel")},
+                getString("button.cancel"));
+        return Trilean.from012Model(answer);
+    }
+
     public static IdNameColorTriplet getIdNameColorData(AbstractPrimaryElement editedElement, DataDialogFlags... flags) {
-        JPanel dialogPanel = new JPanel();
-        JLabel idLabel = new JLabel(getString("dialog.input.id")),
-                idErrorLabel = new JLabel(getString("dialog.id_invalid")),
+        final JPanel dialogPanel = new JPanel();
+        final JLabel idLabel = new JLabel(getString("dialog.input.id")),
+                idErrorLabel = new JLabel(" "),
                 nameLabel = new JLabel(getString("dialog.input.name")),
                 colorLabel = new JLabel(getString("dialog.input.color"));
-        JTextField idInput = new JTextField(editedElement != null ? editedElement.getId() : ""),
+        final JTextField idInput = new JTextField(editedElement != null ? editedElement.getId() : ""),
                 nameInput = new JTextField(editedElement != null ? editedElement.getName() : "");
-        RGBColorChooser colorInput = new RGBColorChooser(
+        final RGBColorChooser colorInput = new RGBColorChooser(
                 editedElement != null ? Color.decode(editedElement.getColor()) : Color.WHITE);
-        ColorPreviewBox previewBox = new ColorPreviewBox();
-        JButton okButton = new JButton(getString("button.ok"));
+        final ColorPreviewBox previewBox = new ColorPreviewBox();
+        final JButton okButton = new JButton(getString("button.ok"));
 
+        final Border defaultBorder = idInput.getBorder();
         DocumentListener textFieldListener = new AbstractValidInputListener(okButton) {
             @Override
             protected boolean dataValid() {
                 boolean idValidChars = idInput.getText().matches("^[a-z]*$");
                 if (idValidChars) {
-                    idInput.setBorder(null);
-                    idErrorLabel.setVisible(false);
+                    idInput.setBorder(defaultBorder);
+                    idErrorLabel.setText(" ");
                 } else {
-                    idInput.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-                    idErrorLabel.setVisible(true);
+                    idInput.setBorder(BorderFactory.createCompoundBorder(
+                            BorderFactory.createLineBorder(new Color(0x834141), 3, true),
+                            BorderFactory.createEmptyBorder(2, 6, 2, 6)));
+                    idErrorLabel.setText(getString("dialog.input.id_invalid"));
                 }
                 return !idInput.getText().equals("") && !nameInput.getText().equals("") && idValidChars;
             }
         };
         idInput.getDocument().addDocumentListener(textFieldListener);
-        idErrorLabel.setVisible(false);
         nameInput.getDocument().addDocumentListener(textFieldListener);
 
         previewBox.setBackground(editedElement != null ? Color.decode(editedElement.getColor()) : Color.WHITE);
@@ -115,13 +131,13 @@ public final class Dialogs {
 
         dialogPanel.setLayout(new GridBagLayout());
         dialogPanel.add(idLabel, dialogElementPosition(0, 0, false));
-        dialogPanel.add(idInput, dialogElementPosition(1, 0, false));
-        dialogPanel.add(idErrorLabel, dialogElementPosition(0, 1, false));
-        dialogPanel.add(nameLabel, dialogElementPosition(0, 2, false));
-        dialogPanel.add(nameInput, dialogElementPosition(1, 2, false));
-        dialogPanel.add(colorLabel, dialogElementPosition(0, 3, true));
-        dialogPanel.add(colorInput, dialogElementPosition(0, 4, true));
-        dialogPanel.add(previewBox, dialogElementPosition(0, 5, true));
+        dialogPanel.add(idInput, dialogElementPosition(0, 1, false));
+        dialogPanel.add(nameLabel, dialogElementPosition(1, 0, false));
+        dialogPanel.add(nameInput, dialogElementPosition(1, 1, false));
+        dialogPanel.add(colorLabel, dialogElementPosition(2, 0, true));
+        dialogPanel.add(colorInput, dialogElementPosition(3, 0, true));
+        dialogPanel.add(previewBox, dialogElementPosition(4, 0, true));
+        dialogPanel.add(idErrorLabel, dialogElementPosition(5, 0, true));
 
         okButton.setEnabled(editedElement != null);
         okButton.addActionListener(e -> getOptionPane((JComponent) e.getSource()).setValue(okButton));
@@ -139,7 +155,32 @@ public final class Dialogs {
 
         return (JOptionPane.showOptionDialog(Reference.window,
                 dialogPanel, title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
-                getIcon("dialog.list"), new Object[]{okButton, getString("button.cancel")}, okButton) == 0) ?
+                new FlatOptionPaneAbstractIcon("OptionPane.icon.questionColor", "Actions.Blue") {
+                    @Override
+                    protected Shape createOutside() {
+                        return new Ellipse2D.Float( 2, 2, 28, 28 );
+                    }
+
+                    @Override
+                    protected Shape createInside() {
+                        Path2D q = new Path2D.Float();
+                        q.moveTo( 14, 20 );
+                        q.lineTo( 18, 20 );
+                        q.curveTo( 18, 16, 23, 16, 23, 12 );
+                        q.curveTo( 23, 8, 20, 6, 16, 6 );
+                        q.curveTo( 12, 6, 9, 8, 9, 12 );
+                        q.curveTo( 9, 12, 13, 12, 13, 12 );
+                        q.curveTo( 13, 10, 14, 9, 16, 9 );
+                        q.curveTo( 18, 9, 19, 10, 19, 12 );
+                        q.curveTo( 19, 15, 14, 15, 14, 20 );
+                        q.closePath();
+
+                        Path2D inside = new Path2D.Float( Path2D.WIND_EVEN_ODD );
+                        inside.append( new Rectangle2D.Float( 14, 22, 4, 4 ), false );
+                        inside.append( q, false );
+                        return inside;
+                    }
+                }, new Object[]{okButton, getString("button.cancel")}, okButton) == 0) ?
                 new IdNameColorTriplet(idInput.getText(), nameInput.getText(), colorInput.getColor()) : null;
     }
 
