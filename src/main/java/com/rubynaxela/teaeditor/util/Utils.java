@@ -1,8 +1,8 @@
 package com.rubynaxela.teaeditor.util;
 
 import com.rubynaxela.teaeditor.datatypes.database.Identifiable;
-import com.sun.istack.internal.Nullable;
 
+import javax.annotation.Nullable;
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,7 +13,7 @@ public final class Utils {
     /**
      * Converts a {@link Color} to hexadecimal hashtag notation.
      *
-     * @param color
+     * @param color an {@code java.awt} {@link Color} object
      * @return a {@link String} containing the color in hexadecimal hashtag notation
      * @since alpha 1.1
      */
@@ -23,9 +23,9 @@ public final class Utils {
     }
 
     /**
-     * @param id
-     * @param array
-     * @return
+     * @param id {@code id} field of the desired {@link Identifiable} object
+     * @param array an array of objects to search through
+     * @return a reference to the {@link Identifiable} object with the requested {@code id}, {@code null} if nothing found
      * @since alpha 1.5
      */
     public static Identifiable findIdInArray(String id, Identifiable[] array) {
@@ -35,8 +35,8 @@ public final class Utils {
     }
 
     /**
-     * @param parent
-     * @return
+     * @param parent a component of a {@link JOptionPane} dialog
+     * @return a reference to the {@link JOptionPane} that the given element is a child of
      * @since beta 1.0
      */
     public static JOptionPane getOptionPane(JComponent parent) {

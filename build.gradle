@@ -13,6 +13,7 @@ dependencies {
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
     compile group: 'com.formdev', name: 'flatlaf', version: '0.43'
     compile group: 'com.formdev', name: 'flatlaf-intellij-themes', version: '0.43'
+    compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
 }
 
 configurations {
