@@ -1,15 +1,12 @@
 <component name="CopyrightManager">
-  <settings default="License">
+  <settings default="TeaEditor">
     <module2copyright>
-      <element module="Project Files" copyright="License" />
+      <element module="Project Files" copyright="TeaEditor" />
     </module2copyright>
     <LanguageOptions name="__TEMPLATE__">
-      <option name="separateBefore" value="true" />
-      <option name="separateAfter" value="true" />
       <option name="lenBefore" value="68" />
       <option name="lenAfter" value="68" />
       <option name="box" value="true" />
-      <option name="filler" value="=" />
     </LanguageOptions>
   </settings>
 </component>
