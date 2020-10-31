@@ -1,3 +1,13 @@
+/*=================================================================
+ = This file is subject to the terms and conditions defined in    =
+ = file 'LICENSE.txt', which is part of this source code package. =
+ =================================================================*/
+
+/*=================================================================
+ = This file is subject to the terms and conditions defined in    =
+ = file 'LICENSE.txt', which is part of this source code package. =
+ =================================================================*/
+
 package com.rubynaxela.teaeditor.util;
 
 import com.rubynaxela.teaeditor.datatypes.database.Identifiable;
@@ -9,6 +19,8 @@ import java.awt.*;
 import static java.lang.Integer.toHexString;
 
 public final class Utils {
+
+    private static final GridBagConstraints gbc = new GridBagConstraints();
 
     /**
      * Converts a {@link Color} to hexadecimal hashtag notation.
@@ -23,9 +35,12 @@ public final class Utils {
     }
 
     /**
-     * @param id {@code id} field of the desired {@link Identifiable} object
+     * Finds an {@link Identifiable} object in an array by its {@code id}.
+     *
+     * @param id    {@code id} field of the desired {@link Identifiable} object
      * @param array an array of objects to search through
-     * @return a reference to the {@link Identifiable} object with the requested {@code id}, {@code null} if nothing found
+     * @return the object with the requested {@code id}, {@code null} if nothing found
+     * @see Identifiable
      * @since alpha 1.5
      */
     public static Identifiable findIdInArray(String id, Identifiable[] array) {
@@ -35,25 +50,31 @@ public final class Utils {
     }
 
     /**
-     * @param parent a component of a {@link JOptionPane} dialog
-     * @return a reference to the {@link JOptionPane} that the given element is a child of
+     * Gives a reference to the {@link JOptionPane} parent of the given {@link JComponent} element
+     *
+     * @param component a dialog component
+     * @return the {@code JOptionPane} that the given element is a child of
      * @since beta 1.0
      */
-    public static JOptionPane getOptionPane(JComponent parent) {
-        return parent instanceof JOptionPane ? (JOptionPane) parent : getOptionPane((JComponent) parent.getParent());
+    public static JOptionPane getOptionPane(JComponent component) {
+        return component instanceof JOptionPane ? (JOptionPane) component : getOptionPane((JComponent) component.getParent());
     }
 
     /**
-     * Creates a {@link GridBagConstraints} object with properties suitable for a dialog pane.
+     * Returns a {@link GridBagConstraints} object with properties suitable for a dialog pane:
+     * <ul>
+     *     <li>{@code x} and {@code y} parameters will translate directly into {@code gridx} and {@code gridy} fields of the
+     *         returned object respectively</li>
+     *     <li></li>
+     * </ul>
      *
      * @param x    horizontal position in the grid
      * @param y    vertical position in the grid
      * @param wide determines if a component takes up space of two columns
-     * @return a {@link GridBagConstraints} instance
+     * @return a {@code GridBagConstraints} instance
      * @since beta 1.2
      */
     public static GridBagConstraints dialogElementPosition(int x, int y, boolean wide) {
-        GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = x;
         gbc.gridy = y;
         gbc.anchor = x == 0 ? GridBagConstraints.WEST : GridBagConstraints.WEST;
@@ -62,18 +83,21 @@ public final class Utils {
     }
 
     /**
-     * Formats a number removing "{@code .0}" when the value is a whole number, adding an optional suffix and optionally
-     * replacing the number with some text when the value is equal to {@code 0}. Outputs a {@link String}.
+     * Formats a number returning a {@link String}:
+     * <ul>
+     *     <li>removes {@code .0} when the value is a whole number,</li>
+     *     <li>can add a suffix at the end of the number,</li>
+     *     <li>can replace the whole string with some text when the value is equal to {@code 0}.</li>
+     * </ul>
      *
      * @param number   a numeric value
-     * @param suffix   attached at the end of the number unless the value is equal to {@code 0}, may be {@code null}
-     * @param zeroText displayed instead of the number when the value is equal to {@code 0}, display the number normally when
-     *                 {@code null}
-     * @return a {@link String} containing the formatted number
+     * @param suffix   the suffix, may be {@code null}
+     * @param zeroText displayed when the value is equal to {@code 0}, displays the number normally when {@code null}
+     * @return a {@code String} containing the formatted number
      * @since beta 1.1
      */
     public static String formatNumber(double number, @Nullable String suffix, @Nullable String zeroText) {
-        if (zeroText != null && number == 0)
+        if (number == 0 && zeroText != null)
             return zeroText;
         else {
             String ret = number % 1 == 0 ? "" + (int) number : "" + number;
