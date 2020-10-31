@@ -13,8 +13,17 @@ import java.awt.*;
 
 import static java.lang.Integer.toHexString;
 
+/**
+ * The {@code Utils} class provides a number of utility functions that are used in different places throughout the project.
+ *
+ * @author Jacek Pawelski
+ * @since alpha 1.1
+ */
 public final class Utils {
 
+    /**
+     * An instance of the {@link GridBagConstraints} class used exclusively by the {@code dialogElementPosition} function.
+     */
     private static final GridBagConstraints gbc = new GridBagConstraints();
 
     /**
