@@ -17,7 +17,7 @@
  */
 
 group 'Editor'
-version 'beta-1.2'
+version 'beta-1.2.1'
 
 apply plugin: 'java'
 
