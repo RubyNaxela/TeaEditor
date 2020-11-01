@@ -83,7 +83,7 @@ public final class DataManager {
             switch (parameter) {
                 case ID:
                     if (id.equals(newValue))
-                        return new ActionResult(ResultType.NOTHING_CHANGED, "action.result.same.id");
+                        return new ActionResult(ResultType.NOTHING_CHANGED, getString("action.result.same.id"));
                     else {
                         brand.setId((String) newValue);
                         for (Shelf shelf : currentData.getShelves())
@@ -94,7 +94,7 @@ public final class DataManager {
                     break;
                 case NAME:
                     if (brand.getName().equals(newValue))
-                        return new ActionResult(ResultType.NOTHING_CHANGED, "action.result.same.name");
+                        return new ActionResult(ResultType.NOTHING_CHANGED, getString("action.result.same.name"));
                     else
                         brand.setName((String) newValue);
                     break;
@@ -159,19 +159,19 @@ public final class DataManager {
             switch (parameter) {
                 case ID:
                     if (id.equals(newValue))
-                        return new ActionResult(ResultType.NOTHING_CHANGED, "action.result.same.id");
+                        return new ActionResult(ResultType.NOTHING_CHANGED, getString("action.result.same.id"));
                     else
                         shelf.setId((String) newValue);
                     break;
                 case NAME:
                     if (shelf.getName().equals(newValue))
-                        return new ActionResult(ResultType.NOTHING_CHANGED, "action.result.same.name");
+                        return new ActionResult(ResultType.NOTHING_CHANGED, getString("action.result.same.name"));
                     else
                         shelf.setName((String) newValue);
                     break;
                 case COLOR:
                     if (shelf.getColor().equals(colorToHex((Color) newValue)))
-                        return new ActionResult(ResultType.NOTHING_CHANGED, "action.result.same.color");
+                        return new ActionResult(ResultType.NOTHING_CHANGED, getString("action.result.same.color"));
                     else
                         shelf.setColor(colorToHex((Color) newValue));
                     break;
