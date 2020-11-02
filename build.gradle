@@ -17,7 +17,7 @@
  */
 
 group 'Editor'
-version 'beta-1.2.1'
+version 'pre-beta-1.3_' + new File('./nextbuildver.txt').text.toInteger()
 
 apply plugin: 'java'
 
@@ -47,3 +47,16 @@ jar {
         configurations.'compile'.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
+
+class BuildVersionTask extends DefaultTask {
+    @SuppressWarnings('GrMethodMayBeStatic')
+    @TaskAction
+    def incrementVersion() {
+        def versionFile = new File('./nextbuildver.txt')
+        def versionNumber = versionFile.text.toInteger()
+        versionNumber++
+        versionFile.write versionNumber.toString()
+    }
+}
+
+task buildVersion(type: BuildVersionTask)
