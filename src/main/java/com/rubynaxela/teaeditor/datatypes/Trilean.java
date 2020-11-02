@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Jacek Pawelski a.k.a. RubyNaxela
+ * Copyright (c) 2020 Jacek Pawelski a.k.a. RubyNaxela
  *
  * Licensed under the GNU General Public License v3.0 (the "License");
  * you may not use this file except in compliance with the License.
