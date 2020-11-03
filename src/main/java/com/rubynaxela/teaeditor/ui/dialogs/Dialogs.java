@@ -21,23 +21,16 @@ package com.rubynaxela.teaeditor.ui.dialogs;
 import com.rubynaxela.teaeditor.datatypes.IdNameColorTriplet;
 import com.rubynaxela.teaeditor.datatypes.Trilean;
 import com.rubynaxela.teaeditor.datatypes.database.AbstractPrimaryElement;
-import com.rubynaxela.teaeditor.ui.components.ColorPreviewBox;
-import com.rubynaxela.teaeditor.ui.components.RGBColorChooser;
 import com.rubynaxela.teaeditor.util.Reference;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.event.DocumentListener;
-import java.awt.*;
 import java.util.Arrays;
+import java.util.List;
 
-import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlags;
-import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlags.BRAND;
-import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlags.NEW;
+import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlag;
+import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlag.*;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getIcon;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
-import static com.rubynaxela.teaeditor.util.Utils.dialogElementPosition;
-import static com.rubynaxela.teaeditor.util.Utils.getOptionPane;
 
 public final class Dialogs {
 
@@ -88,75 +81,19 @@ public final class Dialogs {
         return Trilean.from012Model(answer);
     }
 
-    public static IdNameColorTriplet showIdNameColorDataDialog(AbstractPrimaryElement editedElement, DataDialogFlags... flags) {
-        final JPanel dialogPanel = new JPanel();
-        final JLabel idLabel = new JLabel(getString("dialog.input.id")),
-                idErrorLabel = new JLabel(" "),
-                nameLabel = new JLabel(getString("dialog.input.name")),
-                colorLabel = new JLabel(getString("dialog.input.color"));
-        final JTextField idInput = new JTextField(editedElement != null ? editedElement.getId() : ""),
-                nameInput = new JTextField(editedElement != null ? editedElement.getName() : "");
-        final Color initialColor = editedElement != null ? Color.decode(editedElement.getColor()) : Color.WHITE;
-        final RGBColorChooser colorInput = new RGBColorChooser(initialColor);
-        final ColorPreviewBox previewBox = new ColorPreviewBox() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                setPreviewColor(g, initialColor);
-            }
-        };
-        final JButton okButton = new JButton(getString("button.ok"));
-
-        dialogPanel.setLayout(new GridBagLayout());
-        dialogPanel.add(idLabel, dialogElementPosition(0, 0, false));
-        dialogPanel.add(idInput, dialogElementPosition(0, 1, false));
-        dialogPanel.add(nameLabel, dialogElementPosition(1, 0, false));
-        dialogPanel.add(nameInput, dialogElementPosition(1, 1, false));
-        dialogPanel.add(colorLabel, dialogElementPosition(2, 0, true));
-        dialogPanel.add(colorInput, dialogElementPosition(3, 0, true));
-        dialogPanel.add(previewBox, dialogElementPosition(4, 0, true));
-        dialogPanel.add(idErrorLabel, dialogElementPosition(5, 0, true));
-
-        final Border defaultBorder = idInput.getBorder();
-        DocumentListener textFieldListener = new AbstractValidInputListener(okButton) {
-            @Override
-            protected boolean dataValid() {
-                boolean idValidChars = idInput.getText().matches("^[a-z]*$");
-                if (idValidChars) {
-                    idInput.setBorder(defaultBorder);
-                    idErrorLabel.setText(" ");
-                } else {
-                    idInput.setBorder(BorderFactory.createCompoundBorder(
-                            BorderFactory.createLineBorder(new Color(0x834141), 3, true),
-                            BorderFactory.createEmptyBorder(2, 6, 2, 6)));
-                    idErrorLabel.setText(getString("dialog.input.id_invalid"));
-                }
-                return !idInput.getText().equals("") && !nameInput.getText().equals("") && idValidChars;
-            }
-        };
-        idInput.getDocument().addDocumentListener(textFieldListener);
-        nameInput.getDocument().addDocumentListener(textFieldListener);
-
-        colorInput.getSelectionModel().addChangeListener(e -> previewBox.setPreviewColor(colorInput.getColor()));
-
-        okButton.setEnabled(editedElement != null);
-        okButton.addActionListener(e -> getOptionPane((JComponent) e.getSource()).setValue(okButton));
-
+    public static IdNameColorTriplet showIdNameColorDataDialog(AbstractPrimaryElement editedElement, DataDialogFlag... flags) {
+        final INCDataDialogPanel dialogPanel = new INCDataDialogPanel(editedElement);
         String title;
-        if (Arrays.asList(flags).contains(NEW))
-            if (Arrays.asList(flags).contains(BRAND))
-                title = getString("dialog.title.new_brand");
-            else
-                title = getString("dialog.title.new_shelf");
-        else if (Arrays.asList(flags).contains(BRAND))
-            title = getString("dialog.title.edit_brand");
-        else
-            title = getString("dialog.title.edit_shelf");
-
+        List<Reference.DataDialogFlag> flagsList = Arrays.asList(flags);
+        if (flagsList.contains(NEW) && flagsList.contains(BRAND)) title = getString("dialog.title.new_brand");
+        else if (flagsList.contains(NEW) && flagsList.contains(SHELF)) title = getString("dialog.title.new_shelf");
+        else if (flagsList.contains(EDIT) && flagsList.contains(BRAND)) title = getString("dialog.title.edit_brand");
+        else if (flagsList.contains(EDIT) && flagsList.contains(SHELF)) title = getString("dialog.title.edit_shelf");
+        else title = "";
         return (JOptionPane.showOptionDialog(Reference.window,
                 dialogPanel, title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
-                getIcon("dialog.data"), new Object[]{okButton, getString("button.cancel")}, okButton) == 0) ?
-                new IdNameColorTriplet(idInput.getText(), nameInput.getText(), colorInput.getColor()) : null;
+                getIcon("dialog.data"), new Object[]{dialogPanel.okButton, getString("button.cancel")},
+                dialogPanel.okButton) == 0) ? new IdNameColorTriplet(dialogPanel.idInput.getText(),
+                dialogPanel.nameInput.getText(), dialogPanel.colorInput.getColor()) : null;
     }
-
 }

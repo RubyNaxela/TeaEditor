@@ -29,7 +29,7 @@ import com.rubynaxela.teaeditor.ui.dialogs.Dialogs;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
-import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlags.*;
+import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlag.*;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
 public final class ButtonsHandler {

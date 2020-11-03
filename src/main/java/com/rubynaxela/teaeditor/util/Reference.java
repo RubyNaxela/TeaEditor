@@ -25,6 +25,8 @@ import com.rubynaxela.teaeditor.TeaEditor;
 import com.rubynaxela.teaeditor.ui.MainWindow;
 import com.rubynaxela.teaeditor.ui.dialogs.Dialogs;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
@@ -66,7 +68,7 @@ public final class Reference {
         }
     }
 
-    public enum DataDialogFlags {
+    public enum DataDialogFlag {
         NEW, EDIT, BRAND, SHELF
     }
 
@@ -81,7 +83,8 @@ public final class Reference {
          * @return localized string
          * @since alpha 1.4
          */
-        public static String getString(String key) {
+        @Nonnull
+        public static String getString(@Nonnull String key) {
             if (primaryDictionary.containsKey(key))
                 return Objects.requireNonNull(primaryDictionary.get(key));
             else if (backupDictionary.containsKey(key))
@@ -100,11 +103,13 @@ public final class Reference {
          * @return localized string or the fallback value
          * @since beta 1.3
          */
-        public static String getString(String key, String fallbackValue) {
+        @Nonnull
+        public static String getString(@Nonnull String key, @Nonnull String fallbackValue) {
             return (primaryDictionary.containsKey(key) || backupDictionary.containsKey(key)) ? getString(key) : fallbackValue;
         }
 
-        public static Icon getIcon(String key) {
+        @Nullable
+        public static Icon getIcon(@Nonnull String key) {
             switch (key) {
                 case "dialog.info":
                     return new FlatOptionPaneInformationIcon();

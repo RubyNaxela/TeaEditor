@@ -27,6 +27,16 @@ public class ColorPreviewBox extends JPanel {
         super();
     }
 
+    public static ColorPreviewBox init(Color initialColor) {
+        return new ColorPreviewBox() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                setPreviewColor(g, initialColor);
+            }
+        };
+    }
+
     public void setPreviewColor(Graphics g, Color color) {
         g.setColor(color);
         g.fillRoundRect(0, 0, this.getWidth() - 1, this.getHeight() - 1, 5, 5);
