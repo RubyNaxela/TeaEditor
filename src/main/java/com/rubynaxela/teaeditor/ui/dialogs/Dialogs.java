@@ -18,7 +18,10 @@
 
 package com.rubynaxela.teaeditor.ui.dialogs;
 
-import com.formdev.flatlaf.icons.*;
+import com.formdev.flatlaf.icons.FlatOptionPaneErrorIcon;
+import com.formdev.flatlaf.icons.FlatOptionPaneInformationIcon;
+import com.formdev.flatlaf.icons.FlatOptionPaneQuestionIcon;
+import com.formdev.flatlaf.icons.FlatOptionPaneWarningIcon;
 import com.rubynaxela.teaeditor.datatypes.IdNameColorTriplet;
 import com.rubynaxela.teaeditor.datatypes.Trilean;
 import com.rubynaxela.teaeditor.datatypes.database.AbstractPrimaryElement;
@@ -30,14 +33,12 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Path2D;
-import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
 
 import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlags;
 import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlags.BRAND;
 import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlags.NEW;
+import static com.rubynaxela.teaeditor.util.Reference.Resources.getIcon;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Utils.dialogElementPosition;
 import static com.rubynaxela.teaeditor.util.Utils.getOptionPane;
@@ -92,7 +93,7 @@ public final class Dialogs {
         return Trilean.from012Model(answer);
     }
 
-    public static IdNameColorTriplet getIdNameColorData(AbstractPrimaryElement editedElement, DataDialogFlags... flags) {
+    public static IdNameColorTriplet showIdNameColorDataDialog(AbstractPrimaryElement editedElement, DataDialogFlags... flags) {
         final JPanel dialogPanel = new JPanel();
         final JLabel idLabel = new JLabel(getString("dialog.input.id")),
                 idErrorLabel = new JLabel(" "),
@@ -100,10 +101,26 @@ public final class Dialogs {
                 colorLabel = new JLabel(getString("dialog.input.color"));
         final JTextField idInput = new JTextField(editedElement != null ? editedElement.getId() : ""),
                 nameInput = new JTextField(editedElement != null ? editedElement.getName() : "");
-        final RGBColorChooser colorInput = new RGBColorChooser(
-                editedElement != null ? Color.decode(editedElement.getColor()) : Color.WHITE);
-        final ColorPreviewBox previewBox = new ColorPreviewBox();
+        final Color initialColor = editedElement != null ? Color.decode(editedElement.getColor()) : Color.WHITE;
+        final RGBColorChooser colorInput = new RGBColorChooser(initialColor);
+        final ColorPreviewBox previewBox = new ColorPreviewBox() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                setPreviewColor(g, initialColor);
+            }
+        };
         final JButton okButton = new JButton(getString("button.ok"));
+
+        dialogPanel.setLayout(new GridBagLayout());
+        dialogPanel.add(idLabel, dialogElementPosition(0, 0, false));
+        dialogPanel.add(idInput, dialogElementPosition(0, 1, false));
+        dialogPanel.add(nameLabel, dialogElementPosition(1, 0, false));
+        dialogPanel.add(nameInput, dialogElementPosition(1, 1, false));
+        dialogPanel.add(colorLabel, dialogElementPosition(2, 0, true));
+        dialogPanel.add(colorInput, dialogElementPosition(3, 0, true));
+        dialogPanel.add(previewBox, dialogElementPosition(4, 0, true));
+        dialogPanel.add(idErrorLabel, dialogElementPosition(5, 0, true));
 
         final Border defaultBorder = idInput.getBorder();
         DocumentListener textFieldListener = new AbstractValidInputListener(okButton) {
@@ -125,19 +142,7 @@ public final class Dialogs {
         idInput.getDocument().addDocumentListener(textFieldListener);
         nameInput.getDocument().addDocumentListener(textFieldListener);
 
-        previewBox.setBackground(editedElement != null ? Color.decode(editedElement.getColor()) : Color.WHITE);
-        previewBox.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-        colorInput.getSelectionModel().addChangeListener(e -> previewBox.setBackground(colorInput.getColor()));
-
-        dialogPanel.setLayout(new GridBagLayout());
-        dialogPanel.add(idLabel, dialogElementPosition(0, 0, false));
-        dialogPanel.add(idInput, dialogElementPosition(0, 1, false));
-        dialogPanel.add(nameLabel, dialogElementPosition(1, 0, false));
-        dialogPanel.add(nameInput, dialogElementPosition(1, 1, false));
-        dialogPanel.add(colorLabel, dialogElementPosition(2, 0, true));
-        dialogPanel.add(colorInput, dialogElementPosition(3, 0, true));
-        dialogPanel.add(previewBox, dialogElementPosition(4, 0, true));
-        dialogPanel.add(idErrorLabel, dialogElementPosition(5, 0, true));
+        colorInput.getSelectionModel().addChangeListener(e -> previewBox.setPreviewColor(colorInput.getColor()));
 
         okButton.setEnabled(editedElement != null);
         okButton.addActionListener(e -> getOptionPane((JComponent) e.getSource()).setValue(okButton));
@@ -155,32 +160,7 @@ public final class Dialogs {
 
         return (JOptionPane.showOptionDialog(Reference.window,
                 dialogPanel, title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
-                new FlatOptionPaneAbstractIcon("OptionPane.icon.questionColor", "Actions.Blue") {
-                    @Override
-                    protected Shape createOutside() {
-                        return new Ellipse2D.Float( 2, 2, 28, 28 );
-                    }
-
-                    @Override
-                    protected Shape createInside() {
-                        Path2D q = new Path2D.Float();
-                        q.moveTo( 14, 20 );
-                        q.lineTo( 18, 20 );
-                        q.curveTo( 18, 16, 23, 16, 23, 12 );
-                        q.curveTo( 23, 8, 20, 6, 16, 6 );
-                        q.curveTo( 12, 6, 9, 8, 9, 12 );
-                        q.curveTo( 9, 12, 13, 12, 13, 12 );
-                        q.curveTo( 13, 10, 14, 9, 16, 9 );
-                        q.curveTo( 18, 9, 19, 10, 19, 12 );
-                        q.curveTo( 19, 15, 14, 15, 14, 20 );
-                        q.closePath();
-
-                        Path2D inside = new Path2D.Float( Path2D.WIND_EVEN_ODD );
-                        inside.append( new Rectangle2D.Float( 14, 22, 4, 4 ), false );
-                        inside.append( q, false );
-                        return inside;
-                    }
-                }, new Object[]{okButton, getString("button.cancel")}, okButton) == 0) ?
+                getIcon("dialog.data"), new Object[]{okButton, getString("button.cancel")}, okButton) == 0) ?
                 new IdNameColorTriplet(idInput.getText(), nameInput.getText(), colorInput.getColor()) : null;
     }
 

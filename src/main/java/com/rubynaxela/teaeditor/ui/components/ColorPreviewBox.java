@@ -21,10 +21,21 @@ package com.rubynaxela.teaeditor.ui.components;
 import javax.swing.*;
 import java.awt.*;
 
-public final class ColorPreviewBox extends JPanel {
+public class ColorPreviewBox extends JPanel {
 
     public ColorPreviewBox() {
         super();
+    }
+
+    public void setPreviewColor(Graphics g, Color color) {
+        g.setColor(color);
+        g.fillRoundRect(0, 0, this.getWidth() - 1, this.getHeight() - 1, 5, 5);
+        g.setColor(new Color(0x646464));
+        g.drawRoundRect(0, 0, this.getWidth() - 1, this.getHeight() - 1, 5, 5);
+    }
+
+    public void setPreviewColor(Color color) {
+        setPreviewColor(this.getGraphics(), color);
     }
 
     @Override

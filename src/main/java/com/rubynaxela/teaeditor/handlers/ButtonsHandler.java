@@ -35,7 +35,7 @@ import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 public final class ButtonsHandler {
 
     public static ActionListener addBrand = e -> {
-        IdNameColorTriplet brandData = Dialogs.getIdNameColorData(null, NEW, BRAND);
+        IdNameColorTriplet brandData = Dialogs.showIdNameColorDataDialog(null, NEW, BRAND);
         if (brandData != null) {
             DataManager.defineBrand(brandData.id, brandData.name, brandData.color);
             WindowUpdatesManager.updateLists();
@@ -49,7 +49,7 @@ public final class ButtonsHandler {
     };
     public static ActionListener editBrand = e -> {
         Brand editedBrand = Objects.requireNonNull(ListsManager.getSelectedBrand());
-        IdNameColorTriplet brandData = Dialogs.getIdNameColorData(editedBrand, EDIT, BRAND);
+        IdNameColorTriplet brandData = Dialogs.showIdNameColorDataDialog(editedBrand, EDIT, BRAND);
         if (brandData != null) {
             DataManager.editBrandParameter(Brand.Parameter.ID, editedBrand.getId(), brandData.id);
             DataManager.editBrandParameter(Brand.Parameter.NAME, editedBrand.getId(), brandData.name);
@@ -59,7 +59,7 @@ public final class ButtonsHandler {
     };
 
     public static ActionListener addShelf = e -> {
-        IdNameColorTriplet shelfData = Dialogs.getIdNameColorData(null, NEW, SHELF);
+        IdNameColorTriplet shelfData = Dialogs.showIdNameColorDataDialog(null, NEW, SHELF);
         if (shelfData != null) {
             DataManager.defineShelf(shelfData.id, shelfData.name, shelfData.color);
             WindowUpdatesManager.updateLists();
@@ -73,7 +73,7 @@ public final class ButtonsHandler {
     };
     public static ActionListener editShelf = e -> {
         Shelf editedShelf = Objects.requireNonNull(ListsManager.getSelectedShelf());
-        IdNameColorTriplet shelfData = Dialogs.getIdNameColorData(editedShelf, EDIT, SHELF);
+        IdNameColorTriplet shelfData = Dialogs.showIdNameColorDataDialog(editedShelf, EDIT, SHELF);
         if (shelfData != null) {
             DataManager.editShelfParameter(Shelf.Parameter.ID, editedShelf.getId(), shelfData.id);
             DataManager.editShelfParameter(Shelf.Parameter.NAME, editedShelf.getId(), shelfData.name);
