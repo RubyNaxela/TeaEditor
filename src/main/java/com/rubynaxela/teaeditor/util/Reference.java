@@ -75,6 +75,11 @@ public final class Reference {
     public static final class Resources {
 
         /**
+         * @since beta 1.3.2
+         */
+        public static final String BLANK_STRING = " ";
+
+        /**
          * Returns a localized string from the given key. If not found in primary dictionary (that is, by default, the
          * currently used language file), then searches in the backup dictionary (that is, by default, English (US)). If
          * nothing is found in both, returns the key itself.

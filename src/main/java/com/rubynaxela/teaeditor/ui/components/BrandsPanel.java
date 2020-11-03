@@ -25,6 +25,9 @@ import com.rubynaxela.teaeditor.managers.WindowUpdatesManager;
 
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
+/**
+ * @since alpha 1.2
+ */
 public final class BrandsPanel extends AbstractTablePanel {
 
     public BrandsPanel() {

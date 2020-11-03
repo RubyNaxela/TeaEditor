@@ -28,6 +28,9 @@ import static com.rubynaxela.teaeditor.util.Reference.OS;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Reference.STARTING_DIRECTORY;
 
+/**
+ * @since beta 1.0
+ */
 public final class AWTFileDialog extends FileDialog {
 
     public AWTFileDialog() {

@@ -20,6 +20,9 @@ package com.rubynaxela.teaeditor.ui.components;
 
 import javax.swing.*;
 
+/**
+ * @since alpha 1.5
+ */
 public final class StaticJTable extends JTable {
 
     StaticJTable() {

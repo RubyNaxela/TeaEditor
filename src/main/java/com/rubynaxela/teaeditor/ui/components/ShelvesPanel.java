@@ -26,6 +26,9 @@ import com.rubynaxela.teaeditor.util.Reference;
 
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
+/**
+ * @since alpha 1.4
+ */
 public final class ShelvesPanel extends AbstractTablePanel {
 
     public ShelvesPanel() {

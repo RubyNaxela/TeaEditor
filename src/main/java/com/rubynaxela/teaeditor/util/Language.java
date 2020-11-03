@@ -20,7 +20,9 @@ package com.rubynaxela.teaeditor.util;
 
 import java.util.Arrays;
 
-@SuppressWarnings("WeakerAccess")
+/**
+ * @since alpha 1.4
+ */
 public final class Language {
 
     public static final String

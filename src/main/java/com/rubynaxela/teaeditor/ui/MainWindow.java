@@ -33,6 +33,9 @@ import java.awt.event.WindowEvent;
 
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
+/**
+ * @since alpha 1.0
+ */
 public final class MainWindow extends JFrame {
 
     public com.rubynaxela.teaeditor.ui.components.MenuBar menuBar;

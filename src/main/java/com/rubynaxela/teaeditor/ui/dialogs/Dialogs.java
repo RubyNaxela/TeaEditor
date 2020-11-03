@@ -32,6 +32,9 @@ import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlag.*;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getIcon;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
+/**
+ * @since 1.2
+ */
 public final class Dialogs {
 
     /**

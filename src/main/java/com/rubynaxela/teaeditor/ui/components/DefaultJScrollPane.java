@@ -21,7 +21,9 @@ package com.rubynaxela.teaeditor.ui.components;
 import javax.swing.*;
 import java.awt.*;
 
-@SuppressWarnings("FieldCanBeLocal")
+/**
+ * @since alpha 1.3
+ */
 public final class DefaultJScrollPane extends JScrollPane {
 
     private final int paneWidth, paneHeight;

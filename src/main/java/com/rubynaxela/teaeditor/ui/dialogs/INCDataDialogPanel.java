@@ -27,6 +27,7 @@ import javax.swing.border.Border;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 
+import static com.rubynaxela.teaeditor.util.Reference.Resources.BLANK_STRING;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Utils.dialogElementPosition;
 import static com.rubynaxela.teaeditor.util.Utils.getOptionPane;
@@ -45,7 +46,7 @@ public final class INCDataDialogPanel extends JPanel {
 
     public INCDataDialogPanel(AbstractPrimaryElement editedElement) {
         idLabel = new JLabel(getString("dialog.input.id"));
-        idErrorLabel = new JLabel(" ");
+        idErrorLabel = new JLabel(BLANK_STRING);
         nameLabel = new JLabel(getString("dialog.input.name"));
         colorLabel = new JLabel(getString("dialog.input.color"));
         idInput = new JTextField(editedElement != null ? editedElement.getId() : "");
@@ -72,7 +73,7 @@ public final class INCDataDialogPanel extends JPanel {
                 boolean idValidChars = idInput.getText().matches("^[a-z]*$");
                 if (idValidChars) {
                     idInput.setBorder(defaultBorder);
-                    idErrorLabel.setText(" ");
+                    idErrorLabel.setText(BLANK_STRING);
                 } else {
                     idInput.setBorder(BorderFactory.createCompoundBorder(
                             BorderFactory.createLineBorder(new Color(0x834141), 3, true),

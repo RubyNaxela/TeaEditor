@@ -27,6 +27,9 @@ import java.awt.*;
 
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
+/**
+ * @since alpha 1.5
+ */
 public final class TeaBoxesPanel extends AbstractTablePanel {
 
     public TeaBoxesPanel() {

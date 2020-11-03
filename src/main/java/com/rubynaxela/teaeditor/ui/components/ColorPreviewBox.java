@@ -21,6 +21,9 @@ package com.rubynaxela.teaeditor.ui.components;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @since beta 1.0
+ */
 public class ColorPreviewBox extends JPanel {
 
     public ColorPreviewBox() {

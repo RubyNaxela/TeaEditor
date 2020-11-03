@@ -26,6 +26,9 @@ import javax.swing.*;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Reference.Shortcuts.*;
 
+/**
+ * @since alpha 1.0
+ */
 @SuppressWarnings("FieldCanBeLocal")
 public final class MenuBar extends JMenuBar {
 
