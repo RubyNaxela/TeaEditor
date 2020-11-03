@@ -16,14 +16,14 @@
  *
  */
 
-package com.rubynaxela.teaeditor.ui;
+package com.rubynaxela.teaeditor.gui;
 
 import com.rubynaxela.teaeditor.handlers.MenuHandler;
 import com.rubynaxela.teaeditor.managers.DataManager;
 import com.rubynaxela.teaeditor.managers.WindowUpdatesManager;
-import com.rubynaxela.teaeditor.ui.components.MenuBar;
-import com.rubynaxela.teaeditor.ui.components.*;
-import com.rubynaxela.teaeditor.ui.dialogs.Dialogs;
+import com.rubynaxela.teaeditor.gui.components.MenuBar;
+import com.rubynaxela.teaeditor.gui.components.*;
+import com.rubynaxela.teaeditor.gui.dialogs.Dialogs;
 import com.rubynaxela.teaeditor.util.Reference;
 
 import javax.swing.*;
@@ -38,7 +38,7 @@ import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
  */
 public final class MainWindow extends JFrame {
 
-    public com.rubynaxela.teaeditor.ui.components.MenuBar menuBar;
+    public com.rubynaxela.teaeditor.gui.components.MenuBar menuBar;
     public AbstractTablePanel brandsPanel = new BrandsPanel();
     public AbstractTablePanel shelvesPanel = new ShelvesPanel();
     public AbstractTablePanel teaBoxesPanel = new TeaBoxesPanel();

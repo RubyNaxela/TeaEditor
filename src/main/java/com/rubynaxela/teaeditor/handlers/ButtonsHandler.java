@@ -24,7 +24,7 @@ import com.rubynaxela.teaeditor.datatypes.database.Shelf;
 import com.rubynaxela.teaeditor.managers.DataManager;
 import com.rubynaxela.teaeditor.managers.ListsManager;
 import com.rubynaxela.teaeditor.managers.WindowUpdatesManager;
-import com.rubynaxela.teaeditor.ui.dialogs.Dialogs;
+import com.rubynaxela.teaeditor.gui.dialogs.Dialogs;
 
 import java.awt.event.ActionListener;
 import java.util.Objects;

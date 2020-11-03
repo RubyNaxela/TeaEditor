@@ -22,8 +22,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.formdev.flatlaf.icons.*;
 import com.rubynaxela.teaeditor.TeaEditor;
-import com.rubynaxela.teaeditor.ui.MainWindow;
-import com.rubynaxela.teaeditor.ui.dialogs.Dialogs;
+import com.rubynaxela.teaeditor.gui.MainWindow;
+import com.rubynaxela.teaeditor.gui.dialogs.Dialogs;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

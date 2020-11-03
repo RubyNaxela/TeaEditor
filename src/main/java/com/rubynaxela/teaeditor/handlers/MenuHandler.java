@@ -20,7 +20,7 @@ package com.rubynaxela.teaeditor.handlers;
 
 import com.rubynaxela.teaeditor.managers.DataManager;
 import com.rubynaxela.teaeditor.managers.WindowUpdatesManager;
-import com.rubynaxela.teaeditor.ui.dialogs.Dialogs;
+import com.rubynaxela.teaeditor.gui.dialogs.Dialogs;
 
 import java.awt.event.ActionListener;
 import java.io.File;

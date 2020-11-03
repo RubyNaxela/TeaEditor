@@ -16,7 +16,7 @@
  *
  */
 
-package com.rubynaxela.teaeditor.ui.dialogs;
+package com.rubynaxela.teaeditor.gui.dialogs;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;

@@ -16,11 +16,11 @@
  *
  */
 
-package com.rubynaxela.teaeditor.ui.dialogs;
+package com.rubynaxela.teaeditor.gui.dialogs;
 
 import com.rubynaxela.teaeditor.datatypes.database.AbstractPrimaryElement;
-import com.rubynaxela.teaeditor.ui.components.ColorPreviewBox;
-import com.rubynaxela.teaeditor.ui.components.RGBColorChooser;
+import com.rubynaxela.teaeditor.gui.components.ColorPreviewBox;
+import com.rubynaxela.teaeditor.gui.components.RGBColorChooser;
 
 import javax.swing.*;
 import javax.swing.border.Border;

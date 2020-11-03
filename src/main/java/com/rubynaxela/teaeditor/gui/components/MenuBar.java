@@ -16,7 +16,7 @@
  *
  */
 
-package com.rubynaxela.teaeditor.ui.components;
+package com.rubynaxela.teaeditor.gui.components;
 
 import com.rubynaxela.teaeditor.handlers.FileIOHandler;
 import com.rubynaxela.teaeditor.handlers.MenuHandler;

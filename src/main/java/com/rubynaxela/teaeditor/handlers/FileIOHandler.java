@@ -20,8 +20,8 @@ package com.rubynaxela.teaeditor.handlers;
 
 import com.rubynaxela.teaeditor.datatypes.database.TeaData;
 import com.rubynaxela.teaeditor.managers.DataManager;
-import com.rubynaxela.teaeditor.ui.dialogs.AWTFileDialog;
-import com.rubynaxela.teaeditor.ui.dialogs.Dialogs;
+import com.rubynaxela.teaeditor.gui.dialogs.AWTFileDialog;
+import com.rubynaxela.teaeditor.gui.dialogs.Dialogs;
 
 import java.io.File;
 

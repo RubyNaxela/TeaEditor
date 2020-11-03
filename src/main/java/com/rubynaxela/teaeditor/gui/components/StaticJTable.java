@@ -16,26 +16,25 @@
  *
  */
 
-package com.rubynaxela.teaeditor.ui.components;
+package com.rubynaxela.teaeditor.gui.components;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
- * @since alpha 1.3
+ * @since alpha 1.5
  */
-public final class DefaultJScrollPane extends JScrollPane {
+public final class StaticJTable extends JTable {
 
-    private final int paneWidth, paneHeight;
-
-    DefaultJScrollPane(Component component, int paneWidth, int paneHeight) {
-        super(component);
-        this.paneWidth = paneWidth;
-        this.paneHeight = paneHeight;
+    StaticJTable() {
+        super();
+        DefaultListSelectionModel brandsListModel = new DefaultListSelectionModel();
+        brandsListModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        this.setSelectionModel(brandsListModel);
+        this.getTableHeader().setReorderingAllowed(false);
     }
 
     @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(paneWidth, paneHeight);
+    public boolean isCellEditable(int row, int column) {
+        return false;
     }
 }

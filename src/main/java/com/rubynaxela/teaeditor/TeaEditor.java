@@ -20,7 +20,7 @@ package com.rubynaxela.teaeditor;
 
 import com.rubynaxela.teaeditor.handlers.FileIOHandler;
 import com.rubynaxela.teaeditor.managers.WindowUpdatesManager;
-import com.rubynaxela.teaeditor.ui.MainWindow;
+import com.rubynaxela.teaeditor.gui.MainWindow;
 import com.rubynaxela.teaeditor.util.Language;
 import com.rubynaxela.teaeditor.util.LookAndFeel;
 import com.rubynaxela.teaeditor.util.Reference;

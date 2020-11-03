@@ -16,7 +16,7 @@
  *
  */
 
-package com.rubynaxela.teaeditor.ui.dialogs;
+package com.rubynaxela.teaeditor.gui.dialogs;
 
 import com.rubynaxela.teaeditor.datatypes.IdNameColorTriplet;
 import com.rubynaxela.teaeditor.datatypes.Trilean;

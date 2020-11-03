@@ -16,7 +16,7 @@
  *
  */
 
-package com.rubynaxela.teaeditor.ui.components;
+package com.rubynaxela.teaeditor.gui.components;
 
 import javax.swing.*;
 import javax.swing.colorchooser.AbstractColorChooserPanel;
