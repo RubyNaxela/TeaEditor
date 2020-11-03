@@ -20,6 +20,7 @@ package com.rubynaxela.teaeditor.util;
 
 import com.rubynaxela.teaeditor.datatypes.database.Identifiable;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.swing.*;
 import java.awt.*;
@@ -41,7 +42,8 @@ public final class Utils {
      * @return a {@link String} containing the color in hexadecimal hashtag notation
      * @since alpha 1.1
      */
-    public static String colorToHex(Color color) {
+    @Nonnull
+    public static String colorToHex(@Nonnull Color color) {
         String r = toHexString(color.getRed()), g = toHexString(color.getGreen()), b = toHexString(color.getBlue());
         return "#" + (r.length() == 2 ? r : "0" + r) + (g.length() == 2 ? g : "0" + g) + (b.length() == 2 ? b : "0" + b);
     }
@@ -55,7 +57,8 @@ public final class Utils {
      * @see Identifiable
      * @since alpha 1.5
      */
-    public static Identifiable findIdInArray(String id, Identifiable[] array) {
+    @Nullable
+    public static Identifiable findIdInArray(String id, @Nonnull Identifiable[] array) {
         for (Identifiable obj : array)
             if (obj.getId().equals((id))) return obj;
         return null;
@@ -87,6 +90,7 @@ public final class Utils {
      * @return a {@code GridBagConstraints} instance
      * @since beta 1.2
      */
+    @Nonnull
     public static GridBagConstraints dialogElementPosition(int row, int column, boolean wide) {
         final GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = column;
@@ -120,6 +124,7 @@ public final class Utils {
      * @return a {@code String} containing the formatted number
      * @since beta 1.1
      */
+    @Nonnull
     public static String formatNumber(double number, @Nullable String suffix, @Nullable String zeroText) {
         if (number == 0 && zeroText != null)
             return zeroText;

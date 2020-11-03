@@ -2,7 +2,16 @@
 ### Czym jest program
 > Aplikacja służy do wygodnej edycji bazy danych zawierającej dane dotyczące kolekcji herbat.
 
+### Struktura bazy danych
+> JSON
+
 ### Funkcjonalności programu
+> ##### 1.
+> ##### 2.
+> ##### 3.
+> ##### 4.
+> ##### 5.
+
 ### Instalacja
 > (Releases)
 
