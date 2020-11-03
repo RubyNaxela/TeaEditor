@@ -20,15 +20,18 @@ package com.rubynaxela.teaeditor.util;
 
 import java.util.Locale;
 
+/**
+ * @since alpha 1.0
+ */
 public final class OsCheck {
 
     public static OSType getOperatingSystemType() {
-        String OS = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
-        if ((OS.contains("mac")) || (OS.contains("darwin"))) {
+        String os = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
+        if ((os.contains("mac")) || (os.contains("darwin"))) {
             return OSType.MAC_OS;
-        } else if (OS.contains("win")) {
+        } else if (os.contains("win")) {
             return OSType.WINDOWS;
-        } else if (OS.contains("nux")) {
+        } else if (os.contains("nux")) {
             return OSType.LINUX;
         } else {
             return OSType.OTHER;

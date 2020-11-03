@@ -108,6 +108,9 @@ public final class Reference {
             return (primaryDictionary.containsKey(key) || backupDictionary.containsKey(key)) ? getString(key) : fallbackValue;
         }
 
+        /**
+         * @since beta 1.2
+         */
         @Nullable
         public static Icon getIcon(@Nonnull String key) {
             switch (key) {
@@ -141,6 +144,9 @@ public final class Reference {
         }
     }
 
+    /**
+     * @since aplha 1.0
+     */
     public static final class Shortcuts {
         private static final boolean USE_CTRL = OS != MAC_OS;
         public static final KeyStroke

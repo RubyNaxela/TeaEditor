@@ -34,6 +34,9 @@ import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
 public final class Dialogs {
 
+    /**
+     * @since alpha 1.2
+     */
     public static void showInfo(String message) {
         JOptionPane.showOptionDialog(Reference.window, message, getString("dialog.title.default"),
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
@@ -41,6 +44,9 @@ public final class Dialogs {
                 getString("button.ok"));
     }
 
+    /**
+     * @since alpha 1.2
+     */
     public static void showWarning(String message) {
         JOptionPane.showOptionDialog(Reference.window, message, getString("dialog.title.warning"),
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -48,6 +54,9 @@ public final class Dialogs {
                 getString("button.ok"));
     }
 
+    /**
+     * @since alpha 1.2
+     */
     public static void showError(String message, boolean exitOnClose) {
         final String title = getString("dialog.title.error");
         final String okButtonText = getString("button.ok", "OK");
@@ -62,10 +71,16 @@ public final class Dialogs {
                 getIcon("dialog.error"), new Object[]{okButton}, okButton);
     }
 
+    /**
+     * @since beta 1.3
+     */
     public static void showError(String message) {
         showError(message, false);
     }
 
+    /**
+     * @since alpha 1.2
+     */
     public static boolean askYesNoQuestion(String message, boolean defaultAnswer) {
         return JOptionPane.showOptionDialog(Reference.window, message, getString("dialog.title.default"),
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
@@ -73,6 +88,9 @@ public final class Dialogs {
                 defaultAnswer ? getString("button.yes") : getString("button.no")) == 0;
     }
 
+    /**
+     * @since beta 1.3
+     */
     public static Trilean askYesNoCancelQuestion(String message) {
         int answer = JOptionPane.showOptionDialog(Reference.window, message, getString("dialog.title.default"),
                 JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, getIcon("dialog.question"),
@@ -81,6 +99,9 @@ public final class Dialogs {
         return Trilean.from012Model(answer);
     }
 
+    /**
+     * @since alpha 1.4
+     */
     public static IdNameColorTriplet showIdNameColorDataDialog(AbstractPrimaryElement editedElement, DataDialogFlag... flags) {
         final INCDataDialogPanel dialogPanel = new INCDataDialogPanel(editedElement);
         String title;
