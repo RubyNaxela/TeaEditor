@@ -35,7 +35,6 @@ public final class TeaEditor {
         LookAndFeel.init();
         MainWindow.init();
 
-        // TODO Naprawić ColorPreviewBox
         // TODO Narysować ikonę SVG dla okna z danymi
 
         // TODO Dokumentacja - szczegółowa instrukcja instalacji (i kompilacji) oraz obsługi programu (PDF)

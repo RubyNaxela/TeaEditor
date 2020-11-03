@@ -17,7 +17,7 @@
  */
 
 group 'Editor'
-version 'beta-1.3_' + new File('./nextbuildver.txt').text.toInteger()
+version 'beta-1.3.1_' + new File('./nextbuildver.txt').text.toInteger()
 
 apply plugin: 'java'
 

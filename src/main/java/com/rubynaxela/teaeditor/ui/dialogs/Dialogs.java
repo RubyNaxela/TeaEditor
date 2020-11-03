@@ -18,10 +18,6 @@
 
 package com.rubynaxela.teaeditor.ui.dialogs;
 
-import com.formdev.flatlaf.icons.FlatOptionPaneErrorIcon;
-import com.formdev.flatlaf.icons.FlatOptionPaneInformationIcon;
-import com.formdev.flatlaf.icons.FlatOptionPaneQuestionIcon;
-import com.formdev.flatlaf.icons.FlatOptionPaneWarningIcon;
 import com.rubynaxela.teaeditor.datatypes.IdNameColorTriplet;
 import com.rubynaxela.teaeditor.datatypes.Trilean;
 import com.rubynaxela.teaeditor.datatypes.database.AbstractPrimaryElement;
@@ -48,14 +44,14 @@ public final class Dialogs {
     public static void showInfo(String message) {
         JOptionPane.showOptionDialog(Reference.window, message, getString("dialog.title.default"),
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                new FlatOptionPaneInformationIcon(), new String[]{getString("button.ok")},
+                getIcon("dialog.info"), new String[]{getString("button.ok")},
                 getString("button.ok"));
     }
 
     public static void showWarning(String message) {
         JOptionPane.showOptionDialog(Reference.window, message, getString("dialog.title.warning"),
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-                new FlatOptionPaneWarningIcon(), new String[]{getString("button.ok")},
+                getIcon("dialog.warning"), new String[]{getString("button.ok")},
                 getString("button.ok"));
     }
 
@@ -70,7 +66,7 @@ public final class Dialogs {
             okButton = okButtonText;
         JOptionPane.showOptionDialog(Reference.window, message, !title.equals("dialog.title.error") ? title : "Error",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE,
-                new FlatOptionPaneErrorIcon(), new Object[]{okButton}, okButton);
+                getIcon("dialog.error"), new Object[]{okButton}, okButton);
     }
 
     public static void showError(String message) {
@@ -80,14 +76,13 @@ public final class Dialogs {
     public static boolean askYesNoQuestion(String message, boolean defaultAnswer) {
         return JOptionPane.showOptionDialog(Reference.window, message, getString("dialog.title.default"),
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
-                new FlatOptionPaneQuestionIcon(), new String[]{getString("button.yes"), getString("button.no")},
+                getIcon("dialog.question"), new String[]{getString("button.yes"), getString("button.no")},
                 defaultAnswer ? getString("button.yes") : getString("button.no")) == 0;
     }
 
     public static Trilean askYesNoCancelQuestion(String message) {
         int answer = JOptionPane.showOptionDialog(Reference.window, message, getString("dialog.title.default"),
-                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
-                new FlatOptionPaneQuestionIcon(),
+                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, getIcon("dialog.question"),
                 new String[]{getString("button.yes"), getString("button.no"), getString("button.cancel")},
                 getString("button.cancel"));
         return Trilean.from012Model(answer);

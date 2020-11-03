@@ -20,7 +20,7 @@ package com.rubynaxela.teaeditor.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.formdev.flatlaf.icons.FlatOptionPaneAbstractIcon;
+import com.formdev.flatlaf.icons.*;
 import com.rubynaxela.teaeditor.TeaEditor;
 import com.rubynaxela.teaeditor.ui.MainWindow;
 import com.rubynaxela.teaeditor.ui.dialogs.Dialogs;
@@ -95,7 +95,7 @@ public final class Reference {
          * currently used language file), then searches in the backup dictionary (that is, by default, English (US)). If
          * nothing is found in both, returns the fallback value.
          *
-         * @param key dictionary key of the string
+         * @param key           dictionary key of the string
          * @param fallbackValue the fallback value
          * @return localized string or the fallback value
          * @since beta 1.3
@@ -105,35 +105,33 @@ public final class Reference {
         }
 
         public static Icon getIcon(String key) {
-            if (key.equals("dialog.data")) {
-                return new FlatOptionPaneAbstractIcon("OptionPane.icon.questionColor", "Actions.Blue") {
-                    @Override
-                    protected Shape createOutside() {
-                        return new Ellipse2D.Float(2, 2, 28, 28);
-                    }
+            switch (key) {
+                case "dialog.info":
+                    return new FlatOptionPaneInformationIcon();
+                case "dialog.warning":
+                    return new FlatOptionPaneWarningIcon();
+                case "dialog.error":
+                    return new FlatOptionPaneErrorIcon();
+                case "dialog.question":
+                    return new FlatOptionPaneQuestionIcon();
+                case "dialog.data":
+                    return new FlatOptionPaneAbstractIcon("Actions.Green", "Actions.Green") {
+                        @Override
+                        protected Shape createOutside() {
+                            return new Ellipse2D.Float(2, 2, 28, 28);
+                        }
 
-                    @Override
-                    protected Shape createInside() {
-                        Path2D q = new Path2D.Float();
-                        q.moveTo(14, 20);
-                        q.lineTo(18, 20);
-                        q.curveTo(18, 16, 23, 16, 23, 12);
-                        q.curveTo(23, 8, 20, 6, 16, 6);
-                        q.curveTo(12, 6, 9, 8, 9, 12);
-                        q.curveTo(9, 12, 13, 12, 13, 12);
-                        q.curveTo(13, 10, 14, 9, 16, 9);
-                        q.curveTo(18, 9, 19, 10, 19, 12);
-                        q.curveTo(19, 15, 14, 15, 14, 20);
-                        q.closePath();
-
-                        Path2D inside = new Path2D.Float(Path2D.WIND_EVEN_ODD);
-                        inside.append(new Rectangle2D.Float(14, 22, 4, 4), false);
-                        inside.append(q, false);
-                        return inside;
-                    }
-                };
-            } else {
-                return null;
+                        @Override
+                        protected Shape createInside() {
+                            Path2D q = new Path2D.Float(Path2D.WIND_EVEN_ODD);
+                            q.append(new Rectangle2D.Float(8, 8, 6, 16), false);
+                            q.append(new Rectangle2D.Float(18, 8, 6, 6), false);
+                            q.append(new Rectangle2D.Float(18, 18, 6, 6), false);
+                            return q;
+                        }
+                    };
+                default:
+                    return null;
             }
         }
     }
