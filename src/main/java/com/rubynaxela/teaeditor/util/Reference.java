@@ -74,9 +74,6 @@ public final class Reference {
 
     public static final class Resources {
 
-        /**
-         * @since beta 1.3.2
-         */
         public static final String BLANK_STRING = " ";
 
         /**
@@ -86,7 +83,6 @@ public final class Reference {
          *
          * @param key dictionary key of the string
          * @return localized string
-         * @since alpha 1.4
          */
         @Nonnull
         public static String getString(@Nonnull String key) {
@@ -106,16 +102,12 @@ public final class Reference {
          * @param key           dictionary key of the string
          * @param fallbackValue the fallback value
          * @return localized string or the fallback value
-         * @since beta 1.3
          */
         @Nonnull
         public static String getString(@Nonnull String key, @Nonnull String fallbackValue) {
             return (primaryDictionary.containsKey(key) || backupDictionary.containsKey(key)) ? getString(key) : fallbackValue;
         }
 
-        /**
-         * @since beta 1.2
-         */
         @Nullable
         public static Icon getIcon(@Nonnull String key) {
             switch (key) {
@@ -149,9 +141,6 @@ public final class Reference {
         }
     }
 
-    /**
-     * @since aplha 1.0
-     */
     public static final class Shortcuts {
         private static final boolean USE_CTRL = OS != MAC_OS;
         public static final KeyStroke

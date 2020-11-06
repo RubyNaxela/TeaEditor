@@ -32,9 +32,6 @@ import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Utils.dialogElementPosition;
 import static com.rubynaxela.teaeditor.util.Utils.getOptionPane;
 
-/**
- * @since beta 1.3.1
- */
 public final class INCDataDialogPanel extends JPanel {
 
     public final JLabel idLabel, idErrorLabel, nameLabel, colorLabel;

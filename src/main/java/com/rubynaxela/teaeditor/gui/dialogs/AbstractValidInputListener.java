@@ -22,9 +22,6 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-/**
- * @since beta 1.5
- */
 abstract class AbstractValidInputListener implements DocumentListener {
 
     private final JButton okButton;

@@ -23,7 +23,6 @@ package com.rubynaxela.teaeditor.datatypes;
  * either positive, negative or neutral.
  *
  * @author Jacek Pawelski
- * @since beta 1.3
  */
 public enum Trilean {
     POSITIVE, NEUTRAL, NEGATIVE;
@@ -38,7 +37,6 @@ public enum Trilean {
      *
      * @param value integer trilean value in 012 model
      * @return a corresponding trilean value
-     * @since beta 1.3
      */
     public static Trilean from012Model(int value) {
         return value == 2 ? NEUTRAL : (value == 0 ? POSITIVE : NEGATIVE);

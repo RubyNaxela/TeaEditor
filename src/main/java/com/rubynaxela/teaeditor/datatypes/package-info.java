@@ -16,23 +16,7 @@
  *
  */
 
-package com.rubynaxela.teaeditor.gui.components;
-
-import javax.swing.*;
-import java.awt.*;
-
-public final class DefaultJScrollPane extends JScrollPane {
-
-    private final int paneWidth, paneHeight;
-
-    DefaultJScrollPane(Component component, int paneWidth, int paneHeight) {
-        super(component);
-        this.paneWidth = paneWidth;
-        this.paneHeight = paneHeight;
-    }
-
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(paneWidth, paneHeight);
-    }
-}
+/**
+ * Classes of all non-gui-related objects
+ */
+package com.rubynaxela.teaeditor.datatypes;

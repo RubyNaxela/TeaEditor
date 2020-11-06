@@ -22,9 +22,6 @@ import javax.swing.*;
 import javax.swing.colorchooser.AbstractColorChooserPanel;
 import java.awt.*;
 
-/**
- * @since alpha 1.5
- */
 public final class RGBColorChooser extends JColorChooser {
 
     public RGBColorChooser(Color color) {

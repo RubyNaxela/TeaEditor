@@ -25,9 +25,6 @@ import javax.swing.*;
 import static com.rubynaxela.teaeditor.util.Reference.OS;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
-/**
- * @since beta 1.0
- */
 public final class LookAndFeel {
 
     public static void init() {

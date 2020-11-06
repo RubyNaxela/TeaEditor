@@ -20,9 +20,6 @@ package com.rubynaxela.teaeditor.util;
 
 import java.util.Locale;
 
-/**
- * @since alpha 1.0
- */
 public final class OsCheck {
 
     public static OSType getOperatingSystemType() {

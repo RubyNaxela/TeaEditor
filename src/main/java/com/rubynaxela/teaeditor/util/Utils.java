@@ -31,7 +31,6 @@ import static java.lang.Integer.toHexString;
  * The {@code Utils} class provides a number of utility functions that are used in different places throughout the project.
  *
  * @author Jacek Pawelski
- * @since alpha 1.1
  */
 public final class Utils {
 
@@ -40,7 +39,6 @@ public final class Utils {
      *
      * @param color an {@code java.awt} {@link Color} object
      * @return a {@link String} containing the color in hexadecimal hashtag notation
-     * @since alpha 1.1
      */
     @Nonnull
     public static String colorToHex(@Nonnull Color color) {
@@ -55,7 +53,6 @@ public final class Utils {
      * @param array an array of objects to search through
      * @return the object with the requested {@code id}, {@code null} if nothing found
      * @see Identifiable
-     * @since alpha 1.5
      */
     @Nullable
     public static Identifiable findIdInArray(String id, @Nonnull Identifiable[] array) {
@@ -69,7 +66,6 @@ public final class Utils {
      *
      * @param component a dialog component
      * @return the {@code JOptionPane} that the given element is a child of
-     * @since beta 1.0
      */
     public static JOptionPane getOptionPane(JComponent component) {
         return component instanceof JOptionPane ? (JOptionPane) component : getOptionPane((JComponent) component.getParent());
@@ -88,7 +84,6 @@ public final class Utils {
      * @param column horizontal position in the grid
      * @param wide   determines if a component takes up space of two columns
      * @return a {@code GridBagConstraints} instance
-     * @since beta 1.2
      */
     @Nonnull
     public static GridBagConstraints dialogElementPosition(int row, int column, boolean wide) {
@@ -122,7 +117,6 @@ public final class Utils {
      * @param suffix   the suffix, may be {@code null}
      * @param zeroText displayed when the value is equal to {@code 0}, displays the number normally when {@code null}
      * @return a {@code String} containing the formatted number
-     * @since beta 1.1
      */
     @Nonnull
     public static String formatNumber(double number, @Nullable String suffix, @Nullable String zeroText) {

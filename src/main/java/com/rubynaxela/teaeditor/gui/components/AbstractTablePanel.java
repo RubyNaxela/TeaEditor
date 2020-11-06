@@ -21,9 +21,6 @@ package com.rubynaxela.teaeditor.gui.components;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * @since alpha 1.3
- */
 public abstract class AbstractTablePanel extends JPanel {
 
     static int PANEL_WIDTH = 460, PANEL_HEIGHT = 320;
