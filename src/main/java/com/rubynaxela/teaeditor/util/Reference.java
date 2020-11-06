@@ -69,7 +69,7 @@ public final class Reference {
     }
 
     public enum DataDialogFlag {
-        NEW, EDIT, BRAND, SHELF
+        NEW, EDIT, BRAND, SHELF, TEABOX
     }
 
     public static final class Resources {

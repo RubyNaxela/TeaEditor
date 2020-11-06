@@ -127,4 +127,29 @@ public final class Utils {
             return suffix != null ? ret + suffix : ret;
         }
     }
+
+    /**
+     * Formats a number returning a {@link String}:
+     * <ul>
+     *     <li>removes {@code .0} when the value is a whole number,</li>
+     *     <li>can add a suffix at the end of the number</li>
+     * </ul>
+     *
+     * @param number   a numeric value
+     * @param suffix   the suffix, may be {@code null}
+     * @return a {@code String} containing the formatted number
+     */
+    public static String formatNumber(double number, @Nullable String suffix) {
+        return formatNumber(number, suffix, null);
+    }
+
+    /**
+     * Formats a number returning a {@link String}; removes {@code .0} when the value is a whole number</li>
+     *
+     * @param number   a numeric value
+     * @return a {@code String} containing the formatted number
+     */
+    public static String formatNumber(double number) {
+        return formatNumber(number, null, null);
+    }
 }

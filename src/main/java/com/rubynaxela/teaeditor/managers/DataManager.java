@@ -201,7 +201,7 @@ public final class DataManager {
     //////////////////////////
 
     public static ActionResult defineTeaBox(String shelfId, String id, String name, String brand_id, String description,
-                                            float amount, float stars, int temperature, int time, String reuses, String grams) {
+                                            double amount, double stars, int temperature, int time, String reuses, String grams) {
         for (Shelf shelf : currentData.getShelves())
             if (shelf.getId().equals(shelfId))
                 if ((Utils.findIdInArray(id, shelf.getTea_boxes())) == null) {

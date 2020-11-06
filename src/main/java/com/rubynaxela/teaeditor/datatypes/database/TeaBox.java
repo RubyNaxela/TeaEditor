@@ -28,7 +28,7 @@ public final class TeaBox implements Identifiable {
     }
 
     public TeaBox(String id, String name, String brand_id, String description,
-                  float amount, float stars, BrewingInstruction brewing) {
+                  double amount, double stars, BrewingInstruction brewing) {
         this.id = id;
         this.name = name;
         this.brand_id = brand_id;

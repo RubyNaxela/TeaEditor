@@ -17,7 +17,7 @@
  */
 
 group 'com.rubynaxela'
-version 'pre-beta-1.4' + new File('./nextbuildver.txt').text.toInteger()
+version 'pre-beta-1.4_' + new File('./nextbuildver.txt').text.toInteger()
 
 apply plugin: 'java'
 

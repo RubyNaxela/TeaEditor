@@ -18,13 +18,15 @@
 
 package com.rubynaxela.teaeditor.handlers;
 
+import com.rubynaxela.teaeditor.datatypes.FlatTeaBox;
 import com.rubynaxela.teaeditor.datatypes.IdNameColorTriplet;
 import com.rubynaxela.teaeditor.datatypes.database.Brand;
 import com.rubynaxela.teaeditor.datatypes.database.Shelf;
+import com.rubynaxela.teaeditor.datatypes.database.TeaBox;
+import com.rubynaxela.teaeditor.gui.dialogs.Dialogs;
 import com.rubynaxela.teaeditor.managers.DataManager;
 import com.rubynaxela.teaeditor.managers.ListsManager;
 import com.rubynaxela.teaeditor.managers.WindowUpdatesManager;
-import com.rubynaxela.teaeditor.gui.dialogs.Dialogs;
 
 import java.awt.event.ActionListener;
 import java.util.Objects;
@@ -83,7 +85,13 @@ public final class ButtonsHandler {
     };
 
     public static ActionListener addTeaBox = e -> {
-        Dialogs.showWarning(getString("dialog.message.feature_unavailable"));
+        FlatTeaBox teaBoxData = Dialogs.showTeaBoxDataDialog(null, NEW, TEABOX);
+        if (teaBoxData != null) {
+            DataManager.defineTeaBox(Objects.requireNonNull(ListsManager.getSelectedShelf()).getId(), teaBoxData.id,
+                    teaBoxData.name, teaBoxData.brandId, teaBoxData.description, teaBoxData.amount, teaBoxData.stars,
+                    teaBoxData.temperature, teaBoxData.time, teaBoxData.reuses, teaBoxData.grams);
+            WindowUpdatesManager.updateLists();
+        }
     };
     public static ActionListener removeTeaBox = e -> {
         if (Dialogs.askYesNoQuestion(getString("dialog.message.are_you_sure"), false)) {
@@ -93,6 +101,22 @@ public final class ButtonsHandler {
         }
     };
     public static ActionListener editTeaBox = e -> {
-        Dialogs.showWarning(getString("dialog.message.feature_unavailable"));
+        TeaBox editedTeaBox = Objects.requireNonNull(ListsManager.getSelectedTeaBox());
+        String shelfId = Objects.requireNonNull(ListsManager.getSelectedShelf()).getId(),
+                teaBoxId = editedTeaBox.getId();
+        FlatTeaBox teaBoxData = Dialogs.showTeaBoxDataDialog(editedTeaBox, EDIT, TEABOX);
+        if (teaBoxData != null) {
+            DataManager.editTeaBoxParameter(TeaBox.Parameter.ID, shelfId, teaBoxId, teaBoxData.id);
+            DataManager.editTeaBoxParameter(TeaBox.Parameter.NAME, shelfId, teaBoxId, teaBoxData.name);
+            DataManager.editTeaBoxParameter(TeaBox.Parameter.BRAND_ID, shelfId, teaBoxId, teaBoxData.brandId);
+            DataManager.editTeaBoxParameter(TeaBox.Parameter.DESCRIPTION, shelfId, teaBoxId, teaBoxData.description);
+            DataManager.editTeaBoxParameter(TeaBox.Parameter.AMOUNT, shelfId, teaBoxId, teaBoxData.amount);
+            DataManager.editTeaBoxParameter(TeaBox.Parameter.STARS, shelfId, teaBoxId, teaBoxData.stars);
+            DataManager.editTeaBoxParameter(TeaBox.Parameter.BREW_TEMPERATURE, shelfId, teaBoxId, teaBoxData.temperature);
+            DataManager.editTeaBoxParameter(TeaBox.Parameter.BREW_TIME, shelfId, teaBoxId, teaBoxData.time);
+            DataManager.editTeaBoxParameter(TeaBox.Parameter.BREW_REUSES, shelfId, teaBoxId, teaBoxData.reuses);
+            DataManager.editTeaBoxParameter(TeaBox.Parameter.BREW_GRAMS, shelfId, teaBoxId, teaBoxData.grams);
+            WindowUpdatesManager.updateLists();
+        }
     };
 }
