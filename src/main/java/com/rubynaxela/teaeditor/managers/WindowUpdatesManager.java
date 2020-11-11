@@ -68,8 +68,7 @@ public final class WindowUpdatesManager {
     }
 
     private static void updateTeaBoxesList() {
-        Reference.window.teaBoxesPanel.changeTitle(
-                ListsManager.getSelectedShelf() != null ?
+        Reference.window.teaBoxesPanel.changeTitle(ListsManager.getSelectedShelf() != null ?
                         Objects.requireNonNull(ListsManager.getSelectedShelf()).getName() : getString("label.tea_boxes"));
         ListsManager.teaBoxesTableModel.setDataVector(
                 DataManager.getTeaBoxesDataVector(ListsManager.getSelectedShelf()), ListsManager.teaBoxesTableHeaders);

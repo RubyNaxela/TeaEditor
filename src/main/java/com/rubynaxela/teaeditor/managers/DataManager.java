@@ -23,10 +23,8 @@ import com.rubynaxela.teaeditor.handlers.FileIOHandler;
 import com.rubynaxela.teaeditor.util.Utils;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
-import java.util.Vector;
 
 import static com.rubynaxela.teaeditor.util.DataFormat.formatNumber;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
@@ -195,6 +193,7 @@ public final class DataManager {
     // Tea boxes management //
     //////////////////////////
 
+    @SuppressWarnings("unchecked")
     public static void defineTeaBox(String shelfId, String id, String name, String brand_id, String description, double amount,
                                     double stars, int temperature, int time, String reuses, String grams) {
         for (Shelf shelf : currentData.getShelves())
@@ -204,6 +203,7 @@ public final class DataManager {
                             new BrewingInstruction(temperature, time, reuses, grams));
                     List<TeaBox> teaBoxesList = new ArrayList<>(Arrays.asList(shelf.getTea_boxes()));
                     teaBoxesList.add(teaBox);
+                    Collections.sort(teaBoxesList);
                     shelf.setTea_boxes(teaBoxesList.toArray(new TeaBox[0]));
                     dataChanged = true;
                     return;

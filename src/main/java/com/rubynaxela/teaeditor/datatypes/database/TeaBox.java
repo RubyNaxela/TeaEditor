@@ -18,8 +18,10 @@
 
 package com.rubynaxela.teaeditor.datatypes.database;
 
+import javax.annotation.Nonnull;
+
 @SuppressWarnings("unused")
-public final class TeaBox implements Identifiable {
+public final class TeaBox implements Identifiable, Comparable {
     private String id, name, brand_id, description;
     private double amount, stars;
     private BrewingInstruction brewing;
@@ -98,6 +100,11 @@ public final class TeaBox implements Identifiable {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public int compareTo(@Nonnull Object teaBox) {
+        return this.toString().compareTo(teaBox.toString());
     }
 
     public enum Parameter {
