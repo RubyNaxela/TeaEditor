@@ -89,7 +89,8 @@ public class DataFormat {
      * @return {@code true} if the {@code String} is valid grams data and {@code false} otherwise
      */
     public static boolean isValidGramsData(@Nonnull String data) {
-        return data.matches("^(\\d+:\\d+)?(\\n\\d+:\\d+)*$");
+        return data.matches("^(((?!^\\.$)(?!^([\\d]*\\.[\\d]*){2,}$)[\\d.])+:\\d+)?" +
+                "(\\n((?!^\\.$)(?!^([\\d]*\\.[\\d]*){2,}$)[\\d.])+:\\d+)*$");
     }
 
     /**

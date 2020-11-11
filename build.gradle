@@ -17,7 +17,7 @@
  */
 
 group 'com.rubynaxela'
-version 'beta-1.4.1_' + new File('./nextbuildver.txt').text.toInteger()
+version 'beta-1.4.2_' + new File('./buildver.txt').text.toInteger()
 
 apply plugin: 'java'
 
@@ -52,7 +52,7 @@ class BuildVersionTask extends DefaultTask {
     @SuppressWarnings('GrMethodMayBeStatic')
     @TaskAction
     def incrementVersion() {
-        def versionFile = new File('./nextbuildver.txt')
+        def versionFile = new File('./buildver.txt')
         def versionNumber = versionFile.text.toInteger()
         versionNumber++
         versionFile.write versionNumber.toString()
