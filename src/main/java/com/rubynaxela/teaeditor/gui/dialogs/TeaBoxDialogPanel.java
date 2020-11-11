@@ -21,6 +21,7 @@ package com.rubynaxela.teaeditor.gui.dialogs;
 import com.rubynaxela.teaeditor.datatypes.database.TeaBox;
 import com.rubynaxela.teaeditor.gui.components.BrewingInstructionPanel;
 import com.rubynaxela.teaeditor.managers.DataManager;
+import com.rubynaxela.teaeditor.managers.ListsManager;
 import com.rubynaxela.teaeditor.util.DataFormat;
 
 import javax.swing.*;
@@ -98,7 +99,8 @@ public final class TeaBoxDialogPanel extends JPanel {
         brandInput.setSelectedIndex(editedElement != null ? findIndexInArray(editedElement.getBrand_id(),
                 DataManager.getCurrentData().getBrands()) : 0);
         shelfInput.setSelectedIndex(editedElement != null ? findIndexInArray(Objects.requireNonNull(
-                DataManager.getTeaBoxShelf(editedElement)).getId(), DataManager.getCurrentData().getShelves()) : 0);
+                DataManager.getTeaBoxShelf(editedElement)).getId(), DataManager.getCurrentData().getShelves())
+                : ListsManager.getSelectedShelfIndex());
         amountInput.setText(editedElement != null ? DataFormat.formatNumber(editedElement.getAmount()) : "");
         amountInput.setHorizontalAlignment(SwingConstants.RIGHT);
         starsInput.setText(editedElement != null ?
@@ -119,6 +121,7 @@ public final class TeaBoxDialogPanel extends JPanel {
         brewingPanel.brewingReusesInput.getDocument().addDocumentListener(textFieldListener);
         brewingPanel.brewingGramsInput.getDocument().addDocumentListener(textFieldListener);
 
+        shelfInput.setEnabled(editedElement != null);
         okButton.setEnabled(editedElement != null);
         okButton.addActionListener(e -> getOptionPane((JComponent) e.getSource()).setValue(okButton));
     }
