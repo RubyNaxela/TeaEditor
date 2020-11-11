@@ -91,14 +91,14 @@ public final class ButtonsHandler {
             DataManager.defineTeaBox(Objects.requireNonNull(ListsManager.getSelectedShelf()).getId(), teaBoxData.id,
                     teaBoxData.name, teaBoxData.brandId, teaBoxData.description, teaBoxData.amount, teaBoxData.stars,
                     teaBoxData.temperature, teaBoxData.time, teaBoxData.reuses, teaBoxData.grams);
-            WindowUpdatesManager.updateLists();
+            WindowUpdatesManager.updateLists(SHELF);
         }
     };
     public static ActionListener removeTeaBox = e -> {
         if (DialogsHandler.askYesNoQuestion(getString("dialog.message.are_you_sure"), false)) {
             DataManager.removeTeaBox(Objects.requireNonNull(ListsManager.getSelectedShelf()).getId(),
                     Objects.requireNonNull(ListsManager.getSelectedTeaBox()).getId());
-            WindowUpdatesManager.updateLists();
+            WindowUpdatesManager.updateLists(SHELF);
         }
     };
     public static ActionListener editTeaBox = e -> {
