@@ -23,6 +23,7 @@ import com.rubynaxela.teaeditor.handlers.FileIOHandler;
 import com.rubynaxela.teaeditor.managers.ListsManager;
 import com.rubynaxela.teaeditor.managers.WindowUpdatesManager;
 
+import javax.swing.*;
 import java.awt.*;
 
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
@@ -47,9 +48,11 @@ public final class TeaBoxesPanel extends AbstractTablePanel {
 
     @Override
     public void updateButtons() {
-        addButton.setEnabled(FileIOHandler.currentFile != null && ListsManager.getSelectedShelf() != null);
-        removeButton.setEnabled(FileIOHandler.currentFile != null && ListsManager.getSelectedTeaBox() != null);
-        editButton.setEnabled(FileIOHandler.currentFile != null && ListsManager.getSelectedTeaBox() != null);
+        SwingUtilities.invokeLater(() -> {
+            addButton.setEnabled(FileIOHandler.currentFile != null && ListsManager.getSelectedShelf() != null);
+            removeButton.setEnabled(FileIOHandler.currentFile != null && ListsManager.getSelectedTeaBox() != null);
+            editButton.setEnabled(FileIOHandler.currentFile != null && ListsManager.getSelectedTeaBox() != null);
+        });
     }
 
     @Override

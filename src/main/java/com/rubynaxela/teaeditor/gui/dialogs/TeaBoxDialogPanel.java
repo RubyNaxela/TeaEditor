@@ -18,107 +18,151 @@
 
 package com.rubynaxela.teaeditor.gui.dialogs;
 
-import com.rubynaxela.teaeditor.datatypes.database.BrewingInstruction;
 import com.rubynaxela.teaeditor.datatypes.database.TeaBox;
+import com.rubynaxela.teaeditor.gui.components.BrewingInstructionPanel;
+import com.rubynaxela.teaeditor.managers.DataManager;
+import com.rubynaxela.teaeditor.util.DataFormat;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
+import java.util.Objects;
 
-import static com.rubynaxela.teaeditor.util.Reference.Resources.BLANK_STRING;
+import static com.rubynaxela.teaeditor.util.DataFormat.*;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Utils.*;
 
 public final class TeaBoxDialogPanel extends JPanel {
 
-    public final JLabel idLabel, idErrorLabel, nameLabel, brandIdLabel, descriptionLabel, amountLabel, starsLabel, brewingLabel,
-            brewingTempLabel, brewingTimeLabel, brewingReusesLabel, brewingGramsLabel;
-    public final JTextField idInput, nameInput, brandIdInput, descriptionInput, amountInput, starsInput,
-            brewingTempInput, brewingTimeInput, brewingReusesInput, brewingGramsInput;
-    public final JPanel brewingPanel;
+    public final JLabel idLabel, nameLabel, brandLabel, shelfLabel, amountLabel, amountUnitLabel, starsLabel, descriptionLabel,
+            starsUnitLabel;
+    public final JTextField idInput, nameInput, amountInput, starsInput;
+    public final JComboBox<String> brandInput, shelfInput;
+    public final JTextArea descriptionInput;
+    public final JScrollPane descriptionPane;
+    public final BrewingInstructionPanel brewingPanel;
     public final JButton okButton;
 
     public TeaBoxDialogPanel(TeaBox editedElement) {
-        BrewingInstruction instruction = editedElement != null ? editedElement.getBrewing() : null;
+        idLabel = new JLabel(getString("dialog.label.id"));
+        nameLabel = new JLabel(getString("dialog.label.name"));
+        brandLabel = new JLabel(getString("dialog.label.brand"));
+        shelfLabel = new JLabel(getString("dialog.label.shelf"));
+        amountLabel = new JLabel(getString("dialog.label.amount"));
+        amountUnitLabel = new JLabel(getString("units.gram"));
+        starsLabel = new JLabel(getString("dialog.label.stars"));
+        starsUnitLabel = new JLabel(getString("units.per_five"));
+        descriptionLabel = new JLabel(getString("dialog.label.description"));
 
-        idLabel = new JLabel(getString("dialog.input.id"));
-        idErrorLabel = new JLabel(BLANK_STRING);
-        nameLabel = new JLabel(getString("dialog.input.name"));
-        brandIdLabel = new JLabel(getString("dialog.input.brand"));
-        descriptionLabel = new JLabel(getString("dialog.input.description"));
-        amountLabel = new JLabel(getString("dialog.input.amount"));
-        starsLabel = new JLabel(getString("dialog.input.stars"));
-        brewingLabel = new JLabel(getString("dialog.input.brewing"));
+        idInput = new JTextField(20);
+        nameInput = new JTextField();
+        brandInput = new JComboBox<>(DataManager.getBrandsNamesVector());
+        shelfInput = new JComboBox<>(DataManager.getShelvesNamesVector());
+        amountInput = new JTextField(2);
+        starsInput = new JTextField();
+        descriptionInput = new JTextArea(10, 30);
+        descriptionPane = new JScrollPane(descriptionInput,
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        brewingTempLabel = new JLabel(getString("dialog.input.brewing.temperature"));
-        brewingTimeLabel = new JLabel(getString("dialog.input.brewing.time"));
-        brewingReusesLabel = new JLabel(getString("dialog.input.brewing.reuses"));
-        brewingGramsLabel = new JLabel(getString("dialog.input.brewing.grams"));
-
-        idInput = new JTextField(editedElement != null ? editedElement.getId() : "");
-        nameInput = new JTextField(editedElement != null ? editedElement.getName() : "");
-        brandIdInput = new JTextField(editedElement != null ? editedElement.getBrand_id() : "");
-        descriptionInput = new JTextField(editedElement != null ? editedElement.getDescription() : "");
-        amountInput = new JTextField(editedElement != null ? formatNumber(editedElement.getAmount()) : "");
-        starsInput = new JTextField(editedElement != null ? formatNumber(editedElement.getStars()) : "");
-
-        brewingTempInput = new JTextField(instruction != null ? formatNumber(instruction.getTemperature()) : "");
-        brewingTimeInput = new JTextField(instruction != null ? formatNumber(instruction.getTime()) : "");
-        brewingReusesInput = new JTextField(instruction != null ? instruction.getReuses() : "");
-        brewingGramsInput = new JTextField(instruction != null ? instruction.getGrams() : "");
-
-        brewingPanel = new JPanel();
+        brewingPanel = new BrewingInstructionPanel(editedElement != null ? editedElement.getBrewing() : null);
         okButton = new JButton(getString("button.ok"));
 
-        brewingPanel.setLayout(new GridBagLayout());
-        brewingPanel.add(brewingTempLabel, dialogElementPosition(0, 0, false));
-        brewingPanel.add(brewingTempInput, dialogElementPosition(0, 1, false));
-        brewingPanel.add(brewingTimeLabel, dialogElementPosition(1, 0, false));
-        brewingPanel.add(brewingTimeInput, dialogElementPosition(1, 1, false));
-        brewingPanel.add(brewingReusesLabel, dialogElementPosition(2, 0, false));
-        brewingPanel.add(brewingReusesInput, dialogElementPosition(2, 1, false));
-        brewingPanel.add(brewingGramsLabel, dialogElementPosition(3, 0, false));
-        brewingPanel.add(brewingGramsInput, dialogElementPosition(3, 1, false));
+        initLayout();
+        setup(editedElement);
+    }
 
+    private void initLayout() {
         this.setLayout(new GridBagLayout());
-        this.add(idLabel, dialogElementPosition(0, 0, false));
-        this.add(idInput, dialogElementPosition(0, 1, false));
-        this.add(nameLabel, dialogElementPosition(1, 0, false));
-        this.add(nameInput, dialogElementPosition(1, 1, false));
-        this.add(brandIdLabel, dialogElementPosition(2, 0, false));
-        this.add(brandIdInput, dialogElementPosition(2, 1, false));
-        this.add(descriptionLabel, dialogElementPosition(3, 0, false));
-        this.add(descriptionInput, dialogElementPosition(3, 1, false));
-        this.add(amountLabel, dialogElementPosition(4, 0, false));
-        this.add(amountInput, dialogElementPosition(4, 1, false));
-        this.add(starsLabel, dialogElementPosition(5, 0, false));
-        this.add(starsInput, dialogElementPosition(5, 1, false));
-        this.add(brewingLabel, dialogElementPosition(6, 0, true));
-        this.add(brewingPanel, dialogElementPosition(7, 0, true));
-        this.add(idErrorLabel, dialogElementPosition(8, 0, true));
+        this.add(idLabel, dialogElementPosition(0, 0));
+        this.add(idInput, dialogElementPosition(0, 1, 2));
+        this.add(nameLabel, dialogElementPosition(1, 0));
+        this.add(nameInput, dialogElementPosition(1, 1, 2));
+        this.add(brandLabel, dialogElementPosition(2, 0));
+        this.add(brandInput, dialogElementPosition(2, 1, 2));
+        this.add(shelfLabel, dialogElementPosition(3, 0));
+        this.add(shelfInput, dialogElementPosition(3, 1, 2));
+        this.add(amountLabel, dialogElementPosition(4, 0));
+        this.add(amountInput, dialogElementPosition(4, 1));
+        this.add(amountUnitLabel, dialogElementPosition(4, 2));
+        this.add(starsLabel, dialogElementPosition(5, 0));
+        this.add(starsInput, dialogElementPosition(5, 1));
+        this.add(starsUnitLabel, dialogElementPosition(5, 2));
+        this.add(descriptionLabel, dialogElementPosition(6, 0, 3));
+        this.add(descriptionPane, dialogElementPosition(7, 0, 3));
+        this.add(brewingPanel, dialogElementPosition(8, 0, 3));
+    }
 
-        final Border defaultBorder = idInput.getBorder();
-        DocumentListener textFieldListener = new AbstractValidInputListener(okButton) {
-            @Override
-            protected boolean dataValid() {
-                boolean idValidChars = idInput.getText().matches("^[a-z]*$");
-                if (idValidChars) {
-                    idInput.setBorder(defaultBorder);
-                    idErrorLabel.setText(BLANK_STRING);
-                } else {
-                    idInput.setBorder(BorderFactory.createCompoundBorder(
-                            BorderFactory.createLineBorder(new Color(0x834141), 3, true),
-                            BorderFactory.createEmptyBorder(2, 6, 2, 6)));
-                    idErrorLabel.setText(getString("dialog.input.id_invalid"));
-                }
-                return !idInput.getText().equals("") && !nameInput.getText().equals("") && idValidChars;
-            }
-        };
+    private void setup(TeaBox editedElement) {
+        idInput.setText(editedElement != null ? editedElement.getId() : "");
+        nameInput.setText(editedElement != null ? editedElement.getName() : "");
+        brandInput.setSelectedIndex(editedElement != null ? findIndexInArray(editedElement.getBrand_id(),
+                DataManager.getCurrentData().getBrands()) : 0);
+        shelfInput.setSelectedIndex(editedElement != null ? findIndexInArray(Objects.requireNonNull(
+                DataManager.getTeaBoxShelf(editedElement)).getId(), DataManager.getCurrentData().getShelves()) : 0);
+        amountInput.setText(editedElement != null ? DataFormat.formatNumber(editedElement.getAmount()) : "");
+        amountInput.setHorizontalAlignment(SwingConstants.RIGHT);
+        starsInput.setText(editedElement != null ?
+                DataFormat.formatNumber(editedElement.getStars()).replace("0", "") : "");
+        starsInput.setHorizontalAlignment(SwingConstants.RIGHT);
+        descriptionInput.setLineWrap(true);
+        descriptionInput.setWrapStyleWord(true);
+        descriptionInput.setText(editedElement != null ?
+                editedElement.getDescription().replace("<br>", "\n") : "");
+
+        final DocumentListener textFieldListener = createInputValidator();
         idInput.getDocument().addDocumentListener(textFieldListener);
         nameInput.getDocument().addDocumentListener(textFieldListener);
+        amountInput.getDocument().addDocumentListener(textFieldListener);
+        starsInput.getDocument().addDocumentListener(textFieldListener);
+        brewingPanel.brewingTempInput.getDocument().addDocumentListener(textFieldListener);
+        brewingPanel.brewingTimeInput.getDocument().addDocumentListener(textFieldListener);
+        brewingPanel.brewingReusesInput.getDocument().addDocumentListener(textFieldListener);
+        brewingPanel.brewingGramsInput.getDocument().addDocumentListener(textFieldListener);
 
         okButton.setEnabled(editedElement != null);
         okButton.addActionListener(e -> getOptionPane((JComponent) e.getSource()).setValue(okButton));
+    }
+
+    private AbstractValidInputListener createInputValidator() {
+        return new AbstractValidInputListener(okButton) {
+            @Override
+            protected boolean dataValid() {
+                if (amountInput.getText().contains(",")) new Thread(() ->
+                        amountInput.setText(amountInput.getText().replace(",", "."))).start();
+                boolean idValid = isValidId(idInput.getText()),
+                        amountValid = isValidNumber(amountInput.getText()),
+                        starsValid = isValidRating(starsInput.getText()),
+                        tempValid = isValidInteger(brewingPanel.brewingTempInput.getText()),
+                        timeValid = isValidInteger(brewingPanel.brewingTimeInput.getText()),
+                        reusesValid = isValidInteger(brewingPanel.brewingReusesInput.getText()),
+                        gramsValid = isValidGramsData(brewingPanel.brewingGramsInput.getText());
+
+                if (!idValid) displayError(idInput, getString("dialog.label.invalid.id"));
+                else cancelError(idInput);
+                if (!amountValid) displayError(amountInput, getString("dialog.label.invalid.number"));
+                else cancelError(amountInput);
+                if (!starsValid) displayError(starsInput, getString("dialog.label.invalid.stars"));
+                else cancelError(starsInput);
+                if (!tempValid) displayError(brewingPanel.brewingTempInput,
+                        getString("dialog.label.invalid.integer"));
+                else cancelError(brewingPanel.brewingTempInput);
+                if (!timeValid) displayError(brewingPanel.brewingTimeInput,
+                        getString("dialog.label.invalid.integer"));
+                else cancelError(brewingPanel.brewingTimeInput);
+                if (!reusesValid) displayError(brewingPanel.brewingReusesInput,
+                        getString("dialog.label.invalid.integer"));
+                else cancelError(brewingPanel.brewingReusesInput);
+                if (!gramsValid) displayError(brewingPanel.brewingGramsPane,
+                        getString("dialog.label.invalid.grams_data"));
+                else cancelError(brewingPanel.brewingGramsPane);
+
+                return !idInput.getText().equals("")
+                        && !nameInput.getText().equals("")
+                        && !amountInput.getText().equals("")
+                        && !brewingPanel.brewingTempInput.getText().equals("")
+                        && !brewingPanel.brewingGramsInput.getText().equals("")
+                        && idValid && amountValid && starsValid && tempValid && timeValid && reusesValid && gramsValid;
+            }
+        };
     }
 }

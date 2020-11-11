@@ -20,7 +20,7 @@ package com.rubynaxela.teaeditor.datatypes;
 
 /**
  * The {@code Trilean} enum is an implementation of the basic trinary logic value, which, unlike the binary logic value, can be
- * either positive, negative or neutral.
+ * either positive, negative or neutral
  *
  * @author Jacek Pawelski
  */

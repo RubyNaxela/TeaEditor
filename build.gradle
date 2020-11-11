@@ -17,7 +17,7 @@
  */
 
 group 'com.rubynaxela'
-version 'pre-beta-1.4_' + new File('./nextbuildver.txt').text.toInteger()
+version 'beta-1.4_' + new File('./nextbuildver.txt').text.toInteger()
 
 apply plugin: 'java'
 
@@ -32,6 +32,7 @@ dependencies {
     compile group: 'com.formdev', name: 'flatlaf', version: '0.43'
     compile group: 'com.formdev', name: 'flatlaf-intellij-themes', version: '0.43'
     compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
+    compile group: 'net.java.balloontip', name: 'balloontip', version: '1.2.4.1'
 }
 
 configurations {

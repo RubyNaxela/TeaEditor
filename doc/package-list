@@ -1,9 +1,1 @@
-com.rubynaxela.teaeditor
-com.rubynaxela.teaeditor.datatypes
-com.rubynaxela.teaeditor.datatypes.database
-com.rubynaxela.teaeditor.gui
-com.rubynaxela.teaeditor.gui.components
-com.rubynaxela.teaeditor.gui.dialogs
-com.rubynaxela.teaeditor.handlers
-com.rubynaxela.teaeditor.managers
 com.rubynaxela.teaeditor.util

@@ -29,17 +29,17 @@ public abstract class AbstractTablePanel extends JPanel {
     JButton addButton, removeButton, editButton;
 
     AbstractTablePanel() {
-        super();
         titleLabel = new JLabel();
         titleLabel.setFont(new Font(titleLabel.getFont().getName(), Font.BOLD, 16));
-        this.add(titleLabel);
         dataTable = new StaticJTable();
-        addScrollPane();
         addButton = new JButton();
-        this.add(addButton);
         removeButton = new JButton();
-        this.add(removeButton);
         editButton = new JButton();
+
+        this.add(titleLabel);
+        addScrollPane();
+        this.add(addButton);
+        this.add(removeButton);
         this.add(editButton);
     }
 

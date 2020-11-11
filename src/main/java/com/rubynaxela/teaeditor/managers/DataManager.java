@@ -18,8 +18,6 @@
 
 package com.rubynaxela.teaeditor.managers;
 
-import com.rubynaxela.teaeditor.datatypes.ActionResult;
-import com.rubynaxela.teaeditor.datatypes.ActionResult.ResultType;
 import com.rubynaxela.teaeditor.datatypes.database.*;
 import com.rubynaxela.teaeditor.handlers.FileIOHandler;
 import com.rubynaxela.teaeditor.util.Utils;
@@ -30,11 +28,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
+import static com.rubynaxela.teaeditor.util.DataFormat.formatNumber;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Utils.colorToHex;
-import static com.rubynaxela.teaeditor.util.Utils.formatNumber;
 
-@SuppressWarnings("UnusedReturnValue")
 public final class DataManager {
 
     public static boolean dataChanged = false;
@@ -53,62 +50,51 @@ public final class DataManager {
     // Brands management //
     ///////////////////////
 
-    public static ActionResult defineBrand(String id, String name, Color color) {
+    public static void defineBrand(String id, String name, Color color) {
         if ((Utils.findIdInArray(id, currentData.getBrands())) == null) {
             Brand brand = new Brand(id, name, colorToHex(color));
             List<Brand> brandsList = new ArrayList<>(Arrays.asList(getCurrentData().getBrands()));
             brandsList.add(brand);
             currentData.setBrands(brandsList.toArray(new Brand[0]));
             dataChanged = true;
-            return new ActionResult(ResultType.SUCCESS);
         }
-        return new ActionResult(ResultType.ERROR, getString("action.result.brand.already_exists"));
     }
 
-    public static ActionResult removeBrand(String id) {
+    public static void removeBrand(String id) {
         List<Brand> brandsList = new ArrayList<>(Arrays.asList(getCurrentData().getBrands()));
         for (int i = 0; i < brandsList.size(); i++)
             if (brandsList.get(i).getId().equals(id)) {
                 brandsList.remove(i);
                 currentData.setBrands(brandsList.toArray(new Brand[0]));
                 dataChanged = true;
-                return new ActionResult(ResultType.SUCCESS);
+                return;
             }
-        return new ActionResult(ResultType.ERROR, getString("action.result.brand.invalid_id"));
     }
 
-    public static ActionResult editBrandParameter(Brand.Parameter parameter, String id, Object newValue) {
+    public static void editBrandParameter(Brand.Parameter parameter, String id, Object newValue) {
         Brand brand = ((Brand) Utils.findIdInArray(id, currentData.getBrands()));
         if (brand != null) {
             switch (parameter) {
                 case ID:
-                    if (id.equals(newValue))
-                        return new ActionResult(ResultType.NOTHING_CHANGED, getString("action.result.same.id"));
-                    else {
+                    if (!id.equals(newValue)) {
                         brand.setId((String) newValue);
                         for (Shelf shelf : currentData.getShelves())
                             for (TeaBox teaBox : shelf.getTea_boxes())
                                 if (teaBox.getBrand_id().equals(id))
                                     teaBox.setBrand_id((String) newValue);
-                    }
+                    } else return;
                     break;
                 case NAME:
-                    if (brand.getName().equals(newValue))
-                        return new ActionResult(ResultType.NOTHING_CHANGED, getString("action.result.same.name"));
-                    else
-                        brand.setName((String) newValue);
+                    if (!brand.getName().equals(newValue)) brand.setName((String) newValue);
+                    else return;
                     break;
                 case COLOR:
-                    if (brand.getColor().equals(colorToHex((Color) newValue)))
-                        return new ActionResult(ResultType.NOTHING_CHANGED, getString("action.result.same.color"));
-                    else
-                        brand.setColor(colorToHex((Color) newValue));
+                    if (!brand.getColor().equals(colorToHex((Color) newValue))) brand.setColor(colorToHex((Color) newValue));
+                    else return;
                     break;
             }
-        } else return new ActionResult(ResultType.ERROR, getString("action.result.brand.invalid_id"));
-
-        dataChanged = true;
-        return new ActionResult(ResultType.SUCCESS);
+            dataChanged = true;
+        }
     }
 
     public static Vector<Vector<String>> getBrandsDataVector() {
@@ -125,64 +111,63 @@ public final class DataManager {
         return data;
     }
 
+    public static Vector<String> getBrandsNamesVector() {
+        if (FileIOHandler.currentFile == null)
+            return null;
+        Vector<String> names = new Vector<>();
+        for (Brand brand : currentData.getBrands()) {
+            names.add(brand.getName());
+        }
+        return names;
+    }
+
     ////////////////////////
     // Shelves management //
     ////////////////////////
 
-    public static ActionResult defineShelf(String id, String name, Color color) {
+    public static void defineShelf(String id, String name, Color color) {
         if ((Utils.findIdInArray(id, currentData.getShelves())) == null) {
             Shelf shelf = new Shelf(id, name, colorToHex(color), new TeaBox[0]);
             List<Shelf> shelvesList = new ArrayList<>(Arrays.asList(getCurrentData().getShelves()));
             shelvesList.add(shelf);
             currentData.setShelves(shelvesList.toArray(new Shelf[0]));
             dataChanged = true;
-            return new ActionResult(ResultType.SUCCESS);
         }
-        return new ActionResult(ResultType.ERROR, getString("action.result.shelf.already_exists"));
     }
 
-    public static ActionResult removeShelf(String id) {
+    public static void removeShelf(String id) {
         List<Shelf> shelvesList = new ArrayList<>(Arrays.asList(getCurrentData().getShelves()));
         for (int i = 0; i < shelvesList.size(); i++)
             if (shelvesList.get(i).getId().equals(id)) {
                 shelvesList.remove(i);
                 currentData.setShelves(shelvesList.toArray(new Shelf[0]));
                 dataChanged = true;
-                return new ActionResult(ResultType.SUCCESS);
+                return;
             }
-        return new ActionResult(ResultType.ERROR, getString("action.result.shelf.invalid_id"));
     }
 
-    public static ActionResult editShelfParameter(Shelf.Parameter parameter, String id, Object newValue) {
+    public static void editShelfParameter(Shelf.Parameter parameter, String id, Object newValue) {
         Shelf shelf = ((Shelf) Utils.findIdInArray(id, currentData.getShelves()));
         if (shelf != null) {
             switch (parameter) {
                 case ID:
-                    if (id.equals(newValue))
-                        return new ActionResult(ResultType.NOTHING_CHANGED, getString("action.result.same.id"));
-                    else
-                        shelf.setId((String) newValue);
+                    if (!id.equals(newValue)) shelf.setId((String) newValue);
+                    else return;
                     break;
                 case NAME:
-                    if (shelf.getName().equals(newValue))
-                        return new ActionResult(ResultType.NOTHING_CHANGED, getString("action.result.same.name"));
-                    else
-                        shelf.setName((String) newValue);
+                    if (!shelf.getName().equals(newValue)) shelf.setName((String) newValue);
+                    else return;
                     break;
                 case COLOR:
-                    if (shelf.getColor().equals(colorToHex((Color) newValue)))
-                        return new ActionResult(ResultType.NOTHING_CHANGED, getString("action.result.same.color"));
-                    else
-                        shelf.setColor(colorToHex((Color) newValue));
+                    if (!shelf.getColor().equals(colorToHex((Color) newValue))) shelf.setColor(colorToHex((Color) newValue));
+                    else return;
                     break;
             }
-        } else return new ActionResult(ResultType.ERROR, getString("action.result.shelf.invalid_id"));
-
-        dataChanged = true;
-        return new ActionResult(ResultType.SUCCESS);
+            dataChanged = true;
+        }
     }
 
-    public static Vector<Vector<String>> getShelvessDataVector() {
+    public static Vector<Vector<String>> getShelvesDataVector() {
         if (FileIOHandler.currentFile == null)
             return null;
         Vector<Vector<String>> data = new Vector<>();
@@ -196,12 +181,22 @@ public final class DataManager {
         return data;
     }
 
+    public static Vector<String> getShelvesNamesVector() {
+        if (FileIOHandler.currentFile == null)
+            return null;
+        Vector<String> names = new Vector<>();
+        for (Shelf shelf : currentData.getShelves()) {
+            names.add(shelf.getName());
+        }
+        return names;
+    }
+
     //////////////////////////
     // Tea boxes management //
     //////////////////////////
 
-    public static ActionResult defineTeaBox(String shelfId, String id, String name, String brand_id, String description,
-                                            double amount, double stars, int temperature, int time, String reuses, String grams) {
+    public static void defineTeaBox(String shelfId, String id, String name, String brand_id, String description, double amount,
+                                    double stars, int temperature, int time, String reuses, String grams) {
         for (Shelf shelf : currentData.getShelves())
             if (shelf.getId().equals(shelfId))
                 if ((Utils.findIdInArray(id, shelf.getTea_boxes())) == null) {
@@ -211,14 +206,11 @@ public final class DataManager {
                     teaBoxesList.add(teaBox);
                     shelf.setTea_boxes(teaBoxesList.toArray(new TeaBox[0]));
                     dataChanged = true;
-                    return new ActionResult(ResultType.SUCCESS);
-                } else {
-                    return new ActionResult(ResultType.ERROR, getString("action.result.tea_box.invalid_id"));
-                }
-        return new ActionResult(ResultType.ERROR, getString("action.result.shelf.invalid_id"));
+                    return;
+                } else return;
     }
 
-    public static ActionResult removeTeaBox(String shelfId, String id) {
+    public static void removeTeaBox(String shelfId, String id) {
         for (Shelf shelf : currentData.getShelves())
             if (shelf.getId().equals(shelfId)) {
                 List<TeaBox> teaBoxesList = new ArrayList<>(Arrays.asList(shelf.getTea_boxes()));
@@ -227,14 +219,13 @@ public final class DataManager {
                         teaBoxesList.remove(i);
                         shelf.setTea_boxes(teaBoxesList.toArray(new TeaBox[0]));
                         dataChanged = true;
-                        return new ActionResult(ResultType.SUCCESS);
+                        return;
                     }
-                return new ActionResult(ResultType.ERROR, getString("action.result.tea_box.invalid_id"));
+                return;
             }
-        return new ActionResult(ResultType.ERROR, getString("action.result.shelf.invalid_id"));
     }
 
-    public static ActionResult editTeaBoxParameter(TeaBox.Parameter parameter, String shelfId, String id, Object newValue) {
+    public static void editTeaBoxParameter(TeaBox.Parameter parameter, String shelfId, String id, Object newValue) {
         for (Shelf shelf : currentData.getShelves())
             if (shelf.getId().equals(shelfId)) {
                 TeaBox teaBox = ((TeaBox) Utils.findIdInArray(id, shelf.getTea_boxes()));
@@ -242,82 +233,51 @@ public final class DataManager {
                     BrewingInstruction brewing = teaBox.getBrewing();
                     switch (parameter) {
                         case ID:
-                            if (id.equals(newValue))
-                                return new ActionResult(ResultType.NOTHING_CHANGED,
-                                        getString("action.result.same.id"));
-                            else
-                                teaBox.setId((String) newValue);
+                            if (!id.equals(newValue)) teaBox.setId((String) newValue);
+                            else return;
                             break;
                         case NAME:
-                            if (teaBox.getName().equals(newValue))
-                                return new ActionResult(ResultType.NOTHING_CHANGED,
-                                        getString("action.result.same.name"));
-                            else
-                                teaBox.setName((String) newValue);
+                            if (!teaBox.getName().equals(newValue)) teaBox.setName((String) newValue);
+                            else return;
                             break;
                         case BRAND_ID:
-                            if (teaBox.getBrand_id().equals(newValue))
-                                return new ActionResult(ResultType.NOTHING_CHANGED,
-                                        getString("action.result.same.brand_id"));
-                            else
-                                teaBox.setBrand_id((String) newValue);
+                            if (!teaBox.getBrand_id().equals(newValue)) teaBox.setBrand_id((String) newValue);
+                            else return;
                             break;
                         case DESCRIPTION:
-                            if (teaBox.getDescription().equals(newValue))
-                                return new ActionResult(ResultType.NOTHING_CHANGED,
-                                        getString("action.result.same.description"));
-                            else
-                                teaBox.setDescription((String) newValue);
+                            if (!teaBox.getDescription().equals(newValue)) teaBox.setDescription((String) newValue);
+                            else return;
                             break;
                         case AMOUNT:
-                            if (teaBox.getAmount() == (double) newValue)
-                                return new ActionResult(ResultType.NOTHING_CHANGED,
-                                        getString("action.result.same.amount"));
-                            else
-                                teaBox.setAmount((double) newValue);
+                            if (teaBox.getAmount() != (double) newValue) teaBox.setAmount((double) newValue);
+                            else return;
                             break;
                         case STARS:
-                            if (teaBox.getStars() == (double) newValue)
-                                return new ActionResult(ResultType.NOTHING_CHANGED,
-                                        getString("action.result.same.stars"));
-                            else
-                                teaBox.setStars((double) newValue);
+                            if (teaBox.getStars() != (double) newValue) teaBox.setStars((double) newValue);
+                            else return;
                             break;
                         case BREW_TEMPERATURE:
-                            if (brewing.getTemperature() == (int) newValue)
-                                return new ActionResult(ResultType.NOTHING_CHANGED,
-                                        getString("action.result.same.brew_temperature"));
-                            else
-                                brewing.setTemperature((int) newValue);
+                            if (brewing.getTemperature() != (int) newValue) brewing.setTemperature((int) newValue);
+                            else return;
                             break;
                         case BREW_TIME:
-                            if (brewing.getTime() == (int) newValue)
-                                return new ActionResult(ResultType.NOTHING_CHANGED,
-                                        getString("action.result.same.brew_time"));
-                            else
-                                brewing.setTime((int) newValue);
+                            if (brewing.getTime() != (int) newValue) brewing.setTime((int) newValue);
+                            else return;
                             break;
                         case BREW_REUSES:
-                            if (brewing.getReuses().equals(newValue))
-                                return new ActionResult(ResultType.NOTHING_CHANGED,
-                                        getString("action.result.same.brew_reuses"));
-                            else
-                                brewing.setReuses((String) newValue);
+                            if (brewing.getReuses() != newValue) brewing.setReuses((String) newValue);
+                            else return;
                             break;
                         case BREW_GRAMS:
-                            if (brewing.getGrams().equals(newValue))
-                                return new ActionResult(ResultType.NOTHING_CHANGED,
-                                        getString("action.result.same.brew_grams"));
-                            else
-                                brewing.setGrams((String) newValue);
+                            if (!brewing.getGrams().equals(newValue)) brewing.setGrams((String) newValue);
+                            else return;
                             break;
                     }
-                } else return new ActionResult(ResultType.ERROR, getString("action.result.tea_box.invalid_id"));
+                } else return;
 
                 dataChanged = true;
-                return new ActionResult(ResultType.SUCCESS);
+                return;
             }
-        return new ActionResult(ResultType.ERROR, getString("action.result.shelf.invalid_id"));
     }
 
     public static Vector<Vector<String>> getTeaBoxesDataVector(Shelf shelf) {
@@ -335,5 +295,23 @@ public final class DataManager {
             data.add(teaBoxData);
         }
         return data;
+    }
+
+    public static Shelf getTeaBoxShelf(TeaBox box) {
+        for (Shelf shelf : currentData.getShelves())
+            for (TeaBox teaBox : shelf.getTea_boxes())
+                if (teaBox.equals(box)) return shelf;
+        return null;
+    }
+
+    public static void setTeaBoxShelf(TeaBox box, Shelf newShelf) {
+        for (Shelf shelf : currentData.getShelves())
+            for (TeaBox teaBox : shelf.getTea_boxes())
+                if (teaBox.equals(box) && !shelf.getId().equals(newShelf.getId())) {
+                    removeTeaBox(shelf.getId(), box.getId());
+                    defineTeaBox(newShelf.getId(), box.getId(), box.getName(), box.getBrand_id(), box.getDescription(),
+                            box.getAmount(), box.getStars(), box.getBrewing().getTemperature(), box.getBrewing().getTime(),
+                            box.getBrewing().getReuses(), box.getBrewing().getGrams());
+                }
     }
 }

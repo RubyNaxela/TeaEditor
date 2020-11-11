@@ -22,6 +22,8 @@ import com.rubynaxela.teaeditor.util.Reference;
 
 import java.util.Objects;
 
+import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlag;
+import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlag.SHELF;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
 public final class WindowUpdatesManager {
@@ -53,8 +55,16 @@ public final class WindowUpdatesManager {
         ListsManager.brandsTableModel.setDataVector(
                 DataManager.getBrandsDataVector(), ListsManager.brandsAndShelvesTableHeaders);
         ListsManager.shelvesTableModel.setDataVector(
-                DataManager.getShelvessDataVector(), ListsManager.brandsAndShelvesTableHeaders);
+                DataManager.getShelvesDataVector(), ListsManager.brandsAndShelvesTableHeaders);
         updateTeaBoxesList();
+    }
+
+    public static void updateLists(DataDialogFlag preserveSelection) {
+        if (preserveSelection == SHELF) {
+            int selectedIndex = ListsManager.getSelectedShelfIndex();
+            updateLists();
+            ListsManager.selectShelf(selectedIndex);
+        }
     }
 
     private static void updateTeaBoxesList() {

@@ -20,7 +20,6 @@ package com.rubynaxela.teaeditor.handlers;
 
 import com.rubynaxela.teaeditor.managers.DataManager;
 import com.rubynaxela.teaeditor.managers.WindowUpdatesManager;
-import com.rubynaxela.teaeditor.gui.dialogs.Dialogs;
 
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -49,7 +48,7 @@ public final class MenuHandler {
 
     public static ActionListener closeFile = e -> {
         if (DataManager.dataChanged)
-            switch (Dialogs.askYesNoCancelQuestion(getString("dialog.message.save_before_close"))) {
+            switch (DialogsHandler.askYesNoCancelQuestion(getString("dialog.message.save_before_close"))) {
                 case POSITIVE:
                     saveFile.actionPerformed(null);
                 case NEGATIVE:
@@ -60,6 +59,6 @@ public final class MenuHandler {
             }
     };
 
-    public static ActionListener undo = e -> Dialogs.showWarning(getString("dialog.message.feature_unavailable"));
-    public static ActionListener redo = e -> Dialogs.showWarning(getString("dialog.message.feature_unavailable"));
+    public static ActionListener undo = e -> DialogsHandler.showWarning(getString("dialog.message.feature_unavailable"));
+    public static ActionListener redo = e -> DialogsHandler.showWarning(getString("dialog.message.feature_unavailable"));
 }

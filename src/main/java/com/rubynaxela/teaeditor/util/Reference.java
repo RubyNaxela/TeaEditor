@@ -23,7 +23,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.formdev.flatlaf.icons.*;
 import com.rubynaxela.teaeditor.TeaEditor;
 import com.rubynaxela.teaeditor.gui.MainWindow;
-import com.rubynaxela.teaeditor.gui.dialogs.Dialogs;
+import com.rubynaxela.teaeditor.handlers.DialogsHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -64,22 +64,20 @@ public final class Reference {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Dialogs.showError("Attempt to read language file has resulted an unhandled error.", true);
+            DialogsHandler.showError("Attempt to read language file has resulted an unhandled error.", true);
         }
     }
 
     public enum DataDialogFlag {
-        NEW, EDIT, BRAND, SHELF, TEABOX
+        BRAND, SHELF
     }
 
     public static final class Resources {
 
-        public static final String BLANK_STRING = " ";
-
         /**
-         * Returns a localized string from the given key. If not found in primary dictionary (that is, by default, the
+         * Returns a localized string from a given key. If not found in primary dictionary (that is, by default, the
          * currently used language file), then searches in the backup dictionary (that is, by default, English (US)). If
-         * nothing is found in both, returns the key itself.
+         * nothing is found in both, returns the key itself
          *
          * @param key dictionary key of the string
          * @return localized string
@@ -95,9 +93,9 @@ public final class Reference {
         }
 
         /**
-         * Returns a localized string from the given key. If not found in primary dictionary (that is, by default, the
+         * Returns a localized string from a given key. If not found in primary dictionary (that is, by default, the
          * currently used language file), then searches in the backup dictionary (that is, by default, English (US)). If
-         * nothing is found in both, returns the fallback value.
+         * nothing is found in both, returns the fallback value
          *
          * @param key           dictionary key of the string
          * @param fallbackValue the fallback value

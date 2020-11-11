@@ -24,7 +24,6 @@ import java.awt.*;
 public class ColorPreviewBox extends JPanel {
 
     public ColorPreviewBox() {
-        super();
     }
 
     public static ColorPreviewBox init(Color initialColor) {

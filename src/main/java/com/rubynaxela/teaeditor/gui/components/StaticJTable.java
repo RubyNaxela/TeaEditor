@@ -22,16 +22,22 @@ import javax.swing.*;
 
 public final class StaticJTable extends JTable {
 
-    StaticJTable() {
-        super();
+    private final boolean cellsEditable;
+
+    StaticJTable(boolean cellsEditable) {
         DefaultListSelectionModel brandsListModel = new DefaultListSelectionModel();
         brandsListModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.setSelectionModel(brandsListModel);
         this.getTableHeader().setReorderingAllowed(false);
+        this.cellsEditable = cellsEditable;
+    }
+
+    StaticJTable() {
+        this(false);
     }
 
     @Override
     public boolean isCellEditable(int row, int column) {
-        return false;
+        return cellsEditable;
     }
 }

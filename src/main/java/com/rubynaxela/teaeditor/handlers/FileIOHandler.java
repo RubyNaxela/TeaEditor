@@ -21,7 +21,6 @@ package com.rubynaxela.teaeditor.handlers;
 import com.rubynaxela.teaeditor.datatypes.database.TeaData;
 import com.rubynaxela.teaeditor.managers.DataManager;
 import com.rubynaxela.teaeditor.gui.dialogs.AWTFileDialog;
-import com.rubynaxela.teaeditor.gui.dialogs.Dialogs;
 
 import java.io.File;
 
@@ -37,7 +36,7 @@ public final class FileIOHandler {
         try {
             DataManager.setCurrentData(JSON_MAPPER.readValue(currentFile, TeaData.class));
         } catch (Exception ignored) {
-            Dialogs.showError(getString("dialog.message.error.load_faild"));
+            DialogsHandler.showError(getString("dialog.message.error.load_faild"));
         }
     }
 
@@ -45,7 +44,7 @@ public final class FileIOHandler {
         try {
             JSON_MAPPER.writeValue(target, DataManager.getCurrentData());
         } catch (Exception ignored) {
-            Dialogs.showError(getString("dialog.message.error.save_faild"));
+            DialogsHandler.showError(getString("dialog.message.error.save_faild"));
         }
     }
 

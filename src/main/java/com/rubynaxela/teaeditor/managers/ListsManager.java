@@ -29,7 +29,6 @@ import java.util.Vector;
 
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
-@SuppressWarnings("WeakerAccess")
 public final class ListsManager {
 
     public static DefaultTableModel
@@ -43,21 +42,37 @@ public final class ListsManager {
             getString("table.header.description"), getString("table.header.amount"),
             getString("table.header.stars")));
 
+    public static int getSelectedBrandIndex() {
+        return Reference.window.brandsPanel.dataTable.getSelectedRow();
+    }
+
     public static Brand getSelectedBrand() {
-        int rowIndex = Reference.window.brandsPanel.dataTable.getSelectedRow();
+        int rowIndex = getSelectedBrandIndex();
         return rowIndex >= 0 && DataManager.getCurrentData() != null ?
                 DataManager.getCurrentData().getBrands()[rowIndex] : null;
     }
 
+    public static int getSelectedShelfIndex() {
+        return Reference.window.shelvesPanel.dataTable.getSelectedRow();
+    }
+
     public static Shelf getSelectedShelf() {
-        int rowIndex = Reference.window.shelvesPanel.dataTable.getSelectedRow();
+        int rowIndex = getSelectedShelfIndex();
         return rowIndex >= 0 && DataManager.getCurrentData() != null ?
                 DataManager.getCurrentData().getShelves()[rowIndex] : null;
     }
 
+    public static void selectShelf(int rowIndex) {
+        Reference.window.shelvesPanel.dataTable.changeSelection(rowIndex, -1, false, false);
+    }
+
+    public static int getSelectedTeaBoxIndex() {
+        return Reference.window.teaBoxesPanel.dataTable.getSelectedRow();
+    }
+
     public static TeaBox getSelectedTeaBox() {
-        int rowIndex = Reference.window.teaBoxesPanel.dataTable.getSelectedRow();
-        return rowIndex >= 0 && DataManager.getCurrentData() != null && getSelectedShelf() != null ?
-                getSelectedShelf().getTea_boxes()[rowIndex] : null;
+        int rowIndex = getSelectedTeaBoxIndex();
+        return rowIndex >= 0 && DataManager.getCurrentData() != null && getSelectedShelf() != null
+                && getSelectedShelf().getTea_boxes().length > 0 ? getSelectedShelf().getTea_boxes()[rowIndex] : null;
     }
 }

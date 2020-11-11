@@ -20,15 +20,16 @@ package com.rubynaxela.teaeditor.datatypes;
 
 public class FlatTeaBox {
 
-    public String id, name, brandId, description, reuses, grams;
+    public String id, name, brandId, shelfId, description, reuses, grams;
     public double amount, stars;
     public int temperature, time;
 
-    public FlatTeaBox(String id, String name, String brandId, String description, double amount,
+    public FlatTeaBox(String id, String name, String brandId, String shelfId, String description, double amount,
                       double stars, int temperature, int time, String reuses, String grams) {
         this.id = id;
         this.name = name;
         this.brandId = brandId;
+        this.shelfId = shelfId;
         this.description = description;
         this.amount = amount;
         this.stars = stars;

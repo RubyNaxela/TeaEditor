@@ -16,27 +16,28 @@
  *
  */
 
-package com.rubynaxela.teaeditor.gui.dialogs;
+package com.rubynaxela.teaeditor.handlers;
 
 import com.rubynaxela.teaeditor.datatypes.FlatTeaBox;
 import com.rubynaxela.teaeditor.datatypes.IdNameColorTriplet;
 import com.rubynaxela.teaeditor.datatypes.Trilean;
 import com.rubynaxela.teaeditor.datatypes.database.AbstractPrimaryElement;
 import com.rubynaxela.teaeditor.datatypes.database.TeaBox;
+import com.rubynaxela.teaeditor.gui.dialogs.INCDataDialogPanel;
+import com.rubynaxela.teaeditor.gui.dialogs.TeaBoxDialogPanel;
+import com.rubynaxela.teaeditor.managers.DataManager;
 import com.rubynaxela.teaeditor.util.Reference;
 
 import javax.swing.*;
-import java.util.Arrays;
-import java.util.List;
 
+import static com.rubynaxela.teaeditor.util.DataFormat.parseDouble;
+import static com.rubynaxela.teaeditor.util.DataFormat.parseInt;
 import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlag;
-import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlag.*;
+import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlag.BRAND;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getIcon;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
-import static java.lang.Double.parseDouble;
-import static java.lang.Integer.parseInt;
 
-public final class Dialogs {
+public final class DialogsHandler {
 
     public static void showInfo(String message) {
         JOptionPane.showOptionDialog(Reference.window, message, getString("dialog.title.default"),
@@ -85,36 +86,52 @@ public final class Dialogs {
         return Trilean.from012Model(answer);
     }
 
-    public static IdNameColorTriplet showIdNameColorDataDialog(AbstractPrimaryElement editedElement, DataDialogFlag... flags) {
+    public static IdNameColorTriplet showIdNameColorDataDialog(AbstractPrimaryElement editedElement, DataDialogFlag flag) {
         final INCDataDialogPanel dialogPanel = new INCDataDialogPanel(editedElement);
+
         String title;
-        List<Reference.DataDialogFlag> flagsList = Arrays.asList(flags);
-        if (flagsList.contains(NEW) && flagsList.contains(BRAND)) title = getString("dialog.title.new_brand");
-        else if (flagsList.contains(NEW) && flagsList.contains(SHELF)) title = getString("dialog.title.new_shelf");
-        else if (flagsList.contains(EDIT) && flagsList.contains(BRAND)) title = getString("dialog.title.edit_brand");
-        else if (flagsList.contains(EDIT) && flagsList.contains(SHELF)) title = getString("dialog.title.edit_shelf");
-        else title = "";
+        if (flag == BRAND) {
+            if (editedElement == null) title = getString("dialog.title.new_brand");
+            else title = getString("dialog.title.edit_brand");
+        } else {
+            if (editedElement == null) title = getString("dialog.title.new_shelf");
+            else title = getString("dialog.title.edit_shelf");
+        }
+
         return (JOptionPane.showOptionDialog(Reference.window,
                 dialogPanel, title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
                 getIcon("dialog.data"), new Object[]{dialogPanel.okButton, getString("button.cancel")},
-                dialogPanel.okButton) == 0) ? new IdNameColorTriplet(dialogPanel.idInput.getText(),
-                dialogPanel.nameInput.getText(), dialogPanel.colorInput.getColor()) : null;
+                dialogPanel.okButton) == 0) ?
+                new IdNameColorTriplet(
+                        dialogPanel.idInput.getText(),
+                        dialogPanel.nameInput.getText(),
+                        dialogPanel.colorInput.getColor())
+                : null;
     }
 
-    public static FlatTeaBox showTeaBoxDataDialog(TeaBox editedElement, DataDialogFlag... flags) {
+    public static FlatTeaBox showTeaBoxDataDialog(TeaBox editedElement) {
         final TeaBoxDialogPanel dialogPanel = new TeaBoxDialogPanel(editedElement);
         String title;
-        List<Reference.DataDialogFlag> flagsList = Arrays.asList(flags);
-        if (flagsList.contains(NEW) && flagsList.contains(TEABOX)) title = getString("dialog.title.new_tea_box");
-        else if (flagsList.contains(EDIT) && flagsList.contains(TEABOX)) title = getString("dialog.title.edit_tea_box");
-        else title = "";
+        if (editedElement == null) title = getString("dialog.title.new_tea_box");
+        else title = getString("dialog.title.edit_tea_box");
         return (JOptionPane.showOptionDialog(Reference.window,
                 dialogPanel, title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
                 getIcon("dialog.data"), new Object[]{dialogPanel.okButton, getString("button.cancel")},
-                dialogPanel.okButton) == 0) ? new FlatTeaBox(dialogPanel.idInput.getText(), dialogPanel.nameInput.getText(),
-                dialogPanel.brandIdInput.getText(), dialogPanel.descriptionInput.getText(),
-                parseDouble(dialogPanel.amountInput.getText()), parseDouble(dialogPanel.starsInput.getText()),
-                parseInt(dialogPanel.brewingTempInput.getText()), parseInt(dialogPanel.brewingTimeInput.getText()),
-                dialogPanel.brewingReusesInput.getText(), dialogPanel.brewingGramsInput.getText()) : null;
+                dialogPanel.okButton) == 0) ?
+                new FlatTeaBox(
+                        dialogPanel.idInput.getText(),
+                        dialogPanel.nameInput.getText(),
+                        DataManager.getCurrentData().getBrands()[dialogPanel.brandInput.getSelectedIndex()].getId(),
+                        DataManager.getCurrentData().getShelves()[dialogPanel.shelfInput.getSelectedIndex()].getId(),
+                        dialogPanel.descriptionInput.getText().replace("\n", "<br>"),
+                        parseDouble(dialogPanel.amountInput.getText()),
+                        parseDouble(dialogPanel.starsInput.getText()),
+                        parseInt(dialogPanel.brewingPanel.brewingTempInput.getText()),
+                        parseInt(dialogPanel.brewingPanel.brewingTimeInput.getText()),
+                        !dialogPanel.brewingPanel.brewingReusesInput.getText().equals("") ?
+                                (dialogPanel.brewingPanel.brewingReusesInput.getText()
+                                        + (dialogPanel.brewingPanel.addMinuteCheckbox.isSelected() ? "/1" : "")) : null,
+                        dialogPanel.brewingPanel.brewingGramsInput.getText().replace("\n", "/"))
+                : null;
     }
 }

@@ -19,6 +19,8 @@
 package com.rubynaxela.teaeditor.util;
 
 import com.rubynaxela.teaeditor.datatypes.database.Identifiable;
+import com.rubynaxela.teaeditor.gui.dialogs.INCDataDialogPanel;
+import com.rubynaxela.teaeditor.gui.dialogs.TeaBoxDialogPanel;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -28,14 +30,15 @@ import java.awt.*;
 import static java.lang.Integer.toHexString;
 
 /**
- * The {@code Utils} class provides a number of utility functions that are used in different places throughout the project.
+ * The {@code Utils} class provides a number of unclassified utility
+ * functions that are used in different places throughout the project
  *
  * @author Jacek Pawelski
  */
 public final class Utils {
 
     /**
-     * Converts a {@link Color} to hexadecimal hashtag notation.
+     * Converts a {@link Color} to hexadecimal hashtag notation
      *
      * @param color an {@code java.awt} {@link Color} object
      * @return a {@link String} containing the color in hexadecimal hashtag notation
@@ -47,25 +50,37 @@ public final class Utils {
     }
 
     /**
-     * Finds an {@link Identifiable} object in an array by its {@code id}.
+     * Finds an {@link Identifiable} object in an array by its {@code id}
      *
-     * @param id    {@code id} field of the desired {@link Identifiable} object
+     * @param id    {@code id} of the desired {@link Identifiable} object
      * @param array an array of objects to search through
-     * @return the object with the requested {@code id}, {@code null} if nothing found
+     * @return the object with the requested {@code id}, or {@code null} if not found
      * @see Identifiable
      */
     @Nullable
     public static Identifiable findIdInArray(String id, @Nonnull Identifiable[] array) {
-        for (Identifiable obj : array)
-            if (obj.getId().equals((id))) return obj;
+        for (Identifiable obj : array) if (obj.getId().equals((id))) return obj;
         return null;
     }
 
     /**
-     * Gives a reference to the {@link JOptionPane} parent of the given {@link JComponent} element
+     * Finds the index of an {@link Identifiable} object in an array by its {@code id}
+     *
+     * @param id    {@code id} of the desired {@link Identifiable} object
+     * @param array an array of objects to search through
+     * @return the index of the object with the requested {@code id}, or {@code -1} if not found
+     * @see Identifiable
+     */
+    public static int findIndexInArray(String id, @Nonnull Identifiable[] array) {
+        for (int i = 0; i < array.length; i++) if (array[i].getId().equals(id)) return i;
+        return -1;
+    }
+
+    /**
+     * Provides a reference to the {@link JOptionPane} parent of a given {@link JComponent} element
      *
      * @param component a dialog component
-     * @return the {@code JOptionPane} that the given element is a child of
+     * @return the {@code JOptionPane} that a given element is a child of
      */
     public static JOptionPane getOptionPane(JComponent component) {
         return component instanceof JOptionPane ? (JOptionPane) component : getOptionPane((JComponent) component.getParent());
@@ -74,19 +89,19 @@ public final class Utils {
     /**
      * Returns a {@link GridBagConstraints} object with properties suitable for a dialog pane:
      * <ul>
-     *     <li>{@code row} and {@code column} parameters will translate directly into {@code gridy} and {@code gridx} fields
+     *     <li>{@code row} and {@code column} parameters translate directly into {@code gridy} and {@code gridx} fields
      *         of the returned object respectively</li>
-     *     <li>if {@code wide} is {@code true}, the {@link GridBagConstraints#gridwidth} field will be set to {@code 2}, which
-     *         means it will take up space of two grid columns</li>
+     *     <li>the {@code width} parameter translates to {@link GridBagConstraints#gridwidth} field of the returned object,
+     *         which means it will take up space of that much grid columns</li>
      * </ul>
      *
      * @param row    vertical position in the grid
      * @param column horizontal position in the grid
-     * @param wide   determines if a component takes up space of two columns
+     * @param width  determines the component width (in columns)
      * @return a {@code GridBagConstraints} instance
      */
     @Nonnull
-    public static GridBagConstraints dialogElementPosition(int row, int column, boolean wide) {
+    public static GridBagConstraints dialogElementPosition(int row, int column, int width) {
         final GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = column;
         gbc.gridy = row;
@@ -99,57 +114,36 @@ public final class Utils {
             gbc.insets = new Insets(5, 5, 5, 0);
             gbc.fill = GridBagConstraints.HORIZONTAL;
         }
-        if (wide) {
-            gbc.gridwidth = 2;
-        }
+        gbc.gridwidth = width;
         return gbc;
     }
 
     /**
-     * Formats a number returning a {@link String}:
-     * <ul>
-     *     <li>removes {@code .0} when the value is a whole number,</li>
-     *     <li>can add a suffix at the end of the number,</li>
-     *     <li>can replace the whole string with some text when the value is equal to {@code 0}.</li>
-     * </ul>
+     * Returns a {@link GridBagConstraints} object where {@code row} and {@code column} parameters translate directly into
+     * {@code gridy} and {@code gridx} fields of the returned object respectively
      *
-     * @param number   a numeric value
-     * @param suffix   the suffix, may be {@code null}
-     * @param zeroText displayed when the value is equal to {@code 0}, displays the number normally when {@code null}
-     * @return a {@code String} containing the formatted number
+     * @param row    vertical position in the grid
+     * @param column horizontal position in the grid
+     * @return a {@code GridBagConstraints} instance
      */
     @Nonnull
-    public static String formatNumber(double number, @Nullable String suffix, @Nullable String zeroText) {
-        if (number == 0 && zeroText != null)
-            return zeroText;
-        else {
-            String ret = number % 1 == 0 ? "" + (int) number : "" + number;
-            return suffix != null ? ret + suffix : ret;
-        }
+    public static GridBagConstraints dialogElementPosition(int row, int column) {
+        return dialogElementPosition(row, column, 1);
     }
 
     /**
-     * Formats a number returning a {@link String}:
-     * <ul>
-     *     <li>removes {@code .0} when the value is a whole number,</li>
-     *     <li>can add a suffix at the end of the number</li>
-     * </ul>
+     * Used to allocate a concrete amount of space for a label while a dialog layout is initialized
      *
-     * @param number   a numeric value
-     * @param suffix   the suffix, may be {@code null}
-     * @return a {@code String} containing the formatted number
+     * @param lines the maximal expected number of lines that the label will take up
+     * @return a placeholder html text consisting of invisible characters
+     * @see INCDataDialogPanel
+     * @see TeaBoxDialogPanel
      */
-    public static String formatNumber(double number, @Nullable String suffix) {
-        return formatNumber(number, suffix, null);
-    }
-
-    /**
-     * Formats a number returning a {@link String}; removes {@code .0} when the value is a whole number</li>
-     *
-     * @param number   a numeric value
-     * @return a {@code String} containing the formatted number
-     */
-    public static String formatNumber(double number) {
-        return formatNumber(number, null, null);
+    @Deprecated
+    public static String stringPlaceholder(int lines) {
+        StringBuilder ret = new StringBuilder("<html>&nbsp;");
+        for (int i = 1; i < lines; i++) ret.append("<br>&nbsp;");
+        ret.append("</html>");
+        return ret.toString();
     }
 }

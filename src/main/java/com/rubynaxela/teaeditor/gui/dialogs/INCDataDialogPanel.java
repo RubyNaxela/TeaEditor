@@ -23,18 +23,17 @@ import com.rubynaxela.teaeditor.gui.components.ColorPreviewBox;
 import com.rubynaxela.teaeditor.gui.components.RGBColorChooser;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 
-import static com.rubynaxela.teaeditor.util.Reference.Resources.BLANK_STRING;
+import static com.rubynaxela.teaeditor.util.DataFormat.isValidId;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Utils.dialogElementPosition;
 import static com.rubynaxela.teaeditor.util.Utils.getOptionPane;
 
 public final class INCDataDialogPanel extends JPanel {
 
-    public final JLabel idLabel, idErrorLabel, nameLabel, colorLabel;
+    public final JLabel idLabel, nameLabel, colorLabel;
     public final JTextField idInput, nameInput;
     public final Color initialColor;
     public final RGBColorChooser colorInput;
@@ -42,44 +41,37 @@ public final class INCDataDialogPanel extends JPanel {
     public final JButton okButton;
 
     public INCDataDialogPanel(AbstractPrimaryElement editedElement) {
-        idLabel = new JLabel(getString("dialog.input.id"));
-        idErrorLabel = new JLabel(BLANK_STRING);
-        nameLabel = new JLabel(getString("dialog.input.name"));
-        colorLabel = new JLabel(getString("dialog.input.color"));
-        idInput = new JTextField(editedElement != null ? editedElement.getId() : "");
-        nameInput = new JTextField(editedElement != null ? editedElement.getName() : "");
+        idLabel = new JLabel(getString("dialog.label.id"));
+        nameLabel = new JLabel(getString("dialog.label.name"));
+        colorLabel = new JLabel(getString("dialog.label.color"));
+
+        idInput = new JTextField();
+        nameInput = new JTextField();
         initialColor = editedElement != null ? Color.decode(editedElement.getColor()) : Color.WHITE;
         colorInput = new RGBColorChooser(initialColor);
         previewBox = ColorPreviewBox.init(initialColor);
         okButton = new JButton(getString("button.ok"));
 
-        this.setLayout(new GridBagLayout());
-        this.add(idLabel, dialogElementPosition(0, 0, false));
-        this.add(idInput, dialogElementPosition(0, 1, false));
-        this.add(nameLabel, dialogElementPosition(1, 0, false));
-        this.add(nameInput, dialogElementPosition(1, 1, false));
-        this.add(colorLabel, dialogElementPosition(2, 0, true));
-        this.add(colorInput, dialogElementPosition(3, 0, true));
-        this.add(previewBox, dialogElementPosition(4, 0, true));
-        this.add(idErrorLabel, dialogElementPosition(5, 0, true));
+        initLayout();
+        setup(editedElement);
+    }
 
-        final Border defaultBorder = idInput.getBorder();
-        DocumentListener textFieldListener = new AbstractValidInputListener(okButton) {
-            @Override
-            protected boolean dataValid() {
-                boolean idValidChars = idInput.getText().matches("^[a-z]*$");
-                if (idValidChars) {
-                    idInput.setBorder(defaultBorder);
-                    idErrorLabel.setText(BLANK_STRING);
-                } else {
-                    idInput.setBorder(BorderFactory.createCompoundBorder(
-                            BorderFactory.createLineBorder(new Color(0x834141), 3, true),
-                            BorderFactory.createEmptyBorder(2, 6, 2, 6)));
-                    idErrorLabel.setText(getString("dialog.input.id_invalid"));
-                }
-                return !idInput.getText().equals("") && !nameInput.getText().equals("") && idValidChars;
-            }
-        };
+    private void initLayout() {
+        this.setLayout(new GridBagLayout());
+        this.add(idLabel, dialogElementPosition(0, 0));
+        this.add(idInput, dialogElementPosition(0, 1));
+        this.add(nameLabel, dialogElementPosition(1, 0));
+        this.add(nameInput, dialogElementPosition(1, 1));
+        this.add(colorLabel, dialogElementPosition(2, 0, 2));
+        this.add(colorInput, dialogElementPosition(3, 0, 2));
+        this.add(previewBox, dialogElementPosition(4, 0, 2));
+    }
+
+    private void setup(AbstractPrimaryElement editedElement) {
+        idInput.setText(editedElement != null ? editedElement.getId() : "");
+        nameInput.setText(editedElement != null ? editedElement.getName() : "");
+
+        final DocumentListener textFieldListener = createInputValidator();
         idInput.getDocument().addDocumentListener(textFieldListener);
         nameInput.getDocument().addDocumentListener(textFieldListener);
 
@@ -87,5 +79,19 @@ public final class INCDataDialogPanel extends JPanel {
 
         okButton.setEnabled(editedElement != null);
         okButton.addActionListener(e -> getOptionPane((JComponent) e.getSource()).setValue(okButton));
+    }
+
+    private AbstractValidInputListener createInputValidator() {
+        return new AbstractValidInputListener(okButton) {
+            @Override
+            protected boolean dataValid() {
+                boolean idValid = isValidId(idInput.getText());
+
+                if (!idValid) displayError(idInput, getString("dialog.label.invalid.id"));
+                else cancelError(idInput);
+
+                return !idInput.getText().equals("") && !nameInput.getText().equals("") && idValid;
+            }
+        };
     }
 }

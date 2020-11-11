@@ -18,12 +18,12 @@
 
 package com.rubynaxela.teaeditor.gui;
 
+import com.rubynaxela.teaeditor.handlers.DialogsHandler;
 import com.rubynaxela.teaeditor.handlers.MenuHandler;
 import com.rubynaxela.teaeditor.managers.DataManager;
 import com.rubynaxela.teaeditor.managers.WindowUpdatesManager;
 import com.rubynaxela.teaeditor.gui.components.MenuBar;
 import com.rubynaxela.teaeditor.gui.components.*;
-import com.rubynaxela.teaeditor.gui.dialogs.Dialogs;
 import com.rubynaxela.teaeditor.util.Reference;
 
 import javax.swing.*;
@@ -66,7 +66,7 @@ public final class MainWindow extends JFrame {
             @Override
             public void windowClosing(WindowEvent windowEvent) {
                 if (DataManager.dataChanged)
-                    switch (Dialogs.askYesNoCancelQuestion(getString("dialog.message.save_before_close"))) {
+                    switch (DialogsHandler.askYesNoCancelQuestion(getString("dialog.message.save_before_close"))) {
                         case POSITIVE:
                             MenuHandler.saveFile.actionPerformed(null);
                         case NEGATIVE:

@@ -23,7 +23,6 @@ import com.rubynaxela.teaeditor.datatypes.IdNameColorTriplet;
 import com.rubynaxela.teaeditor.datatypes.database.Brand;
 import com.rubynaxela.teaeditor.datatypes.database.Shelf;
 import com.rubynaxela.teaeditor.datatypes.database.TeaBox;
-import com.rubynaxela.teaeditor.gui.dialogs.Dialogs;
 import com.rubynaxela.teaeditor.managers.DataManager;
 import com.rubynaxela.teaeditor.managers.ListsManager;
 import com.rubynaxela.teaeditor.managers.WindowUpdatesManager;
@@ -31,27 +30,29 @@ import com.rubynaxela.teaeditor.managers.WindowUpdatesManager;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
-import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlag.*;
+import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlag.BRAND;
+import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlag.SHELF;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
+import static com.rubynaxela.teaeditor.util.Utils.findIdInArray;
 
 public final class ButtonsHandler {
 
     public static ActionListener addBrand = e -> {
-        IdNameColorTriplet brandData = Dialogs.showIdNameColorDataDialog(null, NEW, BRAND);
+        IdNameColorTriplet brandData = DialogsHandler.showIdNameColorDataDialog(null, BRAND);
         if (brandData != null) {
             DataManager.defineBrand(brandData.id, brandData.name, brandData.color);
             WindowUpdatesManager.updateLists();
         }
     };
     public static ActionListener removeBrand = e -> {
-        if (Dialogs.askYesNoQuestion(getString("dialog.message.are_you_sure"), false)) {
+        if (DialogsHandler.askYesNoQuestion(getString("dialog.message.are_you_sure"), false)) {
             DataManager.removeBrand(Objects.requireNonNull(ListsManager.getSelectedBrand()).getId());
             WindowUpdatesManager.updateLists();
         }
     };
     public static ActionListener editBrand = e -> {
         Brand editedBrand = Objects.requireNonNull(ListsManager.getSelectedBrand());
-        IdNameColorTriplet brandData = Dialogs.showIdNameColorDataDialog(editedBrand, EDIT, BRAND);
+        IdNameColorTriplet brandData = DialogsHandler.showIdNameColorDataDialog(editedBrand, BRAND);
         if (brandData != null) {
             DataManager.editBrandParameter(Brand.Parameter.ID, editedBrand.getId(), brandData.id);
             DataManager.editBrandParameter(Brand.Parameter.NAME, editedBrand.getId(), brandData.name);
@@ -61,21 +62,21 @@ public final class ButtonsHandler {
     };
 
     public static ActionListener addShelf = e -> {
-        IdNameColorTriplet shelfData = Dialogs.showIdNameColorDataDialog(null, NEW, SHELF);
+        IdNameColorTriplet shelfData = DialogsHandler.showIdNameColorDataDialog(null, SHELF);
         if (shelfData != null) {
             DataManager.defineShelf(shelfData.id, shelfData.name, shelfData.color);
             WindowUpdatesManager.updateLists();
         }
     };
     public static ActionListener removeShelf = e -> {
-        if (Dialogs.askYesNoQuestion(getString("dialog.message.are_you_sure"), false)) {
+        if (DialogsHandler.askYesNoQuestion(getString("dialog.message.are_you_sure"), false)) {
             DataManager.removeShelf(Objects.requireNonNull(ListsManager.getSelectedShelf()).getId());
             WindowUpdatesManager.updateLists();
         }
     };
     public static ActionListener editShelf = e -> {
         Shelf editedShelf = Objects.requireNonNull(ListsManager.getSelectedShelf());
-        IdNameColorTriplet shelfData = Dialogs.showIdNameColorDataDialog(editedShelf, EDIT, SHELF);
+        IdNameColorTriplet shelfData = DialogsHandler.showIdNameColorDataDialog(editedShelf, SHELF);
         if (shelfData != null) {
             DataManager.editShelfParameter(Shelf.Parameter.ID, editedShelf.getId(), shelfData.id);
             DataManager.editShelfParameter(Shelf.Parameter.NAME, editedShelf.getId(), shelfData.name);
@@ -85,7 +86,7 @@ public final class ButtonsHandler {
     };
 
     public static ActionListener addTeaBox = e -> {
-        FlatTeaBox teaBoxData = Dialogs.showTeaBoxDataDialog(null, NEW, TEABOX);
+        FlatTeaBox teaBoxData = DialogsHandler.showTeaBoxDataDialog(null);
         if (teaBoxData != null) {
             DataManager.defineTeaBox(Objects.requireNonNull(ListsManager.getSelectedShelf()).getId(), teaBoxData.id,
                     teaBoxData.name, teaBoxData.brandId, teaBoxData.description, teaBoxData.amount, teaBoxData.stars,
@@ -94,7 +95,7 @@ public final class ButtonsHandler {
         }
     };
     public static ActionListener removeTeaBox = e -> {
-        if (Dialogs.askYesNoQuestion(getString("dialog.message.are_you_sure"), false)) {
+        if (DialogsHandler.askYesNoQuestion(getString("dialog.message.are_you_sure"), false)) {
             DataManager.removeTeaBox(Objects.requireNonNull(ListsManager.getSelectedShelf()).getId(),
                     Objects.requireNonNull(ListsManager.getSelectedTeaBox()).getId());
             WindowUpdatesManager.updateLists();
@@ -104,7 +105,7 @@ public final class ButtonsHandler {
         TeaBox editedTeaBox = Objects.requireNonNull(ListsManager.getSelectedTeaBox());
         String shelfId = Objects.requireNonNull(ListsManager.getSelectedShelf()).getId(),
                 teaBoxId = editedTeaBox.getId();
-        FlatTeaBox teaBoxData = Dialogs.showTeaBoxDataDialog(editedTeaBox, EDIT, TEABOX);
+        FlatTeaBox teaBoxData = DialogsHandler.showTeaBoxDataDialog(editedTeaBox);
         if (teaBoxData != null) {
             DataManager.editTeaBoxParameter(TeaBox.Parameter.ID, shelfId, teaBoxId, teaBoxData.id);
             DataManager.editTeaBoxParameter(TeaBox.Parameter.NAME, shelfId, teaBoxId, teaBoxData.name);
@@ -116,7 +117,9 @@ public final class ButtonsHandler {
             DataManager.editTeaBoxParameter(TeaBox.Parameter.BREW_TIME, shelfId, teaBoxId, teaBoxData.time);
             DataManager.editTeaBoxParameter(TeaBox.Parameter.BREW_REUSES, shelfId, teaBoxId, teaBoxData.reuses);
             DataManager.editTeaBoxParameter(TeaBox.Parameter.BREW_GRAMS, shelfId, teaBoxId, teaBoxData.grams);
-            WindowUpdatesManager.updateLists();
+            DataManager.setTeaBoxShelf((TeaBox) findIdInArray(teaBoxData.id, ListsManager.getSelectedShelf().getTea_boxes()),
+                    (Shelf) findIdInArray(teaBoxData.shelfId, DataManager.getCurrentData().getShelves()));
+            WindowUpdatesManager.updateLists(SHELF);
         }
     };
 }
