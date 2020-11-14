@@ -18,12 +18,15 @@
 
 package com.rubynaxela.teaeditor.gui;
 
+import com.rubynaxela.teaeditor.gui.panels.AbstractTablePanel;
+import com.rubynaxela.teaeditor.gui.panels.BrandsPanel;
+import com.rubynaxela.teaeditor.gui.panels.ShelvesPanel;
+import com.rubynaxela.teaeditor.gui.panels.TeaBoxesPanel;
 import com.rubynaxela.teaeditor.handlers.DialogsHandler;
 import com.rubynaxela.teaeditor.handlers.MenuHandler;
 import com.rubynaxela.teaeditor.managers.DataManager;
 import com.rubynaxela.teaeditor.managers.WindowUpdatesManager;
 import com.rubynaxela.teaeditor.gui.components.MenuBar;
-import com.rubynaxela.teaeditor.gui.components.*;
 import com.rubynaxela.teaeditor.util.Reference;
 
 import javax.swing.*;

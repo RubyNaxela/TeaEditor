@@ -18,7 +18,7 @@
 
 package com.rubynaxela.teaeditor.datatypes;
 
-public class FlatTeaBox {
+public final class FlatTeaBox {
 
     public String id, name, brandId, shelfId, description, reuses, grams;
     public double amount, stars;

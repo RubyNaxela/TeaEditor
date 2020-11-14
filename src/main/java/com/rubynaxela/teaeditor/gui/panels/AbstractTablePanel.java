@@ -16,7 +16,10 @@
  *
  */
 
-package com.rubynaxela.teaeditor.gui.components;
+package com.rubynaxela.teaeditor.gui.panels;
+
+import com.rubynaxela.teaeditor.gui.components.DefaultJScrollPane;
+import com.rubynaxela.teaeditor.gui.components.StaticJTable;
 
 import javax.swing.*;
 import java.awt.*;

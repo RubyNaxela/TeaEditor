@@ -16,8 +16,9 @@
  *
  */
 
-package com.rubynaxela.teaeditor.gui.components;
+package com.rubynaxela.teaeditor.gui.panels;
 
+import com.rubynaxela.teaeditor.gui.components.DefaultJScrollPane;
 import com.rubynaxela.teaeditor.handlers.ButtonsHandler;
 import com.rubynaxela.teaeditor.handlers.FileIOHandler;
 import com.rubynaxela.teaeditor.managers.ListsManager;

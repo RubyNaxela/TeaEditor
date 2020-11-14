@@ -29,7 +29,7 @@ import static com.rubynaxela.teaeditor.util.DataFormat.RoundMode.CLOSE;
  *
  * @author Jacek Pawelski
  */
-public class DataFormat {
+public final class DataFormat {
 
 
     /**
