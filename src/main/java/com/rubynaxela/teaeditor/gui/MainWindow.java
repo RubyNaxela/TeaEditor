@@ -18,15 +18,13 @@
 
 package com.rubynaxela.teaeditor.gui;
 
-import com.rubynaxela.teaeditor.gui.panels.AbstractTablePanel;
-import com.rubynaxela.teaeditor.gui.panels.BrandsPanel;
-import com.rubynaxela.teaeditor.gui.panels.ShelvesPanel;
-import com.rubynaxela.teaeditor.gui.panels.TeaBoxesPanel;
+import com.rubynaxela.teaeditor.gui.components.MenuBar;
+import com.rubynaxela.teaeditor.gui.html.StartupPreview;
+import com.rubynaxela.teaeditor.gui.panels.*;
 import com.rubynaxela.teaeditor.handlers.DialogsHandler;
 import com.rubynaxela.teaeditor.handlers.MenuHandler;
 import com.rubynaxela.teaeditor.managers.DataManager;
 import com.rubynaxela.teaeditor.managers.WindowUpdatesManager;
-import com.rubynaxela.teaeditor.gui.components.MenuBar;
 import com.rubynaxela.teaeditor.util.Reference;
 
 import javax.swing.*;
@@ -35,13 +33,15 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
+import static com.rubynaxela.teaeditor.util.Utils.dialogElementPosition;
 
 public final class MainWindow extends JFrame {
 
     public com.rubynaxela.teaeditor.gui.components.MenuBar menuBar;
-    public AbstractTablePanel brandsPanel = new BrandsPanel();
-    public AbstractTablePanel shelvesPanel = new ShelvesPanel();
-    public AbstractTablePanel teaBoxesPanel = new TeaBoxesPanel();
+    public final AbstractTablePanel brandsPanel = new BrandsPanel();
+    public final AbstractTablePanel shelvesPanel = new ShelvesPanel();
+    public final AbstractTablePanel teaBoxesPanel = new TeaBoxesPanel();
+    public final PreviewPanel previewPanel = new PreviewPanel();
 
     public MainWindow() {
         this.setResizable(false);
@@ -51,15 +51,10 @@ public final class MainWindow extends JFrame {
         menuBar = new MenuBar();
         this.setJMenuBar(menuBar);
 
-        GridBagConstraints layoutConstraints = new GridBagConstraints();
-        layoutConstraints.gridx = 0;
-        layoutConstraints.gridy = 0;
-
-        this.add(brandsPanel, layoutConstraints);
-        layoutConstraints.gridy = 1;
-        this.add(shelvesPanel, layoutConstraints);
-        layoutConstraints.gridx = 1;
-        this.add(teaBoxesPanel, layoutConstraints);
+        this.add(brandsPanel, dialogElementPosition(0, 0));
+        this.add(previewPanel, dialogElementPosition(0, 1));
+        this.add(shelvesPanel, dialogElementPosition(1, 0));
+        this.add(teaBoxesPanel, dialogElementPosition(1, 1));
 
         this.pack();
         this.setVisible(true);
@@ -84,5 +79,6 @@ public final class MainWindow extends JFrame {
     public static void init() {
         Reference.window = new MainWindow();
         WindowUpdatesManager.masterUpdate();
+        Reference.window.previewPanel.setContent(new StartupPreview());
     }
 }

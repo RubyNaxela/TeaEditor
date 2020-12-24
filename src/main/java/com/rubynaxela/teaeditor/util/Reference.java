@@ -21,7 +21,7 @@ package com.rubynaxela.teaeditor.util;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.formdev.flatlaf.icons.*;
-import com.rubynaxela.teaeditor.TeaEditor;
+import com.rubynaxela.teaeditor.Chajikan;
 import com.rubynaxela.teaeditor.gui.MainWindow;
 import com.rubynaxela.teaeditor.handlers.DialogsHandler;
 
@@ -40,6 +40,11 @@ import static com.rubynaxela.teaeditor.util.OsCheck.OSType.MAC_OS;
 import static java.awt.event.KeyEvent.*;
 import static javax.swing.KeyStroke.getKeyStroke;
 
+/**
+ * The {@code Reference} class provides a reference to application assets and various utility objects
+ *
+ * @author Jacek Pawelski
+ */
 @SuppressWarnings("unchecked")
 public final class Reference {
 
@@ -55,11 +60,11 @@ public final class Reference {
     public static void init() {
         JSON_MAPPER.configure(SerializationFeature.INDENT_OUTPUT, true);
         try {
-            primaryDictionary = JSON_MAPPER.readValue(TeaEditor.class.getResource(
+            primaryDictionary = JSON_MAPPER.readValue(Chajikan.class.getResource(
                     "/lang/" + Language.getUsedLanguage() + ".json"), Map.class);
             try {
-                backupDictionary = JSON_MAPPER.readValue(TeaEditor.class.getResource(
-                        "/lang/" + Language.ENGLISH_US + ".json"), Map.class);
+                backupDictionary = JSON_MAPPER.readValue(Chajikan.class.getResource(
+                        "/lang/" + Language.ENGLISH_GB + ".json"), Map.class);
             } catch (Exception ignored) {
             }
         } catch (Exception e) {
@@ -76,7 +81,7 @@ public final class Reference {
 
         /**
          * Returns a localized string from a given key. If not found in primary dictionary (that is, by default, the
-         * currently used language file), then searches in the backup dictionary (that is, by default, English (US)). If
+         * currently used language file), then searches in the backup dictionary (that is, by default, English (GB)). If
          * nothing is found in both, returns the key itself
          *
          * @param key dictionary key of the string
@@ -140,13 +145,15 @@ public final class Reference {
     }
 
     public static final class Shortcuts {
-        private static final boolean USE_CTRL = OS != MAC_OS;
+        private static final boolean isntMacOS = OS != MAC_OS;
         public static final KeyStroke
-                CLOSE_STROKE = getKeyStroke(VK_W, USE_CTRL ? CTRL_DOWN_MASK : META_DOWN_MASK),
-                OPEN_STROKE = getKeyStroke(VK_O, USE_CTRL ? CTRL_DOWN_MASK : META_DOWN_MASK),
-                REDO_STROKE = getKeyStroke(VK_Y, USE_CTRL ? CTRL_DOWN_MASK : META_DOWN_MASK),
-                SAVE_STROKE = getKeyStroke(VK_S, USE_CTRL ? CTRL_DOWN_MASK : META_DOWN_MASK),
-                SAVE_AS_STROKE = getKeyStroke(VK_S, (USE_CTRL ? CTRL_DOWN_MASK : META_DOWN_MASK) + SHIFT_DOWN_MASK),
-                UNDO_STROKE = getKeyStroke(VK_Z, USE_CTRL ? CTRL_DOWN_MASK : META_DOWN_MASK);
+                CLOSE_STROKE = getKeyStroke(VK_W, isntMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK),
+                EXIT_STROKE = getKeyStroke(VK_Q, isntMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK),
+                OPEN_STROKE = getKeyStroke(VK_O, isntMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK),
+                REDO_STROKE = isntMacOS ?
+                        getKeyStroke(VK_Y, CTRL_DOWN_MASK) : getKeyStroke(VK_Z, META_DOWN_MASK + SHIFT_DOWN_MASK),
+                SAVE_STROKE = getKeyStroke(VK_S, isntMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK),
+                SAVE_AS_STROKE = getKeyStroke(VK_S, (isntMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK) + SHIFT_DOWN_MASK),
+                UNDO_STROKE = getKeyStroke(VK_Z, isntMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK);
     }
 }

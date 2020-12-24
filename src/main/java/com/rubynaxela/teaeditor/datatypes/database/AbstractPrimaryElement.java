@@ -18,6 +18,11 @@
 
 package com.rubynaxela.teaeditor.datatypes.database;
 
+/**
+ * The {@code AbstractPrimaryElement} class is the base class for elements that have an ID, a name and a color
+ *
+ * @author Jacek Pawelski
+ */
 public abstract class AbstractPrimaryElement implements Identifiable {
 
     String id, name, color;

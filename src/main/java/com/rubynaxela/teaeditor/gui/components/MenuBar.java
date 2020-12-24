@@ -29,7 +29,7 @@ import static com.rubynaxela.teaeditor.util.Reference.Shortcuts.*;
 @SuppressWarnings("FieldCanBeLocal")
 public final class MenuBar extends JMenuBar {
 
-    private final JMenuItem open, save, saveAs, close, undo, redo;
+    private final JMenuItem open, save, saveAs, close, exit, undo, redo;
 
     public MenuBar() {
         JMenu fileMenu = new JMenu(getString("menu.file")),
@@ -54,6 +54,11 @@ public final class MenuBar extends JMenuBar {
         close.setAccelerator(CLOSE_STROKE);
         close.addActionListener(MenuHandler.closeFile);
         fileMenu.add(close);
+
+        exit = new JMenuItem(getString("menu.item.exit"));
+        exit.setAccelerator(EXIT_STROKE);
+        exit.addActionListener(MenuHandler.exitProgram);
+        fileMenu.add(exit);
 
         undo = new JMenuItem(getString("menu.item.undo"));
         undo.setAccelerator(UNDO_STROKE);

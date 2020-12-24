@@ -32,7 +32,7 @@ public final class StaticJTable extends JTable {
         this.cellsEditable = cellsEditable;
     }
 
-    StaticJTable() {
+    public StaticJTable() {
         this(false);
     }
 

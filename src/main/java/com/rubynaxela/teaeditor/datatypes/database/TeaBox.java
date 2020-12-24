@@ -20,8 +20,14 @@ package com.rubynaxela.teaeditor.datatypes.database;
 
 import javax.annotation.Nonnull;
 
+/**
+ * The {@code TeaBox} class is used to store single tea boxes. It implements the {@code Comparable} interface so that
+ * a collection of {@code TeaBox}es can be sorted by name
+ *
+ * @author Jacek Pawelski
+ */
 @SuppressWarnings("unused")
-public final class TeaBox implements Identifiable, Comparable {
+public final class TeaBox implements Identifiable, Comparable<TeaBox> {
     private String id, name, brand_id, description;
     private double amount, stars;
     private BrewingInstruction brewing;
@@ -103,7 +109,7 @@ public final class TeaBox implements Identifiable, Comparable {
     }
 
     @Override
-    public int compareTo(@Nonnull Object teaBox) {
+    public int compareTo(@Nonnull TeaBox teaBox) {
         return this.toString().compareTo(teaBox.toString());
     }
 

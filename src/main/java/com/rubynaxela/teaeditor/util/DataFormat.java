@@ -22,6 +22,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static com.rubynaxela.teaeditor.util.DataFormat.RoundMode.CLOSE;
+import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
 /**
  * The {@code DataFormat} class provides a number of data format related
@@ -220,6 +221,20 @@ public final class DataFormat {
      */
     public static String formatNumber(double number) {
         return formatNumber(number, null, null);
+    }
+
+    public static String displayStars(double stars, boolean displayNumeric) {
+        if (stars == 0) return getString("table.none");
+        int doubleStars = (int) (stars * 2);
+        final StringBuilder ret = new StringBuilder();
+        for (int i = 0; i < 10; i++)
+            if (doubleStars >= 1) {
+                ret.append("\u2605");
+                doubleStars--;
+            } else ret.append("\u2606");
+        if (displayNumeric)
+            ret.append(" (").append(formatNumber(stars, " " + getString("units.per_five"))).append(")");
+        return ret.toString();
     }
 
     public enum RoundMode {

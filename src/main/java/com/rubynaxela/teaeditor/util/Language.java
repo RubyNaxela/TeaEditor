@@ -23,13 +23,13 @@ import java.util.Arrays;
 public final class Language {
 
     public static final String
-            ENGLISH_US = "en_US",
+            ENGLISH_GB = "en_GB",
             POLISH = "pl_PL";
 
-    private static String usedLanguage = ENGLISH_US;
+    private static String usedLanguage = ENGLISH_GB;
 
     public static void useLanguage(String languageCode) {
-        if (Arrays.asList(POLISH, ENGLISH_US).contains(languageCode)) usedLanguage = languageCode;
+        if (Arrays.asList(POLISH, ENGLISH_GB).contains(languageCode)) usedLanguage = languageCode;
     }
 
     public static String getUsedLanguage() {

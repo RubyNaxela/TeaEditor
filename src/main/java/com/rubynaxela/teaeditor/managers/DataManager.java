@@ -23,9 +23,10 @@ import com.rubynaxela.teaeditor.handlers.FileIOHandler;
 import com.rubynaxela.teaeditor.util.Utils;
 
 import java.awt.*;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 
+import static com.rubynaxela.teaeditor.util.DataFormat.displayStars;
 import static com.rubynaxela.teaeditor.util.DataFormat.formatNumber;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Utils.colorToHex;
@@ -291,7 +292,7 @@ public final class DataManager {
             teaBoxData.add(teaBox.getBrand_id());
             teaBoxData.add(teaBox.getDescription());
             teaBoxData.add(formatNumber(teaBox.getAmount(), " g", getString("table.none")));
-            teaBoxData.add(formatNumber(teaBox.getStars(), "/5", getString("table.none")));
+            teaBoxData.add(displayStars(teaBox.getStars(), false));
             data.add(teaBoxData);
         }
         return data;

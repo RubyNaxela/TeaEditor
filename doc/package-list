@@ -4,6 +4,7 @@ com.rubynaxela.teaeditor.datatypes.database
 com.rubynaxela.teaeditor.gui
 com.rubynaxela.teaeditor.gui.components
 com.rubynaxela.teaeditor.gui.dialogs
+com.rubynaxela.teaeditor.gui.html
 com.rubynaxela.teaeditor.gui.panels
 com.rubynaxela.teaeditor.handlers
 com.rubynaxela.teaeditor.managers

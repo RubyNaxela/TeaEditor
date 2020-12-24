@@ -18,6 +18,9 @@
 
 package com.rubynaxela.teaeditor.managers;
 
+import com.rubynaxela.teaeditor.gui.html.BrandPreview;
+import com.rubynaxela.teaeditor.gui.html.ShelfPreview;
+import com.rubynaxela.teaeditor.gui.html.TeaBoxPreview;
 import com.rubynaxela.teaeditor.util.Reference;
 
 import java.util.Objects;
@@ -39,16 +42,19 @@ public final class WindowUpdatesManager {
     public static void updateOnBrandSelection() {
         Reference.window.brandsPanel.updateButtons();
         if (ListsManager.getSelectedBrand() != null) Reference.window.shelvesPanel.dataTable.clearSelection();
+        Reference.window.previewPanel.setContent(new BrandPreview(ListsManager.getSelectedBrand()));
     }
 
     public static void updateOnShelfSelection() {
         Reference.window.shelvesPanel.updateButtons();
         if (ListsManager.getSelectedShelf() != null) Reference.window.brandsPanel.dataTable.clearSelection();
         updateTeaBoxesList();
+        Reference.window.previewPanel.setContent(new ShelfPreview(ListsManager.getSelectedShelf()));
     }
 
     public static void updateOnTeaBoxSelection() {
         Reference.window.teaBoxesPanel.updateButtons();
+        Reference.window.previewPanel.setContent(new TeaBoxPreview(ListsManager.getSelectedTeaBox()));
     }
 
     public static void updateLists() {
@@ -69,7 +75,7 @@ public final class WindowUpdatesManager {
 
     private static void updateTeaBoxesList() {
         Reference.window.teaBoxesPanel.changeTitle(ListsManager.getSelectedShelf() != null ?
-                        Objects.requireNonNull(ListsManager.getSelectedShelf()).getName() : getString("label.tea_boxes"));
+                Objects.requireNonNull(ListsManager.getSelectedShelf()).getName() : getString("label.tea_boxes"));
         ListsManager.teaBoxesTableModel.setDataVector(
                 DataManager.getTeaBoxesDataVector(ListsManager.getSelectedShelf()), ListsManager.teaBoxesTableHeaders);
     }

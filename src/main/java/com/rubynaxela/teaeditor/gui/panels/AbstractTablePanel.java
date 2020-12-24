@@ -26,10 +26,10 @@ import java.awt.*;
 
 public abstract class AbstractTablePanel extends JPanel {
 
-    static int PANEL_WIDTH = 460, PANEL_HEIGHT = 320;
+    protected static int PANEL_WIDTH = 460, PANEL_HEIGHT = 320;
+    protected final JLabel titleLabel;
+    protected final JButton addButton, removeButton, editButton;
     public StaticJTable dataTable;
-    JLabel titleLabel;
-    JButton addButton, removeButton, editButton;
 
     AbstractTablePanel() {
         titleLabel = new JLabel();

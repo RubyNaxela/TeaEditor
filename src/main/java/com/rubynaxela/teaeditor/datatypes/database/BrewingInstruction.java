@@ -18,6 +18,11 @@
 
 package com.rubynaxela.teaeditor.datatypes.database;
 
+/**
+ * The {@code BrewingInstruction} class is used to store data about tea brewing recipe
+ *
+ * @author Jacek Pawelski
+ */
 @SuppressWarnings("unused")
 public final class BrewingInstruction {
     private int temperature, time;

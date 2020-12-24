@@ -25,7 +25,7 @@ public final class DefaultJScrollPane extends JScrollPane {
 
     private final int paneWidth, paneHeight;
 
-    DefaultJScrollPane(Component component, int paneWidth, int paneHeight) {
+    public DefaultJScrollPane(JComponent component, int paneWidth, int paneHeight) {
         super(component);
         this.paneWidth = paneWidth;
         this.paneHeight = paneHeight;

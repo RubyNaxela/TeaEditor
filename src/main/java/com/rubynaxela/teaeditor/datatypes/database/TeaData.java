@@ -18,6 +18,11 @@
 
 package com.rubynaxela.teaeditor.datatypes.database;
 
+/**
+ * The {@code TeaData} class is used to store the entire database as one object imported from the JSON
+ *
+ * @author Jacek Pawelski
+ */
 @SuppressWarnings("unused")
 public final class TeaData {
     private Brand[] brands;

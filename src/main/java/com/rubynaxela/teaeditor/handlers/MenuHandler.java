@@ -26,6 +26,9 @@ import java.io.File;
 
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
+/**
+ * The {@code MenuHandler} class provides action listeners for the menu bar buttons
+ */
 public final class MenuHandler {
 
     public static ActionListener openFile = e -> {
@@ -57,6 +60,18 @@ public final class MenuHandler {
                     WindowUpdatesManager.masterUpdate();
                     break;
             }
+    };
+
+    public static ActionListener exitProgram = e -> {
+        if (DataManager.dataChanged)
+            switch (DialogsHandler.askYesNoCancelQuestion(getString("dialog.message.save_before_close"))) {
+                case POSITIVE:
+                    saveFile.actionPerformed(null);
+                    break;
+                case NEUTRAL:
+                    return;
+            }
+        System.exit(0);
     };
 
     public static ActionListener undo = e -> DialogsHandler.showWarning(getString("dialog.message.feature_unavailable"));

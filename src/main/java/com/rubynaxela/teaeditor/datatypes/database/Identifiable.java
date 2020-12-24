@@ -18,6 +18,11 @@
 
 package com.rubynaxela.teaeditor.datatypes.database;
 
+/**
+ * The {@code Identifiable} interface is used to group database objects (which all have an ID)
+ *
+ * @author Jacek Pawelski
+ */
 public interface Identifiable {
     String getId();
 }

@@ -40,7 +40,7 @@ public class BrewingInstructionPanel extends JPanel {
 
     public BrewingInstructionPanel(BrewingInstruction instruction) {
         brewingTempLabel = new JLabel(getString("dialog.label.brewing.temperature"));
-        tempUnitLabel = new JLabel(getString("units.degrees"));
+        tempUnitLabel = new JLabel(getString("units.degree"));
         brewingTimeLabel = new JLabel(getString("dialog.label.brewing.time"));
         timeUnitLabel = new JLabel(getString("units.minute"));
         brewingReusesLabel = new JLabel(getString("dialog.label.brewing.reuses"));
