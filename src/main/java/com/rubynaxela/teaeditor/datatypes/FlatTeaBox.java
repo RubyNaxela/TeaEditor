@@ -18,6 +18,13 @@
 
 package com.rubynaxela.teaeditor.datatypes;
 
+/**
+ * The {@code FlatTexBox} class is used to store unstructured tea box data
+ *
+ * @author Jacek Pawelski
+ * @see com.rubynaxela.teaeditor.handlers.ButtonsHandler#editTeaBox
+ * @see com.rubynaxela.teaeditor.handlers.DialogsHandler#showTeaBoxDataDialog
+ */
 public final class FlatTeaBox {
 
     public String id, name, brandId, shelfId, description, reuses, grams;

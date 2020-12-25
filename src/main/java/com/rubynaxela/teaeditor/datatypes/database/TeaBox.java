@@ -21,7 +21,7 @@ package com.rubynaxela.teaeditor.datatypes.database;
 import javax.annotation.Nonnull;
 
 /**
- * The {@code TeaBox} class is used to store single tea boxes. It implements the {@code Comparable} interface so that
+ * The {@code TeaBox} class is used to store tea boxes from database. Implements the {@link Comparable} interface so that
  * a collection of {@code TeaBox}es can be sorted by name
  *
  * @author Jacek Pawelski

@@ -20,6 +20,17 @@ package com.rubynaxela.teaeditor.datatypes;
 
 import java.awt.*;
 
+/**
+ * The {@code IdNameColorTriplet} class objects are used as an easy reference to
+ * {@link com.rubynaxela.teaeditor.datatypes.database.AbstractPrimaryElement} parameters
+ *
+ * @author Jacek Pawelski
+ * @see com.rubynaxela.teaeditor.handlers.ButtonsHandler#addBrand
+ * @see com.rubynaxela.teaeditor.handlers.ButtonsHandler#editBrand
+ * @see com.rubynaxela.teaeditor.handlers.ButtonsHandler#addShelf
+ * @see com.rubynaxela.teaeditor.handlers.ButtonsHandler#editShelf
+ * @see com.rubynaxela.teaeditor.handlers.DialogsHandler#showIdNameColorDataDialog
+ */
 public final class IdNameColorTriplet {
 
     public String id, name;

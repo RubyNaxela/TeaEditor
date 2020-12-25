@@ -16,31 +16,7 @@
  *
  */
 
-package com.rubynaxela.teaeditor.datatypes.database;
-
 /**
- * The {@code TeaData} class is used to store the entire database as one object imported from a JSON file
- *
- * @author Jacek Pawelski
+ * HTML preview elements displayed in {@link com.rubynaxela.teaeditor.gui.panels.PreviewPanel}
  */
-@SuppressWarnings("unused")
-public final class TeaData {
-    private Brand[] brands;
-    private Shelf[] shelves;
-
-    public Brand[] getBrands() {
-        return brands;
-    }
-
-    public void setBrands(Brand[] brands) {
-        this.brands = brands;
-    }
-
-    public Shelf[] getShelves() {
-        return shelves;
-    }
-
-    public void setShelves(Shelf[] shelves) {
-        this.shelves = shelves;
-    }
-}
+package com.rubynaxela.teaeditor.gui.html;
