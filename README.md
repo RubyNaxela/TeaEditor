@@ -148,9 +148,26 @@
     wyrażenie regularne:``^(((?!^\.$)(?!^(\d*\.\d*){2,}$)[\d.])+:\d+)?(\/((?!^\.$)(?!^(\d*\.\d*){2,}$)[\d.])+:\d+)*$``\
     przykłady: ``4:250/11:600``,``40:200``,``3.5:250/10:600/15.5:1000``
 
-#### Funkcjonalności programu
+#### Charakterystyka i funkcjonalności programu
 
-> ##### 1.
+> ##### 1. Interfejs graficzny
+> Aplikacja działa w oknie z interfejsem graficznym, którego elementami są:
+> - trzy panele z tabelami umożliwiające szybki przegląd, dodawanie, usuwanie oraz edycję:
+>   - marek herbat
+>   - półek z herbatami
+>   - herbat z półek
+> - panel z podglądem aktualnie zaznaczonego elementu
+> - pasek menu z zakładkami:
+>   - Plik:
+>     - Nowa baza danych... (``⌘+N``/``Ctrl+N``) - tworzy nowy plik bazy danych
+>     - Otwórz... (``⌘+O``/``Ctrl+O``) - otwiera bazę danych
+>     - Zapisz... (``⌘+S``/``Ctrl+S``) - zapisuje aktualnie otwartą bazę danych (otwiera okno dialogowe zapisu pliku, jeśli aktualnie otwarta baza została utworzona jako nowy plik podczas działania programu)
+>     - Zapisz jako... (``⌘+S``/``Ctrl+S``) - zapisuje aktualnie otwartą bazę danych (wymusza okno dialogowe zapisu pliku)
+>     - Zamknij... (``⌘+W``/``Ctrl+W``) - zamyka aktualnie otwartą bazę danych
+>     - Wyjdź... (``⌘+Q``/``Ctrl+Q``) - zamyka program
+>   - Edycja
+>     - Cofnij (``⌘+Z``/``Ctrl+Z``)
+>     - Ponów (``⌘+Shift+Z``/``Ctrl+Y``)
 > ##### 2.
 > ##### 3.
 > ##### 4.
