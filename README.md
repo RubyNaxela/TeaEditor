@@ -276,9 +276,18 @@
 > Program spełnia kryteria złożonego projektu obiektowego. Zostały w nim zawarte wszystkie założenia programowania obiektowego:
 > 1. **Abstrakcja** została zastosowana do powiązania ze sobą elementów bazy danych o takiej samej budowie, elementów interfejsu tego samego pokroju, a także przy tworzeniu klas anonimowych do obsługi modułów sprawdzania poprawności danych.
 > 2. **Enkapsulacja** danych widoczna jest głównie w klasach przechowujących obiekty bazy danych, ale również w module obsługi danych.
-> 3. **Dziedziczenie** ma miejsce w wielu miejscach w całym programie. Dziedziczone są klasy abstrakcyjne, 
-> 4.
-> 5.
+> 3. **Dziedziczenie** ma miejsce i jest wykorzystywane w wielu miejscach w całym programie. Dziedziczone są klasy abstrakcyjne. Wszystkie dostosowane elementy interfejsu są klasami podrzędnymi klas bazowych tych elementów (na przykład tabela z ustawionymi właściwościami).
+> 4. **Polimorfizm** wykorzystywany jest wszędzie tam, gdzie elementy dziedziczące z jednej klasy nadrzędnej bądź interfejsu używane są przez jeden algorytm (na przykład wyświetlanie błędu przy dowolnym komponencie graficznym).
+> 
+> Ponadto:
+> 1. Wykorzystanie **interfejsów i typów wyliczeniowych** w programowaniu obiektowym.
+> 2. **Obsługa plików** będąca podstawą w programie służącym do edycji pliku.
+> 3. Wykorzystanie **zewnętrznych bibliotek** do takich celów jak przetwarzanie języka JSON czy HTML.
+> 4. Bardzo szeroko rozwinięta **obsługa wyjątków** w celu wyeliminowania awarii programu.
+> 5. **Zmiana motywu graficznego** na inny niż domyślny, aby interfejs wyglądał przyjemniej.
+> 6. Opracowanie **systemu zewnętrznych zasobów** (póki co jedynie) pod kątem internacjonalizacji programu
+> 7. Szczegółowy **podział projektu** na pakiety oraz klasy w celu znacznej poprawy czytelności całego projektu.
+> 8. **Wykorzystanie narzędzia JavaDoc** do tworzenia dokumentacji
 
 ## Dokumentacja
 
