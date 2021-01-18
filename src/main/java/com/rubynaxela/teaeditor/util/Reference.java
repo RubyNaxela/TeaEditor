@@ -151,8 +151,8 @@ public final class Reference {
                 EXIT_STROKE = getKeyStroke(VK_Q, !isMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK),
                 NEW_STROKE = getKeyStroke(VK_N, !isMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK),
                 OPEN_STROKE = getKeyStroke(VK_O, !isMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK),
-                REDO_STROKE = !isMacOS ?
-                        getKeyStroke(VK_Y, CTRL_DOWN_MASK) : getKeyStroke(VK_Z, META_DOWN_MASK + SHIFT_DOWN_MASK),
+                REDO_STROKE = !isMacOS ? getKeyStroke(VK_Y, CTRL_DOWN_MASK) :
+                        getKeyStroke(VK_Z, META_DOWN_MASK + SHIFT_DOWN_MASK),
                 SAVE_STROKE = getKeyStroke(VK_S, !isMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK),
                 SAVE_AS_STROKE = getKeyStroke(VK_S, (!isMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK) + SHIFT_DOWN_MASK),
                 UNDO_STROKE = getKeyStroke(VK_Z, !isMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK);
