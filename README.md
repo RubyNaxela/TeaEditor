@@ -12,8 +12,15 @@
 
 <table><tbody>
     <tr>
+        <td><pre>brands</pre>Lista marek</td>
         <td>
-            <pre>brands</pre>Lista marek
+            marki
+        </td>
+    </tr>
+    <tr>
+        <td><pre>shelves</pre>Lista półek</td>
+        <td>
+            półki
         </td>
     </tr>
 </tbody></table>
