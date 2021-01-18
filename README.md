@@ -129,7 +129,8 @@
 > Używane standardy formatu danych:
 > - **format A**:\
     małe litery alfabetu łacińskiego oraz znak ``_``\
-    wyrażenie regularne:``^([a-z]|_)*$``
+    wyrażenie regularne:``^([a-z]|_)*$``\
+    przykład: ``japan_gyokuro_hiki``
 > - **format B**:\
     6 znaków z zakresu ``0-9`` lub ``a-f`` lub ``A-F``, poprzedzone znakiem ``#``\
     wyrażenie regularne:``^#[0-f0-F]{6}$``
