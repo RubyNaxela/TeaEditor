@@ -130,19 +130,23 @@
 > - **format A**:\
     małe litery alfabetu łacińskiego oraz znak ``_``\
     wyrażenie regularne:``^([a-z]|_)*$``\
-    przykład: ``japan_gyokuro_hiki``
+    przykłady: ``teatime``,``japan_gyokuro_hiki``
 > - **format B**:\
     6 znaków z zakresu ``0-9`` lub ``a-f`` lub ``A-F``, poprzedzone znakiem ``#``\
-    wyrażenie regularne:``^#[0-f0-F]{6}$``
+    wyrażenie regularne:``^#[0-f0-F]{6}$``\
+    przykłady: ``#a8b349f``,``#F4AC99``
 > - **format C**:\
     wielokrotność ``0.5`` z zakresu ``[1;5]``\
-    wyrażenie regularne:``^[1-5](\.5)?$``
+    wyrażenie regularne:``^[1-5](\.5)?$``\
+    przykłady: ``4``,``2.5``
 > - **format D**:\
     dowolna liczba całkowita, opcjonalnie ``/1`` za nią\
-    wyrażenie regularne:``^\d+(\/1)?$``
+    wyrażenie regularne:``^\d+(\/1)?$``\
+    przykłady: ``3/1``,``10``
 > - **format E**:\
     pary: liczba``:``liczba całkowita oddzielone znakami ``/``\
-    wyrażenie regularne:``^(((?!^\.$)(?!^(\d*\.\d*){2,}$)[\d.])+:\d+)?(\/((?!^\.$)(?!^(\d*\.\d*){2,}$)[\d.])+:\d+)*$``
+    wyrażenie regularne:``^(((?!^\.$)(?!^(\d*\.\d*){2,}$)[\d.])+:\d+)?(\/((?!^\.$)(?!^(\d*\.\d*){2,}$)[\d.])+:\d+)*$``\
+    przykłady: ``4:250/11:600``,``40:200``,``3.5:250/10:600/15.5:1000``
 
 #### Funkcjonalności programu
 
