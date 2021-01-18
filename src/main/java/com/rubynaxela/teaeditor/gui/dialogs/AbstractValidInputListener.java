@@ -48,7 +48,7 @@ abstract class AbstractValidInputListener implements DocumentListener {
 
     /**
      * @param okButton the button that the data validators can control depending
-     *                 on what the overridden function {@code dataValid} returns
+     *                 on what the overridden function {@link #dataValid} returns
      */
     protected AbstractValidInputListener(JButton okButton) {
         this.okButton = okButton;
