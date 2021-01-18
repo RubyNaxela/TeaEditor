@@ -21,15 +21,15 @@
                         <table><tbody>
                             <tr>
                                 <td><pre>id</pre>ID marki<br></td>
-                                <td><pre>[pole tekstowe]</pre>(zgodne<br>z formatem A;<br>połączone z <u><b>ID<br>marki herbaty</b></u>)</td>
+                                <td><pre>[pole tekstowe]</pre>(zgodne z <u><b>formatem A</b></u>;<br>połączone z <u><b>ID marki herbaty</b></u>)</td>
                             </tr>
                             <tr>
                                 <td><pre>name</pre>Nazwa marki</td>
                                 <td><pre>[pole tekstowe]</pre></td>
                             </tr>
                             <tr>
-                                <td><pre>color</pre>Kolor marki<br>w notacji #HEX</td>
-                                <td><pre>[pole tekstowe]</pre></td>
+                                <td><pre>color</pre>Kolor marki</td>
+                                <td><pre>[pole tekstowe]</pre>(zgodne z <u><b>formatem B</b></u>)</td>
                             </tr>
                         </tbody></table>
                     </td>
@@ -50,7 +50,7 @@
                         <table><tbody>
                             <tr>
                                 <td><pre>id</pre>ID półki</td>
-                                <td><pre>[pole tekstowe]</pre>(zgodne z formatem A)</td>
+                                <td><pre>[pole tekstowe]</pre>(zgodne z <u><b>formatem A</b></u>)</td>
                             </tr>
                             <tr>
                                 <td><pre>name</pre>Nazwa półki</td>
@@ -58,7 +58,7 @@
                             </tr>
                             <tr>
                                 <td><pre>color</pre>Kolor półki<br></td>
-                                <td><pre>[pole tekstowe]</pre>(kolor w notacji #HEX)</td>
+                                <td><pre>[pole tekstowe]</pre>(zgodne z <u><b>formatem B</b></u>)</td>
                             </tr>
                             <tr>
                                 <td><pre>tea_boxes</pre>Lista herbat</td>
@@ -67,7 +67,7 @@
                                     <table><tbody>
                                         <tr>
                                             <td><pre>id</pre>ID herbaty</td>
-                                            <td><pre>[pole tekstowe]</pre>(zgodne z formatem A)</td>
+                                            <td><pre>[pole tekstowe]</pre>(zgodne z <u><b>formatem A</b></u>)</td>
                                         </tr>
                                         <tr>
                                             <td><pre>name</pre>Nazwa herbaty</td>
@@ -75,35 +75,39 @@
                                         </tr>
                                         <tr>
                                             <td><pre>brand_id</pre>ID marki herbaty</td>
-                                            <td><pre>[pole tekstowe]</pre>(zgodne z formatem A; połączone z <u><b>ID marki</b></u>)</td>
+                                            <td><pre>[pole tekstowe]</pre>(zgodne z <u><b>formatem A</b></u>;<br>połączone z <u><b>ID marki</b></u>)</td>
                                         </tr>
                                         <tr>
                                             <td><pre>description</pre>Opis herbaty</td>
                                             <td><pre>[pole tekstowe]</pre></td>
                                         </tr>
                                         <tr>
-                                            <td><pre>amount</pre>Posiadana ilość herbaty w g</td>
+                                            <td><pre>amount</pre>Posiadana ilość<br>herbaty w g</td>
                                             <td><pre>[pole liczbowe]</pre></td>
                                         </tr>
                                         <tr>
                                             <td><pre>stars</pre>Ocena herbaty</td>
-                                            <td><pre>[pole liczbowe]</pre>(1-5 z połówkami)</td>
+                                            <td><pre>[pole liczbowe]</pre>(zgodne z <u><b>formatem C</b></u>)</td>
                                         </tr>
                                         <tr>
-                                            <td><pre>brewing</pre>Instrukcje parzenia herbaty</td>
+                                            <td><pre>brewing</pre>Instrukcje<br>parzenia<br>herbaty</td>
                                             <td>
                                                 <table><tbody>
                                                     <tr>
-                                                        <td><pre>temperature</pre>Temperatura parzenia w °C</td>
+                                                        <td><pre>temperature</pre>Temperatura<br>parzenia w °C</td>
                                                         <td><pre>[pole liczbowe]</pre></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><pre>time</pre>Czas parzenia w min</td>
+                                                        <td><pre>time</pre>Czas parzenia<br>w min</td>
                                                         <td><pre>[pole liczbowe]</pre></td>
                                                     </tr>
                                                     <tr>
                                                         <td><pre>reuses</pre>Ilość zaparzeń</td>
-                                                        <td><pre>[pole tekstowe]</pre>(zgodne z formatem B)</td>
+                                                        <td><pre>[pole tekstowe]</pre>(zgodne z <u><b>formatem D</b></u>)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><pre>grams</pre>Proporcje masowe<br>liści herbaty<br>do wody</td>
+                                                        <td><pre>[pole tekstowe]</pre>(zgodne z <u><b>formatem E</b></u>)</td>
                                                     </tr>
                                                 </tbody></table>
                                             </td>
