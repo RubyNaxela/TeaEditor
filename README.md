@@ -249,28 +249,38 @@
 > 
 > Dane są wczytywane do programu oraz zapisywane z/do pliku w formacie JSON zgodnego ze schematem zamieszczonym wyżej.
 
+## Instalacja
+
+#### Instalacja standardowa
+
+> Aby zainstalować program, należy:
+> ##### 1. Upewnić się, że w systemie zainstalowane jest środowisko uruchomieniowe Java w wersji 8+
+> ##### 2. Otworzyć sekcję "Releases" znajdującą się na [stronie projektu](https://github.com/RubyNaxela/TeaEditor) obok przeglądarki kodu źródłowego
+> ##### 3. Wybrać kompilację (macOS lub Universal)
+> ##### 4. Kliknąć pozycję "Chajikan" z karty "Aseets"
+> ##### 5. W przypadku wybrania kompilacji na system macOS, uruchomić pobrany plik instalacyjny; w przypadku wybrania kompilacji Universal, pobrany plik .jar jest gotowy do uruchomienia
+
+#### Kompilacja ze źródła
+
+> Istnieje możliwość samodzielnej kompilacji programu. Aby tego dokonać, należy:
+> ##### 1. Sklonować repozytorium (pobrać bezpośrednio ze [strony projektu](https://github.com/RubyNaxela/TeaEditor) lub za pośrednictwem narzędzia Git z poziomu powłoki systemu)
+> ##### 2. Zainstalować oprogramowanie Java Development Kit w wersji 1.8+
+> ##### 3. Zainstalować narzędzie Gradle dla powłoki systemu
+> ##### 4. otworzyć katalog główny pobranej pakietu kodu źródłowego za pomocą powłoki systemu
+> ##### 5. wywołać polecenie ``gradlew``
+> ##### 6. wywołać polecenie ``gradle build``
+> Skompilowany plik .jar znajduje się w katalogu ``./build/libs``
+
 ## Założenia projektowe
 
-> ##### Program
-> ##### 1.
-> ##### 2.
-> ##### 3.
-> ##### 4.
-> ##### 5.
+> Program spełnia kryteria złożonego projektu obiektowego. Zostały w nim zawarte wszystkie założenia programowania obiektowego:
+> 1. **Abstrakcja** została zastosowana do powiązania ze sobą elementów bazy danych o takiej samej budowie, elementów interfejsu tego samego pokroju, a także przy tworzeniu klas anonimowych do obsługi modułów sprawdzania poprawności danych.
+> 2. **Enkapsulacja** danych widoczna jest głównie w klasach przechowujących obiekty bazy danych, ale również w module obsługi danych.
+> 3. **Dziedziczenie** ma miejsce w wielu miejscach w całym programie. Dziedziczone są klasy abstrakcyjne, 
+> 4.
+> 5.
 
-### Instalacja
-
-> (Releases)
-
-### Kompilacja ze źródła
-
-> ##### 1. Sklonować repozytorium
-> ##### 2. Zainstalować JDK 1.8+
-> ##### 3. Zainstalować Gradle
-> ##### 4. wykonać: gradlew.bat
-> ##### 5. wykonać: gradle build
-
-### Dokumentacja
+## Dokumentacja
 
 #### Podstawowy schemat struktury kodu
 
@@ -278,8 +288,7 @@
 
 > Pełna dokumentacja kodu znajduje się [tutaj](https://rubynaxela.github.io/TeaEditor/doc/)
 
-### Licencja
+## Licencja
 
-> Projekt udostępiony jest na licencji General Public License v3.0 ("Licencja"). Licencja zawarta jest w pliku "LICENSE.txt",  
-> który jest częścią pakietu kodu źródłowego. Kopię Licencji można także uzyskać pod adresem:  
+> Projekt udostępiony jest na licencji General Public License v3.0 ("Licencja"). Licencja zawarta jest w pliku "LICENSE.txt", który jest częścią pakietu kodu źródłowego. Kopię Licencji można także uzyskać pod adresem:  
 > [https://www.gnu.org/licenses/gpl-3.0.txt]().
