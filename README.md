@@ -1,11 +1,34 @@
-# TeaEditor
+# Chajikan 茶時間
+
 ### Czym jest program
+
 > Aplikacja służy do wygodnej edycji bazy danych zawierającej dane dotyczące kolekcji herbat.
 
-### Struktura bazy danych
-> JSON
+## Szczegóły działania
 
-### Funkcjonalności programu
+#### Struktura bazy danych
+
+> Program operuje na bazie danych o następującej strukturze:
+
+<table><tbody>
+    <tr>
+        <td>
+            <pre>brands</pre>Lista marek
+        </td>
+    </tr>
+</tbody></table>
+
+#### Funkcjonalności programu
+
+> ##### 1.
+> ##### 2.
+> ##### 3.
+> ##### 4.
+> ##### 5.
+
+## Założenia projektowe
+
+> ##### Program
 > ##### 1.
 > ##### 2.
 > ##### 3.
@@ -13,9 +36,11 @@
 > ##### 5.
 
 ### Instalacja
+
 > (Releases)
 
 ### Kompilacja ze źródła
+
 > ##### 1. Sklonować repozytorium
 > ##### 2. Zainstalować JDK 1.8+
 > ##### 3. Zainstalować Gradle
@@ -23,11 +48,15 @@
 > ##### 5. wykonać: gradle build
 
 ### Dokumentacja
+
 #### Podstawowy schemat struktury kodu
+
 #### Szczegółowa dokumentcja
+
 > Pełna dokumentacja kodu znajduje się [tutaj](https://rubynaxela.github.io/TeaEditor/doc/)
 
 ### Licencja
-> Projekt udostępiony jest na licencji General Public License v3.0 ("Licencja"). Licencja zawarta jest w pliku "LICENSE.txt",
-> który jest częścią pakietu kodu źródłowego. Kopię Licencji można także uzyskać pod adresem:
+
+> Projekt udostępiony jest na licencji General Public License v3.0 ("Licencja"). Licencja zawarta jest w pliku "LICENSE.txt",  
+> który jest częścią pakietu kodu źródłowego. Kopię Licencji można także uzyskać pod adresem:  
 > [https://www.gnu.org/licenses/gpl-3.0.txt]().
