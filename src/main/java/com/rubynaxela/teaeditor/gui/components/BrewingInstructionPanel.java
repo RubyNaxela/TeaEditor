@@ -29,7 +29,13 @@ import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Utils.dialogElementPosition;
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS;
 
-public class BrewingInstructionPanel extends JPanel {
+/**
+ * {@code BrewingInstructionPanel} is a brewing recipe data input panel,
+ * a part of {@link com.rubynaxela.teaeditor.gui.dialogs.TeaBoxDialogPanel}
+ *
+ * @author Jacek Pawelski
+ */
+public final class BrewingInstructionPanel extends JPanel {
 
     public final JLabel brewingTempLabel, tempUnitLabel, brewingTimeLabel,
             timeUnitLabel, brewingReusesLabel, reusesUnitLabel, brewingGramsLabel;

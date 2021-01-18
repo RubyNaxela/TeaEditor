@@ -19,7 +19,7 @@
 package com.rubynaxela.teaeditor.gui.panels;
 
 import com.rubynaxela.teaeditor.gui.components.DefaultJScrollPane;
-import com.rubynaxela.teaeditor.gui.components.StaticJTable;
+import com.rubynaxela.teaeditor.gui.components.StaticTable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,12 +29,12 @@ public abstract class AbstractTablePanel extends JPanel {
     protected static int PANEL_WIDTH = 460, PANEL_HEIGHT = 320;
     protected final JLabel titleLabel;
     protected final JButton addButton, removeButton, editButton;
-    public StaticJTable dataTable;
+    public StaticTable dataTable;
 
     AbstractTablePanel() {
         titleLabel = new JLabel();
         titleLabel.setFont(new Font(titleLabel.getFont().getName(), Font.BOLD, 16));
-        dataTable = new StaticJTable();
+        dataTable = new StaticTable();
         addButton = new JButton();
         removeButton = new JButton();
         editButton = new JButton();

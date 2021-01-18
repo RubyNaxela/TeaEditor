@@ -19,8 +19,7 @@
 package com.rubynaxela.teaeditor.datatypes.database;
 
 /**
- * The {@code Brand} class is used to store brands from database. Extends {@link AbstractPrimaryElement} class because it has
- * an ID, a name and a color
+ * The {@code Brand} class is used to store brands from database.
  *
  * @author Jacek Pawelski
  */

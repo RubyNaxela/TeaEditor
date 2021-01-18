@@ -31,6 +31,9 @@ import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
  */
 public final class MenuHandler {
 
+    public static ActionListener newDatabase =
+            e -> DialogsHandler.showWarning(getString("dialog.message.feature_unavailable"));
+
     public static ActionListener openFile = e -> {
         FileIOHandler.currentFile = FileIOHandler.FILE_DIALOG.chooseFileToLoad();
         if (FileIOHandler.currentFile != null) {
@@ -52,14 +55,15 @@ public final class MenuHandler {
     public static ActionListener closeFile = e -> {
         if (DataManager.dataChanged)
             switch (DialogsHandler.askYesNoCancelQuestion(getString("dialog.message.save_before_close"))) {
+                case NEUTRAL:
+                    return;
                 case POSITIVE:
                     saveFile.actionPerformed(null);
-                case NEGATIVE:
-                    FileIOHandler.currentFile = null;
-                    DataManager.setCurrentData(null);
-                    WindowUpdatesManager.masterUpdate();
                     break;
             }
+        FileIOHandler.currentFile = null;
+        DataManager.setCurrentData(null);
+        WindowUpdatesManager.masterUpdate();
     };
 
     public static ActionListener exitProgram = e -> {

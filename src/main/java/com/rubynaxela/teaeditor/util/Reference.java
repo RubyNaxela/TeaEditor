@@ -49,7 +49,7 @@ import static javax.swing.KeyStroke.getKeyStroke;
 public final class Reference {
 
     public static final File STARTING_DIRECTORY = new File(
-            System.getProperty("user.home"), "Dropbox/Herbatki/ksiega_herbat/data");
+            System.getProperty("user.home"), "Dropbox/ISP/rubynaxela_apps/ksiega_herbat/data");
     public static final File SAMPLE_FILE = new File(STARTING_DIRECTORY, "tea_data.json");
     public static final OsCheck.OSType OS = OsCheck.getOperatingSystemType();
     public static final ObjectMapper JSON_MAPPER = new ObjectMapper();
@@ -145,15 +145,16 @@ public final class Reference {
     }
 
     public static final class Shortcuts {
-        private static final boolean isntMacOS = OS != MAC_OS;
+        private static final boolean isMacOS = OS == MAC_OS;
         public static final KeyStroke
-                CLOSE_STROKE = getKeyStroke(VK_W, isntMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK),
-                EXIT_STROKE = getKeyStroke(VK_Q, isntMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK),
-                OPEN_STROKE = getKeyStroke(VK_O, isntMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK),
-                REDO_STROKE = isntMacOS ?
+                CLOSE_STROKE = getKeyStroke(VK_W, !isMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK),
+                EXIT_STROKE = getKeyStroke(VK_Q, !isMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK),
+                NEW_STROKE = getKeyStroke(VK_N, !isMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK),
+                OPEN_STROKE = getKeyStroke(VK_O, !isMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK),
+                REDO_STROKE = !isMacOS ?
                         getKeyStroke(VK_Y, CTRL_DOWN_MASK) : getKeyStroke(VK_Z, META_DOWN_MASK + SHIFT_DOWN_MASK),
-                SAVE_STROKE = getKeyStroke(VK_S, isntMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK),
-                SAVE_AS_STROKE = getKeyStroke(VK_S, (isntMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK) + SHIFT_DOWN_MASK),
-                UNDO_STROKE = getKeyStroke(VK_Z, isntMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK);
+                SAVE_STROKE = getKeyStroke(VK_S, !isMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK),
+                SAVE_AS_STROKE = getKeyStroke(VK_S, (!isMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK) + SHIFT_DOWN_MASK),
+                UNDO_STROKE = getKeyStroke(VK_Z, !isMacOS ? CTRL_DOWN_MASK : META_DOWN_MASK);
     }
 }

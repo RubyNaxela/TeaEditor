@@ -26,14 +26,26 @@ import javax.swing.*;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Reference.Shortcuts.*;
 
+/**
+ * The {@code MenuBar} class is an instance of {@link JMenuBar};
+ * the menu displayed at the top of the window or in the system
+ * menu bar (depending on user's operating system)
+ *
+ * @author Jacek Pawelski
+ */
 @SuppressWarnings("FieldCanBeLocal")
 public final class MenuBar extends JMenuBar {
 
-    private final JMenuItem open, save, saveAs, close, exit, undo, redo;
+    private final JMenuItem newFile, open, save, saveAs, close, exit, undo, redo;
 
     public MenuBar() {
         JMenu fileMenu = new JMenu(getString("menu.file")),
                 editMenu = new JMenu(getString("menu.edit"));
+
+        newFile = new JMenuItem(getString("menu.item.new"));
+        newFile.setAccelerator(NEW_STROKE);
+        newFile.addActionListener(MenuHandler.newDatabase);
+        fileMenu.add(newFile);
 
         open = new JMenuItem(getString("menu.item.open"));
         open.setAccelerator(OPEN_STROKE);
@@ -75,6 +87,9 @@ public final class MenuBar extends JMenuBar {
         updateMenuBarButtons();
     }
 
+    /**
+     * Updates menu bar options making some of them disabled, depending on current FileIOHandler state
+     */
     public void updateMenuBarButtons() {
         save.setEnabled(FileIOHandler.currentFile != null);
         saveAs.setEnabled(FileIOHandler.currentFile != null);

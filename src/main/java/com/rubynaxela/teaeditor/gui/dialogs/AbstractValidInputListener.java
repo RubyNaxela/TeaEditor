@@ -28,6 +28,13 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.util.HashMap;
 
+/**
+ * The {@code AbstractValidInputListener} class enables creation of universal input data validators
+ *
+ * @author Jacek Pawelski
+ * @see com.rubynaxela.teaeditor.gui.dialogs.INCDataDialogPanel
+ * @see com.rubynaxela.teaeditor.gui.dialogs.TeaBoxDialogPanel
+ */
 abstract class AbstractValidInputListener implements DocumentListener {
 
     private static final Border
@@ -39,6 +46,10 @@ abstract class AbstractValidInputListener implements DocumentListener {
     private final JButton okButton;
     private final HashMap<JComponent, BalloonTip> errorTooltips;
 
+    /**
+     * @param okButton the button that the data validators can control depending
+     *                 on what the overridden function {@code dataValid} returns
+     */
     protected AbstractValidInputListener(JButton okButton) {
         this.okButton = okButton;
         this.errorTooltips = new HashMap<>();

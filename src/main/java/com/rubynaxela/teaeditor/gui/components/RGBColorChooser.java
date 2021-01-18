@@ -22,6 +22,12 @@ import javax.swing.*;
 import javax.swing.colorchooser.AbstractColorChooserPanel;
 import java.awt.*;
 
+/**
+ * The {@code RGBColorChooser} class is an implementation of {@link JColorChooser}
+ * possesing only a part of {@link JColorChooser}'s components
+ *
+ * @author Jacek Pawelski
+ */
 public final class RGBColorChooser extends JColorChooser {
 
     public RGBColorChooser(Color color) {

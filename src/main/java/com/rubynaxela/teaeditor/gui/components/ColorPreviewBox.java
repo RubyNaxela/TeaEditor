@@ -21,11 +21,20 @@ package com.rubynaxela.teaeditor.gui.components;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * {@code ColorPreviewBox} is a colored rectangle displayed at the bottom
+ * of a {@link com.rubynaxela.teaeditor.gui.dialogs.INCDataDialogPanel}
+ *
+ * @author Jacek Pawelski
+ */
 public class ColorPreviewBox extends JPanel {
 
-    public ColorPreviewBox() {
-    }
-
+    /**
+     * Builds a new {@code ColorPreviewBox} object
+     *
+     * @param initialColor color of the {@code ColorPreviewBox} when a dialog window is created
+     * @return {@code ColorPreviewBox} initialized with given color
+     */
     public static ColorPreviewBox init(Color initialColor) {
         return new ColorPreviewBox() {
             @Override
@@ -36,13 +45,18 @@ public class ColorPreviewBox extends JPanel {
         };
     }
 
-    public void setPreviewColor(Graphics g, Color color) {
+    protected void setPreviewColor(Graphics g, Color color) {
         g.setColor(color);
         g.fillRoundRect(0, 0, this.getWidth() - 1, this.getHeight() - 1, 5, 5);
         g.setColor(new Color(0x646464));
         g.drawRoundRect(0, 0, this.getWidth() - 1, this.getHeight() - 1, 5, 5);
     }
 
+    /**
+     * Sets color of the panel
+     *
+     * @param color new color of the panel
+     */
     public void setPreviewColor(Color color) {
         setPreviewColor(this.getGraphics(), color);
     }

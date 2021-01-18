@@ -26,7 +26,7 @@ import com.rubynaxela.teaeditor.util.LookAndFeel;
 import com.rubynaxela.teaeditor.util.Reference;
 
 /**
- * The main class
+ * Main class
  *
  * @author Jacek Pawelski
  */

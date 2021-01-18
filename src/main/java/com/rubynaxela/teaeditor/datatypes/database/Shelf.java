@@ -19,8 +19,7 @@
 package com.rubynaxela.teaeditor.datatypes.database;
 
 /**
- * The {@code Shelf} class is used to store shelves from database. Extends {@link AbstractPrimaryElement} class because it
- * has an ID, a name and a color
+ * The {@code Shelf} class is used to store shelves from database.
  *
  * @author Jacek Pawelski
  */

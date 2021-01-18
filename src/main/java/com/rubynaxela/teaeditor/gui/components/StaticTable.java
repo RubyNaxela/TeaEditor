@@ -20,11 +20,17 @@ package com.rubynaxela.teaeditor.gui.components;
 
 import javax.swing.*;
 
-public final class StaticJTable extends JTable {
+/**
+ * The {@code StaticTable} class is an implementation of {@link JTable}, configured
+ * in a way that enables only selection of a single row and disables any edits
+ *
+ * @author Jacek Pawelski
+ */
+public final class StaticTable extends JTable {
 
     private final boolean cellsEditable;
 
-    StaticJTable(boolean cellsEditable) {
+    StaticTable(boolean cellsEditable) {
         DefaultListSelectionModel brandsListModel = new DefaultListSelectionModel();
         brandsListModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.setSelectionModel(brandsListModel);
@@ -32,7 +38,7 @@ public final class StaticJTable extends JTable {
         this.cellsEditable = cellsEditable;
     }
 
-    public StaticJTable() {
+    public StaticTable() {
         this(false);
     }
 
