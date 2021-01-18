@@ -21,7 +21,7 @@
                         <table><tbody>
                             <tr>
                                 <td><pre>id</pre>ID marki<br></td>
-                                <td><pre>[pole tekstowe]</pre>(zgodne z <u><b>formatem A</b></u>;<br>połączone z <u><b>ID marki herbaty</b></u>)</td>
+                                <td><pre>[pole tekstowe]</pre>(zgodne z <b>formatem A</b>;<br>połączone z <b>ID marki herbaty</b>)</td>
                             </tr>
                             <tr>
                                 <td><pre>name</pre>Nazwa marki</td>
@@ -29,7 +29,7 @@
                             </tr>
                             <tr>
                                 <td><pre>color</pre>Kolor marki</td>
-                                <td><pre>[pole tekstowe]</pre>(zgodne z <u><b>formatem B</b></u>)</td>
+                                <td><pre>[pole tekstowe]</pre>(zgodne z <b>formatem B</b>)</td>
                             </tr>
                         </tbody></table>
                     </td>
@@ -50,7 +50,7 @@
                         <table><tbody>
                             <tr>
                                 <td><pre>id</pre>ID półki</td>
-                                <td><pre>[pole tekstowe]</pre>(zgodne z <u><b>formatem A</b></u>)</td>
+                                <td><pre>[pole tekstowe]</pre>(zgodne z <b>formatem A</b>)</td>
                             </tr>
                             <tr>
                                 <td><pre>name</pre>Nazwa półki</td>
@@ -58,7 +58,7 @@
                             </tr>
                             <tr>
                                 <td><pre>color</pre>Kolor półki<br></td>
-                                <td><pre>[pole tekstowe]</pre>(zgodne z <u><b>formatem B</b></u>)</td>
+                                <td><pre>[pole tekstowe]</pre>(zgodne z <b>formatem B</b>)</td>
                             </tr>
                             <tr>
                                 <td><pre>tea_boxes</pre>Lista herbat</td>
@@ -67,7 +67,7 @@
                                     <table><tbody>
                                         <tr>
                                             <td><pre>id</pre>ID herbaty</td>
-                                            <td><pre>[pole tekstowe]</pre>(zgodne z <u><b>formatem A</b></u>)</td>
+                                            <td><pre>[pole tekstowe]</pre>(zgodne z <b>formatem A</b>)</td>
                                         </tr>
                                         <tr>
                                             <td><pre>name</pre>Nazwa herbaty</td>
@@ -75,7 +75,7 @@
                                         </tr>
                                         <tr>
                                             <td><pre>brand_id</pre>ID marki herbaty</td>
-                                            <td><pre>[pole tekstowe]</pre>(zgodne z <u><b>formatem A</b></u>;<br>połączone z <u><b>ID marki</b></u>)</td>
+                                            <td><pre>[pole tekstowe]</pre>(zgodne z <b>formatem A</b>;<br>połączone z <b>ID marki</b>)</td>
                                         </tr>
                                         <tr>
                                             <td><pre>description</pre>Opis herbaty</td>
@@ -87,7 +87,7 @@
                                         </tr>
                                         <tr>
                                             <td><pre>stars</pre>Ocena herbaty</td>
-                                            <td><pre>[pole liczbowe]</pre>(zgodne z <u><b>formatem C</b></u>)</td>
+                                            <td><pre>[pole liczbowe]</pre>(zgodne z <b>formatem C</b>)</td>
                                         </tr>
                                         <tr>
                                             <td><pre>brewing</pre>Instrukcje<br>parzenia<br>herbaty</td>
@@ -103,11 +103,11 @@
                                                     </tr>
                                                     <tr>
                                                         <td><pre>reuses</pre>Ilość zaparzeń</td>
-                                                        <td><pre>[pole tekstowe]</pre>(zgodne z <u><b>formatem D</b></u>)</td>
+                                                        <td><pre>[pole tekstowe]</pre>(zgodne z <b>formatem D</b>)</td>
                                                     </tr>
                                                     <tr>
                                                         <td><pre>grams</pre>Proporcje masowe<br>liści herbaty<br>do wody</td>
-                                                        <td><pre>[pole tekstowe]</pre>(zgodne z <u><b>formatem E</b></u>)</td>
+                                                        <td><pre>[pole tekstowe]</pre>(zgodne z <b>formatem E</b>)</td>
                                                     </tr>
                                                 </tbody></table>
                                             </td>
@@ -125,6 +125,23 @@
         </td>
     </tr>
 </tbody></table>
+
+> Używane standardy formatu danych:
+> - **format A**:\
+    duże i małe litery oraz znak _\
+    wyrażenie regularne:``^([a-z]|_)*$``
+> - **format B**:\
+    6 znaków z zakresu 0-9 lub a-f lub A-F, poprzedzone znakiem #\
+    wyrażenie regularne:``^#[0-f0-F]{6}$``
+> - **format C**:\
+    wielokrotność ``0.5`` z zakresu ``(1;5)``\
+    wyrażenie regularne:``^[1-5](\.5)?$``
+> - **format D**:\
+    wielokrotność ``0.5`` z zakresu ``(1;5)``\
+    wyrażenie regularne:``^[1-5](\.5)?$``
+> - **format E**:\
+    wielokrotność ``0.5`` z zakresu ``(1;5)``\
+    wyrażenie regularne:``^(((?!^\.$)(?!^([\d]*\.[\d]*){2,}$)[\d.])+:\d+)?(\n((?!^\.$)(?!^([\d]*\.[\d]*){2,}$)[\d.])+:\d+)*$``
 
 #### Funkcjonalności programu
 
