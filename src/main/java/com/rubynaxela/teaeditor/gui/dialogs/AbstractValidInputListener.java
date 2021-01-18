@@ -47,8 +47,6 @@ abstract class AbstractValidInputListener implements DocumentListener {
     private final HashMap<JComponent, BalloonTip> errorTooltips;
 
     /**
-     * {@code AbstractValidInputListener} constructor
-     *
      * @param okButton the button that the data validators can control depending
      *                 on what the overridden function {@code dataValid} returns
      */
