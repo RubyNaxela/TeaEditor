@@ -166,8 +166,8 @@
 >     - Zamknij... (``⌘+W``/``Ctrl+W``) - zamyka aktualnie otwartą bazę danych
 >     - Wyjdź... (``⌘+Q``/``Ctrl+Q``) - zamyka program
 >   - Edycja
->     - Cofnij (``⌘+Z``/``Ctrl+Z``)
->     - Ponów (``⌘+Shift+Z``/``Ctrl+Y``)
+>     - Cofnij (``⌘+Z``/``Ctrl+Z``) - do zaimplementowania
+>     - Ponów (``⌘+Shift+Z``/``Ctrl+Y``) - do zaimplementowania
 > ##### 2.
 > ##### 3.
 > ##### 4.
