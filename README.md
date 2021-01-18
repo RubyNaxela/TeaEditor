@@ -128,20 +128,20 @@
 
 > Używane standardy formatu danych:
 > - **format A**:\
-    duże i małe litery oraz znak _\
+    małe litery alfabetu łacińskiego oraz znak ``_``\
     wyrażenie regularne:``^([a-z]|_)*$``
 > - **format B**:\
-    6 znaków z zakresu 0-9 lub a-f lub A-F, poprzedzone znakiem #\
+    6 znaków z zakresu ``0-9`` lub ``a-f`` lub ``A-F``, poprzedzone znakiem ``#``\
     wyrażenie regularne:``^#[0-f0-F]{6}$``
 > - **format C**:\
-    wielokrotność ``0.5`` z zakresu ``(1;5)``\
+    wielokrotność ``0.5`` z zakresu ``[1;5]``\
     wyrażenie regularne:``^[1-5](\.5)?$``
 > - **format D**:\
-    wielokrotność ``0.5`` z zakresu ``(1;5)``\
-    wyrażenie regularne:``^[1-5](\.5)?$``
+    dowolna liczba całkowita, opcjonalnie ``/1`` za nią\
+    wyrażenie regularne:``^\d+(\/1)?$``
 > - **format E**:\
-    wielokrotność ``0.5`` z zakresu ``(1;5)``\
-    wyrażenie regularne:``^(((?!^\.$)(?!^([\d]*\.[\d]*){2,}$)[\d.])+:\d+)?(\n((?!^\.$)(?!^([\d]*\.[\d]*){2,}$)[\d.])+:\d+)*$``
+    pary: liczba``:``liczba całkowita oddzielone znakami ``/``\
+    wyrażenie regularne:``^(((?!^\.$)(?!^(\d*\.\d*){2,}$)[\d.])+:\d+)?(\/((?!^\.$)(?!^(\d*\.\d*){2,}$)[\d.])+:\d+)*$``
 
 #### Funkcjonalności programu
 
