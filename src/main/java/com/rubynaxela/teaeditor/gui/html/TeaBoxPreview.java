@@ -35,7 +35,7 @@ import static com.rubynaxela.teaeditor.util.DataFormat.parseInt;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Utils.findIdInArray;
 
-public final class TeaBoxPreview extends PreviewDocument {
+public final class TeaBoxPreview extends AbstractPreviewDocument {
 
     public TeaBoxPreview(@Nullable TeaBox teaBox) {
         if (teaBox != null) {

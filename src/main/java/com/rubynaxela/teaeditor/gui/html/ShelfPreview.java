@@ -29,7 +29,7 @@ import java.util.Map;
 
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
-public final class ShelfPreview extends PreviewDocument {
+public final class ShelfPreview extends AbstractPreviewDocument {
 
     public ShelfPreview(@Nullable Shelf shelf) {
         if (shelf != null) {

@@ -23,7 +23,7 @@ import com.hp.gagawa.java.elements.P;
 
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
-public final class StartupPreview extends PreviewDocument {
+public final class StartupPreview extends AbstractPreviewDocument {
 
     public StartupPreview() {
 

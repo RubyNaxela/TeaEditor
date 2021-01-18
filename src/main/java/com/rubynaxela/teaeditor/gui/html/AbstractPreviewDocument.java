@@ -23,12 +23,12 @@ import com.hp.gagawa.java.elements.Head;
 import com.hp.gagawa.java.elements.Html;
 import com.hp.gagawa.java.elements.Style;
 
-public class PreviewDocument extends Html {
+public abstract class AbstractPreviewDocument extends Html {
 
     public final Body body;
     public final Head head;
 
-    public PreviewDocument() {
+    public AbstractPreviewDocument() {
         this.body = new Body();
         this.head = new Head();
         this.appendChild(head);
