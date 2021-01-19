@@ -20,6 +20,7 @@ package com.rubynaxela.teaeditor.managers;
 
 import com.rubynaxela.teaeditor.gui.html.BrandPreview;
 import com.rubynaxela.teaeditor.gui.html.ShelfPreview;
+import com.rubynaxela.teaeditor.gui.html.StartupPreview;
 import com.rubynaxela.teaeditor.gui.html.TeaBoxPreview;
 import com.rubynaxela.teaeditor.util.Reference;
 
@@ -80,4 +81,7 @@ public final class WindowUpdatesManager {
                 DataManager.getTeaBoxesDataVector(ListsManager.getSelectedShelf()), ListsManager.teaBoxesTableHeaders);
     }
 
+    public static void showWelcomeScreen() {
+        Reference.window.previewPanel.setContent(new StartupPreview());
+    }
 }

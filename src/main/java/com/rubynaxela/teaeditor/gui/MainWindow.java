@@ -19,7 +19,6 @@
 package com.rubynaxela.teaeditor.gui;
 
 import com.rubynaxela.teaeditor.gui.components.MenuBar;
-import com.rubynaxela.teaeditor.gui.html.StartupPreview;
 import com.rubynaxela.teaeditor.gui.panels.*;
 import com.rubynaxela.teaeditor.handlers.DialogsHandler;
 import com.rubynaxela.teaeditor.handlers.MenuHandler;
@@ -79,6 +78,6 @@ public final class MainWindow extends JFrame {
     public static void init() {
         Reference.window = new MainWindow();
         WindowUpdatesManager.masterUpdate();
-        Reference.window.previewPanel.setContent(new StartupPreview());
+        WindowUpdatesManager.showWelcomeScreen();
     }
 }
