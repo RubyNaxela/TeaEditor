@@ -13,6 +13,7 @@
 >   - marek herbat
 >   - półek z herbatami
 >   - herbat z półek
+> - pozycje w panelach automatycznie sortowane są alfabetycznie
 > - panel z podglądem aktualnie zaznaczonego elementu
 > - pasek menu z zakładkami:
 >   - Plik:
@@ -44,7 +45,7 @@
                         <table><tbody>
                             <tr>
                                 <td><pre>id</pre>ID marki<br></td>
-                                <td><pre>[tekst]</pre>(zgodne z <b>formatem A</b>;<br>połączone z <b>ID marki herbaty</b>)</td>
+                                <td><pre>[tekst]</pre>(zgodne z <b>formatem ALPHANUMID</b>;<br>połączone z <b>ID marki herbaty</b>)</td>
                             </tr>
                             <tr>
                                 <td><pre>name</pre>Nazwa marki</td>
@@ -52,7 +53,7 @@
                             </tr>
                             <tr>
                                 <td><pre>color</pre>Kolor marki</td>
-                                <td><pre>[tekst]</pre>(zgodne z <b>formatem B</b>)</td>
+                                <td><pre>[tekst]</pre>(zgodne z <b>formatem HEXCOLOR</b>)</td>
                             </tr>
                         </tbody></table>
                     </td>
@@ -73,7 +74,7 @@
                         <table><tbody>
                             <tr>
                                 <td><pre>id</pre>ID półki</td>
-                                <td><pre>[tekst]</pre>(zgodne z <b>formatem A</b>)</td>
+                                <td><pre>[tekst]</pre>(zgodne z <b>formatem ALPHANUMID</b>)</td>
                             </tr>
                             <tr>
                                 <td><pre>name</pre>Nazwa półki</td>
@@ -81,7 +82,7 @@
                             </tr>
                             <tr>
                                 <td><pre>color</pre>Kolor półki<br></td>
-                                <td><pre>[tekst]</pre>(zgodne z <b>formatem B</b>)</td>
+                                <td><pre>[tekst]</pre>(zgodne z <b>formatem HEXCOLOR</b>)</td>
                             </tr>
                             <tr>
                                 <td><pre>tea_boxes</pre>Lista herbat</td>
@@ -90,7 +91,7 @@
                                     <table><tbody>
                                         <tr>
                                             <td><pre>id</pre>ID herbaty</td>
-                                            <td><pre>[tekst]</pre>(zgodne z <b>formatem A</b>)</td>
+                                            <td><pre>[tekst]</pre>(zgodne z <b>formatem ALPHANUMID</b>)</td>
                                         </tr>
                                         <tr>
                                             <td><pre>name</pre>Nazwa herbaty</td>
@@ -98,7 +99,7 @@
                                         </tr>
                                         <tr>
                                             <td><pre>brand_id</pre>ID marki herbaty</td>
-                                            <td><pre>[tekst]</pre>(zgodne z <b>formatem A</b>;<br>połączone z <b>ID marki</b>)</td>
+                                            <td><pre>[tekst]</pre>(zgodne z <b>formatem ALPHANUMID</b>;<br>połączone z <b>ID marki</b>)</td>
                                         </tr>
                                         <tr>
                                             <td><pre>description</pre>Opis herbaty</td>
@@ -110,7 +111,7 @@
                                         </tr>
                                         <tr>
                                             <td><pre>stars</pre>Ocena herbaty</td>
-                                            <td><pre>[liczba]</pre>(zgodne z <b>formatem C</b>)</td>
+                                            <td><pre>[liczba]</pre>(zgodne z <b>formatem REUSESECRATING</b>)</td>
                                         </tr>
                                         <tr>
                                             <td><pre>brewing</pre>Instrukcje<br>parzenia<br>herbaty</td>
@@ -126,11 +127,11 @@
                                                     </tr>
                                                     <tr>
                                                         <td><pre>reuses</pre>Ilość zaparzeń</td>
-                                                        <td><pre>[tekst|null]</pre>(zgodne z <b>formatem D</b>)</td>
+                                                        <td><pre>[tekst|null]</pre>(zgodne z <b>formatem REUSES</b>)</td>
                                                     </tr>
                                                     <tr>
                                                         <td><pre>grams</pre>Proporcje masowe<br>liści herbaty<br>do wody</td>
-                                                        <td><pre>[tekst]</pre>(zgodne z <b>formatem E</b>)</td>
+                                                        <td><pre>[tekst]</pre>(zgodne z <b>formatem PROPORT</b>)</td>
                                                     </tr>
                                                 </tbody></table>
                                             </td>
@@ -150,23 +151,23 @@
 </tbody></table>
 
 > Używane standardy formatu danych:
-> - **format A**:\
+> - **format ALPHANUMID**:\
     małe litery alfabetu łacińskiego oraz znak `_`\
     wyrażenie regularne:`^([a-z]|_)*$`\
     przykłady: `teatime`,`japan_gyokuro_hiki`
-> - **format B**:\
+> - **format HEXCOLOR**:\
     6 znaków z zakresu `0-9` lub `a-f` lub `A-F`, poprzedzone znakiem `#`\
     wyrażenie regularne:`^#[0-f0-F]{6}$`\
     przykłady: `#a8b349f`,`#F4AC99`
-> - **format C**:\
+> - **format DECRATING**:\
     wielokrotność `0.5` z zakresu `[1;5]`\
     wyrażenie regularne:`^[1-5](\.5)?$`\
     przykłady: `4`,`2.5`
-> - **format D**:\
+> - **format REUSES**:\
     dowolna liczba całkowita, opcjonalnie `/1` za nią\
     wyrażenie regularne:`^\d+(\/1)?$`\
     przykłady: `3/1`,`10`
-> - **format E**:\
+> - **format PROPORT**:\
     pary: liczba`:`liczba całkowita oddzielone znakami `/`\
     wyrażenie regularne:`^(((?!^\.$)(?!^(\d*\.\d*){2,}$)[\d.])+:\d+)?(\/((?!^\.$)(?!^(\d*\.\d*){2,}$)[\d.])+:\d+)*$`\
     przykłady: `4:250/11:600`,`40:200`,`3.5:250/10:600/15.5:1000`
