@@ -255,7 +255,7 @@
 #### Instalacja standardowa
 
 > Aby zainstalować program, należy:
-> ##### 1. Upewnić się, że w systemie zainstalowane jest środowisko uruchomieniowe Java w wersji 8+
+> ##### 1. Upewnić się, że w systemie zainstalowane jest środowisko uruchomieniowe Java (JRE) w wersji 8+
 > ##### 2. Otworzyć sekcję "Releases" znajdującą się na [stronie projektu](https://github.com/RubyNaxela/TeaEditor) obok przeglądarki kodu źródłowego
 > ##### 3. Wybrać kompilację (macOS lub Universal)
 > ##### 4. Kliknąć pozycję "Chajikan" z karty "Aseets"
@@ -265,7 +265,7 @@
 
 > Istnieje możliwość samodzielnej kompilacji programu. Aby tego dokonać, należy:
 > ##### 1. Sklonować repozytorium (pobrać bezpośrednio ze [strony projektu](https://github.com/RubyNaxela/TeaEditor) lub za pośrednictwem narzędzia Git z poziomu powłoki systemu)
-> ##### 2. Zainstalować oprogramowanie Java Development Kit w wersji 1.8+
+> ##### 2. Zainstalować oprogramowanie Java Development Kit (JDK) w wersji 1.8+
 > ##### 3. Zainstalować narzędzie Gradle dla powłoki systemu [link do strony instalacji](https://gradle.org/install/)
 > ##### 4. otworzyć katalog główny pobranej pakietu kodu źródłowego za pomocą powłoki systemu
 > ##### 5. wywołać polecenie `gradlew`
