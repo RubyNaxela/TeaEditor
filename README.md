@@ -293,13 +293,20 @@
 
 #### Podstawowy schemat struktury kodu
 
-> 1. Start programu
+> 1. Start programu - klasa główna `Chajikan`
 >   1. Ustawienie języka w klasie `util.Language`
 >   2. Przygotowanie modułu obsługi języka JSON z biblioteki Jackson. Moduł przechowuje klasa `util.Reference`
 >   3. Utworzenie słownika tesktów dla wybranego języka z pliku językowego znajdującego się w folderze `/lang` katalogu zasobów. Słownik główny i zapasowy przechowuje klasa `util.Reference`
 >   4. Ustawienie w klasie `util.LookAndFeel` motywu Dracula ze zmianami, z biblioteki FlatLaf
 >   5. Utworzenie instancji okna głównego przechowywaną przez klasę `util.Reference`
 >   6. Przygotowanie interfejsu (stany przycisków i ekran powitalny) przez klasę `managers.WindowUpdatesManager`
+> 2. Interfejs graficzny - pakiet `gui`
+>   - W tym pakiecie zawarte są wszystkie komponenty interfejsu graficznego
+>   - Okno główne programu (klasa `gui.MainWindow`) podzielone jest na 3 panele klasy `gui.panels.AbstractTablePanel` służące do wyświetlania i edycji danych i jeden panel klasy `gui.panels.PreviewPanel`, na którym wyświetlane są informacje o aktualnie zaznaczonym objekcie
+>   - Pakiet `gui.components` zawiera zaawansowane komponenty interfejsu będące implementacjami podstawowych klas pakietu Swing lub ich złożeniami
+>   - W pakiecie `gui.dialogs` zawarte są elementy związane z oknami dialogowymi
+>   - Pakiet `gui.html` przechowuje implementacje klas biblioteki Gagawa potrzebne do tworzenia obiektów HTML będących częściami podglądów wyświetlanych w panelu  `gui.MainWindow#previewPanel`
+>   - Panele, na które podzielone jest okno główne, zawarte są w pakiecie `gui.panels`
 
 #### Szczegółowa dokumentcja
 
