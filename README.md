@@ -290,7 +290,7 @@
 > 7. Szczegółowy **podział projektu** na pakiety oraz klasy w celu znacznej poprawy czytelności całego projektu.
 > 8. **Wykorzystanie narzędzia JavaDoc** do tworzenia dokumentacji
 
-## Dokumentacja
+## Dokumentacja kodu
 
 #### Podstawowy schemat struktury kodu
 
