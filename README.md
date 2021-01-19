@@ -265,7 +265,7 @@
 
 > Istnieje możliwość samodzielnej kompilacji programu. Aby tego dokonać, należy:
 > ##### 1. Sklonować repozytorium (pobrać bezpośrednio ze [strony projektu](https://github.com/RubyNaxela/TeaEditor) lub za pośrednictwem narzędzia Git z poziomu powłoki systemu)
-> ##### 2. Zainstalować oprogramowanie Java Development Kit (JDK) w wersji 1.8+
+> ##### 2. Zainstalować oprogramowanie Java Development Kit (JDK) w wersji 1.8+ [link do strony instalacji](https://www.oracle.com/pl/java/technologies/javase/javase-jdk8-downloads.html)
 > ##### 3. Zainstalować narzędzie Gradle dla powłoki systemu [link do strony instalacji](https://gradle.org/install/)
 > ##### 4. otworzyć katalog główny pobranej pakietu kodu źródłowego za pomocą powłoki systemu
 > ##### 5. wywołać polecenie `gradlew`
