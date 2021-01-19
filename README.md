@@ -127,11 +127,11 @@
                                                     </tr>
                                                     <tr>
                                                         <td><pre>reuses</pre>Ilość zaparzeń</td>
-                                                        <td><pre>[tekst|null]</pre>(zgodne z<br><b>formatem REUSES</b>)</td>
+                                                        <td><pre>[tekst|null]</pre>(zgodne z<br><b>formatem<br>REUSES</b>)</td>
                                                     </tr>
                                                     <tr>
                                                         <td><pre>grams</pre>Proporcje masowe<br>liści herbaty<br>do wody</td>
-                                                        <td><pre>[tekst]</pre>(zgodne z<br><b>formatem PROPORT</b>)</td>
+                                                        <td><pre>[tekst]</pre>(zgodne z<br><b>formatem<br>PROPORT</b>)</td>
                                                     </tr>
                                                 </tbody></table>
                                             </td>
