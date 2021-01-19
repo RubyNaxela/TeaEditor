@@ -128,25 +128,25 @@
 
 > Używane standardy formatu danych:
 > - **format A**:\
-    małe litery alfabetu łacińskiego oraz znak ``_``\
-    wyrażenie regularne:``^([a-z]|_)*$``\
-    przykłady: ``teatime``,``japan_gyokuro_hiki``
+    małe litery alfabetu łacińskiego oraz znak `_`\
+    wyrażenie regularne:`^([a-z]|_)*$`\
+    przykłady: `teatime`,`japan_gyokuro_hiki`
 > - **format B**:\
-    6 znaków z zakresu ``0-9`` lub ``a-f`` lub ``A-F``, poprzedzone znakiem ``#``\
-    wyrażenie regularne:``^#[0-f0-F]{6}$``\
-    przykłady: ``#a8b349f``,``#F4AC99``
+    6 znaków z zakresu `0-9` lub `a-f` lub `A-F`, poprzedzone znakiem `#`\
+    wyrażenie regularne:`^#[0-f0-F]{6}$`\
+    przykłady: `#a8b349f`,`#F4AC99`
 > - **format C**:\
-    wielokrotność ``0.5`` z zakresu ``[1;5]``\
-    wyrażenie regularne:``^[1-5](\.5)?$``\
-    przykłady: ``4``,``2.5``
+    wielokrotność `0.5` z zakresu `[1;5]`\
+    wyrażenie regularne:`^[1-5](\.5)?$`\
+    przykłady: `4`,`2.5`
 > - **format D**:\
-    dowolna liczba całkowita, opcjonalnie ``/1`` za nią\
-    wyrażenie regularne:``^\d+(\/1)?$``\
-    przykłady: ``3/1``,``10``
+    dowolna liczba całkowita, opcjonalnie `/1` za nią\
+    wyrażenie regularne:`^\d+(\/1)?$`\
+    przykłady: `3/1`,`10`
 > - **format E**:\
-    pary: liczba``:``liczba całkowita oddzielone znakami ``/``\
-    wyrażenie regularne:``^(((?!^\.$)(?!^(\d*\.\d*){2,}$)[\d.])+:\d+)?(\/((?!^\.$)(?!^(\d*\.\d*){2,}$)[\d.])+:\d+)*$``\
-    przykłady: ``4:250/11:600``,``40:200``,``3.5:250/10:600/15.5:1000``
+    pary: liczba`:`liczba całkowita oddzielone znakami `/`\
+    wyrażenie regularne:`^(((?!^\.$)(?!^(\d*\.\d*){2,}$)[\d.])+:\d+)?(\/((?!^\.$)(?!^(\d*\.\d*){2,}$)[\d.])+:\d+)*$`\
+    przykłady: `4:250/11:600`,`40:200`,`3.5:250/10:600/15.5:1000`
 
 #### Przykładowa baza danych
 
@@ -236,16 +236,16 @@
 > - panel z podglądem aktualnie zaznaczonego elementu
 > - pasek menu z zakładkami:
 >   - Plik:
->     - Nowa baza danych... (``⌘+N``/``Ctrl+N``) - tworzy nowy plik bazy danych
->     - Otwórz... (``⌘+O``/``Ctrl+O``) - otwiera bazę danych
->     - Zapisz... (``⌘+S``/``Ctrl+S``) - zapisuje aktualnie otwartą bazę danych (otwiera okno dialogowe zapisu pliku, jeśli
+>     - Nowa baza danych... (`⌘+N`/`Ctrl+N`) - tworzy nowy plik bazy danych
+>     - Otwórz... (`⌘+O`/`Ctrl+O`) - otwiera bazę danych
+>     - Zapisz... (`⌘+S`/`Ctrl+S`) - zapisuje aktualnie otwartą bazę danych (otwiera okno dialogowe zapisu pliku, jeśli
 >       aktualnie otwarta baza została utworzona jako nowy plik podczas działania programu)
->     - Zapisz jako... (``⌘+S``/``Ctrl+S``) - zapisuje aktualnie otwartą bazę danych (wymusza okno dialogowe zapisu pliku)
->     - Zamknij... (``⌘+W``/``Ctrl+W``) - zamyka aktualnie otwartą bazę danych
->     - Wyjdź... (``⌘+Q``/``Ctrl+Q``) - zamyka program
+>     - Zapisz jako... (`⌘+S`/`Ctrl+S`) - zapisuje aktualnie otwartą bazę danych (wymusza okno dialogowe zapisu pliku)
+>     - Zamknij... (`⌘+W`/`Ctrl+W`) - zamyka aktualnie otwartą bazę danych
+>     - Wyjdź... (`⌘+Q`/`Ctrl+Q`) - zamyka program
 >   - Edycja
->     - Cofnij (``⌘+Z``/``Ctrl+Z``) - do zaimplementowania
->     - Ponów (``⌘+Shift+Z``/``Ctrl+Y``) - do zaimplementowania
+>     - Cofnij (`⌘+Z`/`Ctrl+Z`) - do zaimplementowania
+>     - Ponów (`⌘+Shift+Z`/`Ctrl+Y`) - do zaimplementowania
 > 
 > Dane są wczytywane do programu oraz zapisywane z/do pliku w formacie JSON zgodnego ze schematem zamieszczonym wyżej.
 
@@ -267,15 +267,15 @@
 > ##### 2. Zainstalować oprogramowanie Java Development Kit w wersji 1.8+
 > ##### 3. Zainstalować narzędzie Gradle dla powłoki systemu
 > ##### 4. otworzyć katalog główny pobranej pakietu kodu źródłowego za pomocą powłoki systemu
-> ##### 5. wywołać polecenie ``gradlew``
-> ##### 6. wywołać polecenie ``gradle build``
-> Skompilowany plik .jar znajduje się w katalogu ``./build/libs``
+> ##### 5. wywołać polecenie `gradlew`
+> ##### 6. wywołać polecenie `gradle build`
+> Skompilowany plik .jar znajduje się w katalogu `./build/libs`
 
 ## Założenia projektowe
 
 > Program spełnia kryteria złożonego projektu obiektowego. Zostały w nim zawarte wszystkie założenia programowania obiektowego:
 > 1. **Abstrakcja** została zastosowana do powiązania ze sobą elementów bazy danych o takiej samej budowie, elementów interfejsu tego samego pokroju, a także przy tworzeniu klas anonimowych do obsługi modułów sprawdzania poprawności danych.
-> 2. **Enkapsulacja** danych widoczna jest głównie w klasach przechowujących obiekty bazy danych, ale również w module obsługi danych.
+> 2. **Enkapsulacja** danych widoczna jest głównie w klasach przechowujących obiekty bazy danych, ale również np. w module konfiguracji, obsługi danych.
 > 3. **Dziedziczenie** ma miejsce i jest wykorzystywane w wielu miejscach w całym programie. Dziedziczone są klasy abstrakcyjne. Wszystkie dostosowane elementy interfejsu są klasami podrzędnymi klas bazowych tych elementów (na przykład tabela z ustawionymi właściwościami).
 > 4. **Polimorfizm** wykorzystywany jest wszędzie tam, gdzie elementy dziedziczące z jednej klasy nadrzędnej bądź interfejsu używane są przez jeden algorytm (na przykład wyświetlanie błędu przy dowolnym komponencie graficznym).
 > 
@@ -292,6 +292,14 @@
 ## Dokumentacja
 
 #### Podstawowy schemat struktury kodu
+
+> 1. Start programu
+>   1. Ustawienie języka w klasie `util.Language`
+>   2. Przygotowanie modułu obsługi języka JSON z biblioteki Jackson. Moduł przechowuje klasa `util.Reference`
+>   3. Utworzenie słownika tesktów dla wybranego języka z pliku językowego znajdującego się w folderze `/lang` katalogu zasobów. Słownik główny i zapasowy przechowuje klasa `util.Reference`
+>   4. Ustawienie w klasie `util.LookAndFeel` motywu Dracula ze zmianami, z biblioteki FlatLaf
+>   5. Utworzenie instancji okna głównego przechowywaną przez klasę `util.Reference`
+>   6. Przygotowanie interfejsu (stany przycisków i ekran powitalny) przez klasę `managers.WindowUpdatesManager`
 
 #### Szczegółowa dokumentcja
 
