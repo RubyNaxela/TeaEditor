@@ -111,7 +111,7 @@
                                         </tr>
                                         <tr>
                                             <td><pre>stars</pre>Ocena herbaty</td>
-                                            <td><pre>[liczba]</pre>(zgodne z <b>formatem REUSESECRATING</b>)</td>
+                                            <td><pre>[liczba]</pre>(zgodne z <b>formatem NUMRATING</b>)</td>
                                         </tr>
                                         <tr>
                                             <td><pre>brewing</pre>Instrukcje<br>parzenia<br>herbaty</td>
@@ -159,7 +159,7 @@
     6 znaków z zakresu `0-9` lub `a-f` lub `A-F`, poprzedzone znakiem `#`\
     wyrażenie regularne:`^#[0-f0-F]{6}$`\
     przykłady: `#a8b349f`,`#F4AC99`
-> - **format DECRATING**:\
+> - **format NUMRATING**:\
     wielokrotność `0.5` z zakresu `[1;5]`\
     wyrażenie regularne:`^[1-5](\.5)?$`\
     przykłady: `4`,`2.5`
