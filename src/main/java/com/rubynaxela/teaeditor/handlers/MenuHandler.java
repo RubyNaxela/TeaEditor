@@ -31,25 +31,43 @@ import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
  */
 public final class MenuHandler {
 
-    public static ActionListener newDatabase =
-            e -> DialogsHandler.showWarning(getString("dialog.message.feature_unavailable"));
+    public static ActionListener saveFile = e -> {
+        if (FileIOHandler.currentFile == null)
+            FileIOHandler.currentFile = FileIOHandler.FILE_DIALOG.chooseFileToSave();
+        FileIOHandler.exportJSON();
+        DataManager.dataChanged = false;
+        DataManager.newFileCreated = false;
+    };
+
+    public static ActionListener newDatabase = e -> {
+        if (DataManager.dataChanged)
+            switch (DialogsHandler.askYesNoCancelQuestion(getString("dialog.message.save_before_close"))) {
+                case NEUTRAL:
+                    return;
+                case POSITIVE:
+                    saveFile.actionPerformed(null);
+                    break;
+            }
+        FileIOHandler.currentFile = null;
+        DataManager.newFileCreated = true;
+        DataManager.setCurrentData(DataManager.createEmptyDatabase());
+        WindowUpdatesManager.updateLists();
+    };
 
     public static ActionListener openFile = e -> {
         FileIOHandler.currentFile = FileIOHandler.FILE_DIALOG.chooseFileToLoad();
         if (FileIOHandler.currentFile != null) {
             FileIOHandler.parseJSON();
             WindowUpdatesManager.masterUpdate();
+            DataManager.newFileCreated = false;
         }
-    };
-
-    public static ActionListener saveFile = e -> {
-        FileIOHandler.exportJSON();
-        DataManager.dataChanged = false;
     };
 
     public static ActionListener saveFileAs = e -> {
         File target = FileIOHandler.FILE_DIALOG.chooseFileToSave();
         if (target != null) FileIOHandler.exportJSON(target);
+        DataManager.dataChanged = false;
+        DataManager.newFileCreated = false;
     };
 
     public static ActionListener closeFile = e -> {
@@ -62,6 +80,7 @@ public final class MenuHandler {
                     break;
             }
         FileIOHandler.currentFile = null;
+        DataManager.newFileCreated = false;
         DataManager.setCurrentData(null);
         WindowUpdatesManager.masterUpdate();
     };

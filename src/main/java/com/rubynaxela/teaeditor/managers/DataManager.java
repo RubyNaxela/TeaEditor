@@ -34,6 +34,7 @@ import static com.rubynaxela.teaeditor.util.Utils.colorToHex;
 public final class DataManager {
 
     public static boolean dataChanged = false;
+    public static boolean newFileCreated = false;
 
     private static TeaData currentData = null;
 
@@ -43,6 +44,13 @@ public final class DataManager {
 
     public static void setCurrentData(TeaData data) {
         currentData = data;
+    }
+
+    public static TeaData createEmptyDatabase() {
+        TeaData database = new TeaData();
+        database.setBrands(new Brand[0]);
+        database.setShelves(new Shelf[0]);
+        return database;
     }
 
     ///////////////////////
@@ -97,7 +105,7 @@ public final class DataManager {
     }
 
     public static Vector<Vector<String>> getBrandsDataVector() {
-        if (FileIOHandler.currentFile == null)
+        if (FileIOHandler.currentFile == null && !DataManager.newFileCreated)
             return null;
         Vector<Vector<String>> data = new Vector<>();
         for (Brand brand : currentData.getBrands()) {
@@ -111,7 +119,7 @@ public final class DataManager {
     }
 
     public static Vector<String> getBrandsNamesVector() {
-        if (FileIOHandler.currentFile == null)
+        if (FileIOHandler.currentFile == null && !DataManager.newFileCreated)
             return null;
         Vector<String> names = new Vector<>();
         for (Brand brand : currentData.getBrands()) {
@@ -167,7 +175,7 @@ public final class DataManager {
     }
 
     public static Vector<Vector<String>> getShelvesDataVector() {
-        if (FileIOHandler.currentFile == null)
+        if (FileIOHandler.currentFile == null && !DataManager.newFileCreated)
             return null;
         Vector<Vector<String>> data = new Vector<>();
         for (Shelf shelf : currentData.getShelves()) {
@@ -181,7 +189,7 @@ public final class DataManager {
     }
 
     public static Vector<String> getShelvesNamesVector() {
-        if (FileIOHandler.currentFile == null)
+        if (FileIOHandler.currentFile == null && !DataManager.newFileCreated)
             return null;
         Vector<String> names = new Vector<>();
         for (Shelf shelf : currentData.getShelves()) {
