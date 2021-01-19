@@ -2,9 +2,32 @@
 
 ### Czym jest program
 
-> Aplikacja służy do wygodnej edycji bazy danych zawierającej dane dotyczące kolekcji herbat.
+> Aplikacja służy do edycji bazy danych zawierającej dane dotyczące kolekcji herbat.
 
 ## Szczegóły działania
+
+#### Charakterystyka i funkcjonalności programu
+
+> Aplikacja działa w oknie z interfejsem graficznym, którego elementami są:
+> - trzy panele z tabelami umożliwiające szybki przegląd, dodawanie, usuwanie oraz edycję:
+>   - marek herbat
+>   - półek z herbatami
+>   - herbat z półek
+> - panel z podglądem aktualnie zaznaczonego elementu
+> - pasek menu z zakładkami:
+>   - Plik:
+>     - Nowa baza danych... (`⌘+N`/`Ctrl+N`) - tworzy nowy plik bazy danych
+>     - Otwórz... (`⌘+O`/`Ctrl+O`) - otwiera bazę danych
+>     - Zapisz... (`⌘+S`/`Ctrl+S`) - zapisuje aktualnie otwartą bazę danych (otwiera okno dialogowe zapisu pliku, jeśli
+>       aktualnie otwarta baza została utworzona jako nowy plik podczas działania programu)
+>     - Zapisz jako... (`⌘+S`/`Ctrl+S`) - zapisuje aktualnie otwartą bazę danych (wymusza okno dialogowe zapisu pliku)
+>     - Zamknij... (`⌘+W`/`Ctrl+W`) - zamyka aktualnie otwartą bazę danych
+>     - Wyjdź... (`⌘+Q`/`Ctrl+Q`) - zamyka program
+>   - Edycja
+>     - Cofnij (`⌘+Z`/`Ctrl+Z`) - do zaimplementowania
+>     - Ponów (`⌘+Shift+Z`/`Ctrl+Y`) - do zaimplementowania
+>
+> Dane są wczytywane do programu oraz zapisywane z/do pliku w formacie JSON zgodnego ze schematem zamieszczonym poniżej.
 
 #### Struktura bazy danych
 
@@ -226,29 +249,6 @@
 > }
 > </pre>
 
-#### Charakterystyka i funkcjonalności programu
-
-> Aplikacja działa w oknie z interfejsem graficznym, którego elementami są:
-> - trzy panele z tabelami umożliwiające szybki przegląd, dodawanie, usuwanie oraz edycję:
->   - marek herbat
->   - półek z herbatami
->   - herbat z półek
-> - panel z podglądem aktualnie zaznaczonego elementu
-> - pasek menu z zakładkami:
->   - Plik:
->     - Nowa baza danych... (`⌘+N`/`Ctrl+N`) - tworzy nowy plik bazy danych
->     - Otwórz... (`⌘+O`/`Ctrl+O`) - otwiera bazę danych
->     - Zapisz... (`⌘+S`/`Ctrl+S`) - zapisuje aktualnie otwartą bazę danych (otwiera okno dialogowe zapisu pliku, jeśli
->       aktualnie otwarta baza została utworzona jako nowy plik podczas działania programu)
->     - Zapisz jako... (`⌘+S`/`Ctrl+S`) - zapisuje aktualnie otwartą bazę danych (wymusza okno dialogowe zapisu pliku)
->     - Zamknij... (`⌘+W`/`Ctrl+W`) - zamyka aktualnie otwartą bazę danych
->     - Wyjdź... (`⌘+Q`/`Ctrl+Q`) - zamyka program
->   - Edycja
->     - Cofnij (`⌘+Z`/`Ctrl+Z`) - do zaimplementowania
->     - Ponów (`⌘+Shift+Z`/`Ctrl+Y`) - do zaimplementowania
-> 
-> Dane są wczytywane do programu oraz zapisywane z/do pliku w formacie JSON zgodnego ze schematem zamieszczonym wyżej.
-
 ## Instalacja
 
 #### Instalacja standardowa
@@ -294,13 +294,16 @@
 #### Podstawowy schemat struktury kodu
 
 > 1. Start programu - klasa główna `Chajikan`
->   1. Ustawienie języka w klasie `util.Language`
->   2. Przygotowanie modułu obsługi języka JSON z biblioteki Jackson. Moduł przechowuje klasa `util.Reference`
->   3. Utworzenie słownika tesktów dla wybranego języka z pliku językowego znajdującego się w folderze `/lang` katalogu zasobów. Słownik główny i zapasowy przechowuje klasa `util.Reference`
->   4. Ustawienie w klasie `util.LookAndFeel` motywu Dracula ze zmianami, z biblioteki FlatLaf
->   5. Utworzenie instancji okna głównego przechowywaną przez klasę `util.Reference`
->   6. Przygotowanie interfejsu (stany przycisków i ekran powitalny) przez klasę `managers.WindowUpdatesManager`
-> 2. Interfejs graficzny - pakiet `gui`
+>   - Ustawienie języka w klasie `util.Language`
+>   - Przygotowanie modułu obsługi języka JSON z biblioteki Jackson. Moduł przechowuje klasa `util.Reference`
+>   - Utworzenie słownika tesktów dla wybranego języka z pliku językowego znajdującego się w folderze `/lang` katalogu zasobów. Słownik główny i zapasowy przechowuje klasa `util.Reference`
+>   - Ustawienie w klasie `util.LookAndFeel` motywu Dracula ze zmianami, z biblioteki FlatLaf
+>   - Utworzenie instancji okna głównego przechowywaną przez klasę `util.Reference`
+>   - Przygotowanie interfejsu (stany przycisków i ekran powitalny) przez klasę `managers.WindowUpdatesManager`
+> 2. Podstawowe klasy - pakiet `datatypes`
+>   - Przeznaczony jest do przechowywania klas obiektów przechowujących dane
+>   - Pakiet `datatypes.database` przeznaczony jest dla klas związanych z elementami bazy danych
+> 3. Interfejs graficzny - pakiet `gui`
 >   - W tym pakiecie zawarte są wszystkie komponenty interfejsu graficznego
 >   - Okno główne programu (klasa `gui.MainWindow`) podzielone jest na 3 panele klasy `gui.panels.AbstractTablePanel` służące do wyświetlania i edycji danych i jeden panel klasy `gui.panels.PreviewPanel`, na którym wyświetlane są informacje o aktualnie zaznaczonym objekcie
 >   - Pakiet `gui.components` zawiera zaawansowane komponenty interfejsu będące implementacjami podstawowych klas pakietu Swing lub ich złożeniami
