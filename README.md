@@ -324,8 +324,8 @@
 >   - Klasa `util.DataFormat` przechowuje funkcje odpowiadające za formatowanie i sprawdzanie poprawności danych
 >   - Klasa `util.Language` odpowiada za ustawienie języka interfejsu
 >   - Ustawienie motywu interfejsu następuje w klasie `util.LookAndFeel`
->   - Narzędzie w klasie `OsCheck` służy do sprawdzenia systemu operacyjnego, na którym uruchomiony jest program
->   - Klasa `Reference` przechowuje referencje do zasobów, skrótów klawiszowych oraz narzędziowych zmiennych globalnych, takich jak instancja okna głównego
+>   - Narzędzie w klasie `util.OsCheck` służy do sprawdzenia systemu operacyjnego, na którym uruchomiony jest program
+>   - Klasa `util.Reference` przechowuje referencje do zasobów, skrótów klawiszowych oraz narzędziowych zmiennych globalnych, takich jak instancja okna głównego
 
 #### Szczegółowa dokumentcja
 
