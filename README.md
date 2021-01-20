@@ -311,6 +311,16 @@
 >   - W pakiecie `gui.dialogs` zawarte są elementy związane z oknami dialogowymi
 >   - Pakiet `gui.html` przechowuje implementacje klas biblioteki Gagawa potrzebne do tworzenia obiektów HTML będących częściami podglądów wyświetlanych w panelu  `gui.MainWindow#previewPanel`
 >   - Panele, na które podzielone jest okno główne, zawarte są w pakiecie `gui.panels`
+> 4. Moduły obsługi - pakiet `handlers`
+>   - Klasa `handlers.ButtonsHandler` zawiera funkcje wywoływane przez przyciski "Dodaj", "Usuń" i "Edytuj" znajdujące się w panelach okna głównego
+>   - W klasie `handlers.DialogsHandler` znajdują się wszystkie okna dialogowe wyprowadzone do postaci funkcji wyświetlających okno i zwracających otrzymane dane
+>   - Klasa `handlers.FileIOHandler` odpowiada za obsługę plików JSON - odczyt z pliku, deserializację i zapis do bezpośrednio z bazy danych przechowywanej przez program oraz serializację danych z bazy i zapis do pliku
+>   - W klasie `handlers.MenuHandler` znajdują się funkcje wywoływane przez przyciski z paska menu
+> 5. Moduły zarządzania - pakiet `managers`
+>   - Klasa `managers.DataManager` zawiera funkcje sterujące zawartością bazy danych
+>   - Funkcje z klasy `managers.ListsManager` sterują listami obiektów w panelach okna głównego
+>   - W klasie `managers.WindowUpdatesManager` znajdują się funkcje odświeżające pewne elementy interfejsu po zmianach w bazie danych (w celu ukazania nowej zawartości) oraz w reakcji na zaznaczenia elementów na listach
+> 6. Funkcje narzędziowe - pakiet `util`
 
 #### Szczegółowa dokumentcja
 
