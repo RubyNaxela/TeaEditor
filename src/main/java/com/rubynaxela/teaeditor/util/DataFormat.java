@@ -223,18 +223,12 @@ public final class DataFormat {
         return formatNumber(number, null, null);
     }
 
-    public static String displayStars(double stars, boolean displayNumeric) {
-        if (stars == 0) return getString("table.none");
-        int doubleStars = (int) (stars * 2);
-        final StringBuilder ret = new StringBuilder();
-        for (int i = 0; i < 10; i++)
-            if (doubleStars >= 1) {
-                ret.append("\u2605");
-                doubleStars--;
-            } else ret.append("\u2606");
-        if (displayNumeric)
-            ret.append(" (").append(formatNumber(stars, " " + getString("units.per_five"))).append(")");
-        return ret.toString();
+    public static String displayStars(double rating, boolean displayNumeric) {
+        if (rating == 0) return getString("table.none");
+        final StringBuilder stars = new StringBuilder();
+        for (int i = 0; i < 10; i++) stars.append(i < rating * 2 ? "\u2605" : "\u2606");
+        if (displayNumeric) stars.append(" (").append(formatNumber(rating, getString("units.per_five"))).append(")");
+        return stars.toString();
     }
 
     public enum RoundMode {
