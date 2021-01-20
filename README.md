@@ -321,6 +321,11 @@
 >   - Funkcje z klasy `managers.ListsManager` sterują listami obiektów w panelach okna głównego
 >   - W klasie `managers.WindowUpdatesManager` znajdują się funkcje odświeżające pewne elementy interfejsu po zmianach w bazie danych (w celu ukazania nowej zawartości) oraz w reakcji na zaznaczenia elementów na listach
 > 6. Funkcje narzędziowe - pakiet `util`
+>   - Klasa `util.DataFormat` przechowuje funkcje odpowiadające za formatowanie i sprawdzanie poprawności danych
+>   - Klasa `util.Language` odpowiada za ustawienie języka interfejsu
+>   - Ustawienie motywu interfejsu następuje w klasie `util.LookAndFeel`
+>   - Narzędzie w klasie `OsCheck` służy do sprawdzenia systemu operacyjnego, na którym uruchomiony jest program
+>   - Klasa `Reference` przechowuje referencje do zasobów, skrótów klawiszowych oraz narzędziowych zmiennych globalnych, takich jak instancja okna głównego
 
 #### Szczegółowa dokumentcja
 
