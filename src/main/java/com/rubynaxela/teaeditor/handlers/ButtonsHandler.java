@@ -30,8 +30,8 @@ import com.rubynaxela.teaeditor.managers.WindowUpdatesManager;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
-import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlag.BRAND;
-import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlag.SHELF;
+import static com.rubynaxela.teaeditor.handlers.DialogsHandler.DataDialogFlag.BRAND;
+import static com.rubynaxela.teaeditor.handlers.DialogsHandler.DataDialogFlag.SHELF;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Utils.findIdInArray;
 

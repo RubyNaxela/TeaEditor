@@ -32,8 +32,7 @@ import javax.swing.*;
 
 import static com.rubynaxela.teaeditor.util.DataFormat.parseDouble;
 import static com.rubynaxela.teaeditor.util.DataFormat.parseInt;
-import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlag;
-import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlag.BRAND;
+import static com.rubynaxela.teaeditor.handlers.DialogsHandler.DataDialogFlag.BRAND;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getIcon;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
@@ -133,5 +132,9 @@ public final class DialogsHandler {
                                         + (dialogPanel.brewingPanel.addMinuteCheckbox.isSelected() ? "/1" : "")) : null,
                         dialogPanel.brewingPanel.brewingGramsInput.getText().replace("\n", "/"))
                 : null;
+    }
+
+    public enum DataDialogFlag {
+        BRAND, SHELF
     }
 }

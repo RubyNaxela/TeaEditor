@@ -73,10 +73,6 @@ public final class Reference {
         }
     }
 
-    public enum DataDialogFlag {
-        BRAND, SHELF
-    }
-
     public static final class Resources {
 
         /**

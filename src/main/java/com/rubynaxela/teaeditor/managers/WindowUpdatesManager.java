@@ -26,8 +26,8 @@ import com.rubynaxela.teaeditor.util.Reference;
 
 import java.util.Objects;
 
-import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlag;
-import static com.rubynaxela.teaeditor.util.Reference.DataDialogFlag.SHELF;
+import static com.rubynaxela.teaeditor.handlers.DialogsHandler.DataDialogFlag;
+import static com.rubynaxela.teaeditor.handlers.DialogsHandler.DataDialogFlag.SHELF;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
 public final class WindowUpdatesManager {
