@@ -148,6 +148,7 @@ public final class TeaBoxDialogPanel extends JPanel {
                 if (amountInput.getText().contains(",")) new Thread(() ->
                         amountInput.setText(amountInput.getText().replace(",", "."))).start();
                 boolean idValid = isValidId(idInput.getText()),
+                        idUnique = checkUniqueID(idInput.getText()),
                         amountValid = isValidNumber(amountInput.getText()),
                         starsValid = isValidRating(starsInput.getText()),
                         tempValid = isValidInteger(brewingPanel.brewingTempInput.getText()),
@@ -156,6 +157,7 @@ public final class TeaBoxDialogPanel extends JPanel {
                         gramsValid = isValidGramsData(brewingPanel.brewingGramsInput.getText());
 
                 if (!idValid) displayError(idInput, getString("dialog.label.invalid.id"));
+                else if (!idUnique) displayError(idInput, getString("dialog.label.invalid.id.inuse"));
                 else cancelError(idInput);
                 if (!amountValid) displayError(amountInput, getString("dialog.label.invalid.number"));
                 else cancelError(amountInput);
@@ -179,7 +181,8 @@ public final class TeaBoxDialogPanel extends JPanel {
                         && !amountInput.getText().equals("")
                         && !brewingPanel.brewingTempInput.getText().equals("")
                         && !brewingPanel.brewingGramsInput.getText().equals("")
-                        && idValid && amountValid && starsValid && tempValid && timeValid && reusesValid && gramsValid;
+                        && idValid && idUnique && amountValid && starsValid
+                        && tempValid && timeValid && reusesValid && gramsValid;
             }
         };
     }

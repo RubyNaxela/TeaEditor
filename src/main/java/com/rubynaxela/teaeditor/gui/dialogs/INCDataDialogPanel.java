@@ -21,6 +21,7 @@ package com.rubynaxela.teaeditor.gui.dialogs;
 import com.rubynaxela.teaeditor.datatypes.database.AbstractPrimaryElement;
 import com.rubynaxela.teaeditor.gui.components.ColorPreviewBox;
 import com.rubynaxela.teaeditor.gui.components.RGBColorChooser;
+import com.rubynaxela.teaeditor.util.DataFormat;
 
 import javax.annotation.Nullable;
 import javax.swing.*;
@@ -100,11 +101,13 @@ public final class INCDataDialogPanel extends JPanel {
             @Override
             protected boolean dataValid() {
                 boolean idValid = isValidId(idInput.getText());
+                boolean idUnique = DataFormat.checkUniqueID(idInput.getText());
 
                 if (!idValid) displayError(idInput, getString("dialog.label.invalid.id"));
+                else if (!idUnique) displayError(idInput, getString("dialog.label.invalid.id.inuse"));
                 else cancelError(idInput);
 
-                return !idInput.getText().equals("") && !nameInput.getText().equals("") && idValid;
+                return !idInput.getText().equals("") && !nameInput.getText().equals("") && idValid && idUnique;
             }
         };
     }

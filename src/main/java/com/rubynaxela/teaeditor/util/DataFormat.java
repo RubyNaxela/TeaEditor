@@ -18,6 +18,11 @@
 
 package com.rubynaxela.teaeditor.util;
 
+import com.rubynaxela.teaeditor.datatypes.database.Brand;
+import com.rubynaxela.teaeditor.datatypes.database.Shelf;
+import com.rubynaxela.teaeditor.datatypes.database.TeaBox;
+import com.rubynaxela.teaeditor.managers.DataManager;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -92,6 +97,21 @@ public final class DataFormat {
     public static boolean isValidGramsData(@Nonnull String data) {
         return data.matches("^(((?!^\\.$)(?!^(\\d*\\.\\d*){2,}$)[\\d.])+:\\d+)?" +
                 "(\n((?!^\\.$)(?!^(\\d*\\.\\d*){2,}$)[\\d.])+:\\d+)*$");
+    }
+
+    /**
+     * Checks if given ID is unique throughout the database
+     *
+     * @param id ID to check
+     * @return whether the ID is unique
+     */
+    public static boolean checkUniqueID(String id) {
+        for (Brand brand : DataManager.getCurrentData().getBrands()) if (brand.getId().equals(id)) return false;
+        for (Shelf shelf : DataManager.getCurrentData().getShelves()) {
+            if (shelf.getId().equals(id)) return false;
+            for (TeaBox teaBox : shelf.getTea_boxes()) if (teaBox.getId().equals(id)) return false;
+        }
+        return true;
     }
 
     /**

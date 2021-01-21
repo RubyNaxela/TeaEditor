@@ -26,6 +26,7 @@
   "dialog.label.description": "Opis (opcjonalnie):",
   "dialog.label.invalid.grams_data": "Nieprawidłowy format danych o proporjach liści do wody",
   "dialog.label.invalid.id": "ID może składać się tylko z małych liter\nalfabetu łacińskiego, cyfr oraz łączników (znak _)",
+  "dialog.label.invalid.id.inuse": "To ID jest już w użyciu",
   "dialog.label.invalid.integer": "Podana wartość nie jest liczbą całkowitą",
   "dialog.label.invalid.number": "Podana wartość nie jest prawidłową liczbą",
   "dialog.label.invalid.stars": "Możliwe wartości: 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5",
