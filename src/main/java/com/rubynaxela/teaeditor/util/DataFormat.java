@@ -32,15 +32,15 @@ import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
  */
 public final class DataFormat {
 
-
     /**
-     * Checks if a given {@code String} is a valid ID, that is, whether it only consists of small latin letters and underscores
+     * Checks if a given {@code String} is a valid ID, that is, whether
+     * it only consists of small latin letters, digits and underscores
      *
      * @param id a {@code String} value
      * @return {@code true} if the {@code String} is a valid ID and {@code false} otherwise
      */
     public static boolean isValidId(@Nonnull String id) {
-        return id.matches("^([a-z]|_)*$");
+        return id.matches("^([0-9a-z]|_)*$");
     }
 
     /**

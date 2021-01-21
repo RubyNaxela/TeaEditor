@@ -152,8 +152,8 @@
 
 > Używane standardy formatu danych:
 > - **format ALPHANUMID**:\
-    małe litery alfabetu łacińskiego oraz znak `_`\
-    wyrażenie regularne:`^([a-z]|_)*$`\
+    małe litery alfabetu łacińskiego, cyfry oraz znak `_`\
+    wyrażenie regularne:`^([0-9a-z]|_)*$`\
     przykłady: `teatime`,`japan_gyokuro_hiki`
 > - **format HEXCOLOR**:\
     6 znaków z zakresu `0-9` lub `a-f` lub `A-F`, poprzedzone znakiem `#`\

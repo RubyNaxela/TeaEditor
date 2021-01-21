@@ -28,7 +28,7 @@
   "dialog.label.description": "Description (optional):",
   "dialog.label.id": "ID:",
   "dialog.label.invalid.grams_data": "Invalid format of leaves to water proportions data",
-  "dialog.label.invalid.id": "ID may only consist of small latin\nletters and underscores (character _)",
+  "dialog.label.invalid.id": "ID may only consist of small latin\nletters, digits and underscores (character _)",
   "dialog.label.invalid.integer": "Given value is not an integer",
   "dialog.label.invalid.number": "Given value is not a valid number",
   "dialog.label.invalid.stars": "Possible values: 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5",
