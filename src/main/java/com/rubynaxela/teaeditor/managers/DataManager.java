@@ -31,6 +31,11 @@ import static com.rubynaxela.teaeditor.util.DataFormat.formatNumber;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Utils.colorToHex;
 
+/**
+ * The {@code DataManager} class contains functions that control the contents of the database
+ *
+ * @author Jacek Pawelski
+ */
 public final class DataManager {
 
     public static boolean dataChanged = false;

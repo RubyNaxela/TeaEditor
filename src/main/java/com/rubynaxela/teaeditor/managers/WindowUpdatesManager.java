@@ -30,6 +30,12 @@ import static com.rubynaxela.teaeditor.handlers.DialogsHandler.DataDialogFlag;
 import static com.rubynaxela.teaeditor.handlers.DialogsHandler.DataDialogFlag.SHELF;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
+/**
+ * The {@code WindowUpdatesManager} class contains functions that refresh certain interface elements after
+ * changes in the database (in order to show new content) and in response to the selection of items in lists
+ *
+ * @author Jacek Pawelski
+ */
 public final class WindowUpdatesManager {
 
     public static void masterUpdate() {

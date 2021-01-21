@@ -34,20 +34,25 @@ import java.awt.event.WindowEvent;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Utils.dialogElementPosition;
 
+/**
+ * The {@code MainWindow} class instance stored as {@link Reference#window} is the main application window. The window
+ * consists of three {@link AbstractTablePanel}s and a {@link PreviewPanel}. The menu bar is also stored in this class
+ *
+ * @author Jacek Pawelski
+ */
 public final class MainWindow extends JFrame {
 
-    public com.rubynaxela.teaeditor.gui.components.MenuBar menuBar;
     public final AbstractTablePanel brandsPanel = new BrandsPanel();
     public final AbstractTablePanel shelvesPanel = new ShelvesPanel();
     public final AbstractTablePanel teaBoxesPanel = new TeaBoxesPanel();
     public final PreviewPanel previewPanel = new PreviewPanel();
+    public final MenuBar menuBar = new MenuBar();
 
     public MainWindow() {
         this.setResizable(false);
         this.setTitle(getString("window.title"));
         this.setLayout(new GridBagLayout());
 
-        menuBar = new MenuBar();
         this.setJMenuBar(menuBar);
 
         this.add(brandsPanel, dialogElementPosition(0, 0));

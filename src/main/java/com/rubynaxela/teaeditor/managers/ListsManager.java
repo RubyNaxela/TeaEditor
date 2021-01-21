@@ -29,6 +29,11 @@ import java.util.Vector;
 
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
+/**
+ * The {@code ListsManager} class contains functions that control the lists of objects in the main window panels
+ *
+ * @author Jacek Pawelski
+ */
 public final class ListsManager {
 
     public static DefaultTableModel

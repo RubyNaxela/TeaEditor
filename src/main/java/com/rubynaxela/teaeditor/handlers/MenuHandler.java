@@ -27,7 +27,9 @@ import java.io.File;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
 /**
- * The {@code MenuHandler} class provides action listeners for the menu bar buttons
+ * The {@code MenuHandler} class contains functions called by the menu bar buttons
+ *
+ * @author Jacek Pawelski
  */
 public final class MenuHandler {
 

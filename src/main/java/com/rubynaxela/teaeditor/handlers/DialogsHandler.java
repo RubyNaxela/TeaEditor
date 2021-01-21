@@ -30,14 +30,21 @@ import com.rubynaxela.teaeditor.util.Reference;
 
 import javax.swing.*;
 
+import static com.rubynaxela.teaeditor.handlers.DialogsHandler.DataDialogFlag.BRAND;
 import static com.rubynaxela.teaeditor.util.DataFormat.parseDouble;
 import static com.rubynaxela.teaeditor.util.DataFormat.parseInt;
-import static com.rubynaxela.teaeditor.handlers.DialogsHandler.DataDialogFlag.BRAND;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getIcon;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
+/**
+ * The {@code ButtonsHandler} class contains dialog boxes derived into
+ * functions displaying the window and returning the received data
+ *
+ * @author Jacek Pawelski
+ */
 public final class DialogsHandler {
 
+    @SuppressWarnings("unused")
     public static void showInfo(String message) {
         JOptionPane.showOptionDialog(Reference.window, message, getString("dialog.title.default"),
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,

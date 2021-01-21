@@ -19,14 +19,21 @@
 package com.rubynaxela.teaeditor.handlers;
 
 import com.rubynaxela.teaeditor.datatypes.database.TeaData;
-import com.rubynaxela.teaeditor.managers.DataManager;
 import com.rubynaxela.teaeditor.gui.dialogs.AWTFileDialog;
+import com.rubynaxela.teaeditor.managers.DataManager;
 
 import java.io.File;
 
 import static com.rubynaxela.teaeditor.util.Reference.JSON_MAPPER;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
+/**
+ * The {@code ButtonsHandler} class is responsible for handling JSON files - reading
+ * from a file, deserializationand writing to directly from the database stored
+ * by the program and serialization of data from the database and writing to a file
+ *
+ * @author Jacek Pawelski
+ */
 public final class FileIOHandler {
 
     public static final AWTFileDialog FILE_DIALOG = new AWTFileDialog();

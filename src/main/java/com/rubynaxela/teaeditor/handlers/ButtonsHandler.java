@@ -35,6 +35,12 @@ import static com.rubynaxela.teaeditor.handlers.DialogsHandler.DataDialogFlag.SH
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Utils.findIdInArray;
 
+/**
+ * The {@code ButtonsHandler} class contains functions called by the
+ * "Add", "Delete" and "Edit" buttons of the main window panels
+ *
+ * @author Jacek Pawelski
+ */
 public final class ButtonsHandler {
 
     public static ActionListener addBrand = e -> {
