@@ -41,7 +41,8 @@ import static java.awt.event.KeyEvent.*;
 import static javax.swing.KeyStroke.getKeyStroke;
 
 /**
- * The {@code Reference} class provides a reference to application assets and various utility objects
+ * The {@code Reference} class stores references to resources, hotkeys,
+ * and utility global variables, such as the home window instance
  *
  * @author Jacek Pawelski
  */

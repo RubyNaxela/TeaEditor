@@ -20,6 +20,11 @@ package com.rubynaxela.teaeditor.util;
 
 import java.util.Arrays;
 
+/**
+ * The {@code Language} class is a tool for setting the interface language
+ *
+ * @author Jacek Pawelski
+ */
 public final class Language {
 
     public static final String
