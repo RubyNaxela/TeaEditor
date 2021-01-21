@@ -28,6 +28,13 @@ import static com.rubynaxela.teaeditor.util.Reference.OS;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Reference.STARTING_DIRECTORY;
 
+/**
+ * The {@code AWTFileDialog} class is an implementation of {@link FileDialog} which
+ * is the only non-Swing GUI component used in the project. The file dialog accepts
+ * only {@code .json} files and its default directory is set to user's home directory
+ *
+ * @author Jacek Pawelski
+ */
 public final class AWTFileDialog extends FileDialog {
 
     public AWTFileDialog() {
@@ -40,6 +47,11 @@ public final class AWTFileDialog extends FileDialog {
         else this.setFilenameFilter((dir, name) -> name.endsWith(".json"));
     }
 
+    /**
+     * Opens a file selection dialog in load mode
+     *
+     * @return file chosen by the user
+     */
     public File chooseFileToLoad() {
         this.setTitle(getString("dialog.file_chooser.file_to_open"));
         this.setMode(LOAD);
@@ -47,6 +59,11 @@ public final class AWTFileDialog extends FileDialog {
         return getSelectedFile();
     }
 
+    /**
+     * Opens a file selection dialog in save mode
+     *
+     * @return file chosen by the user
+     */
     public File chooseFileToSave() {
         this.setTitle(getString("dialog.file_chooser.file_to_save"));
         this.setMode(SAVE);

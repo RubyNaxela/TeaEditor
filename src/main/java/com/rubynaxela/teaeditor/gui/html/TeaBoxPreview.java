@@ -35,8 +35,17 @@ import static com.rubynaxela.teaeditor.util.DataFormat.parseInt;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Utils.findIdInArray;
 
+/**
+ * The {@code BrandPreview} class serves as a preview document for teas
+ *
+ * @author Jacek Pawelski
+ * @see TeaBox
+ */
 public final class TeaBoxPreview extends AbstractPreviewDocument {
 
+    /**
+     * @param teaBox the {@link TeaBox} this is a preview of. Empty when given {@code null}
+     */
     public TeaBoxPreview(@Nullable TeaBox teaBox) {
         if (teaBox != null) {
 

@@ -29,8 +29,17 @@ import java.util.Map;
 
 import static com.rubynaxela.teaeditor.util.Utils.colorToHex;
 
+/**
+ * The {@code MapTable} class serves as a visual representation of data structured as
+ * a {@link Map} shown as a table with key-value pair rows, where the key is written in bold
+ *
+ * @author Jacek Pawelski
+ */
 public final class MapTable extends Table {
 
+    /**
+     * @param data the {@link Map} this is a preview of
+     */
     public MapTable(Map<String, Object> data) {
 
         Tbody tableBody = new Tbody();

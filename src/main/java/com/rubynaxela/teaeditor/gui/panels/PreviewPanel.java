@@ -18,32 +18,41 @@
 
 package com.rubynaxela.teaeditor.gui.panels;
 
-import com.hp.gagawa.java.elements.Html;
 import com.rubynaxela.teaeditor.gui.components.DefaultJScrollPane;
+import com.rubynaxela.teaeditor.gui.html.AbstractPreviewDocument;
 
 import javax.swing.*;
 import java.awt.*;
 
 import static com.rubynaxela.teaeditor.util.Utils.dialogElementPosition;
 
-@SuppressWarnings("FieldCanBeLocal")
+/**
+ * The {@code PreviewPanel} class serves a panel for element preview documents. Is is a part of the main window
+ *
+ * @author Jacek Pawelski
+ */
 public final class PreviewPanel extends JPanel {
 
     static int PANEL_WIDTH = 920, PANEL_HEIGHT = 320;
     private final JEditorPane documentArea;
-    private final JScrollPane documentPane;
 
     public PreviewPanel() {
-        this.setLayout(new GridBagLayout());
+        final JScrollPane documentPane;
         documentArea = new JEditorPane();
         documentArea.setContentType("text/html");
         documentArea.setEditable(false);
         documentPane = new DefaultJScrollPane(documentArea, PANEL_WIDTH - 10, PANEL_HEIGHT - 10);
         documentPane.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
+        this.setLayout(new GridBagLayout());
         this.add(documentPane, dialogElementPosition(0, 0));
     }
 
-    public void setContent(Html content) {
+    /**
+     * Displays a HTML document in the preview panel
+     *
+     * @param content the new HTML document to be displayed
+     */
+    public void setContent(AbstractPreviewDocument content) {
         documentArea.setText(content.write());
     }
 

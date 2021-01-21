@@ -25,6 +25,11 @@ import com.rubynaxela.teaeditor.managers.WindowUpdatesManager;
 
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
+/**
+ * The {@code BrandsPanel} class is an implementation of {@link AbstractTablePanel} constructed specifically for tea brands
+ *
+ * @author Jacek Pawelski
+ */
 public final class BrandsPanel extends AbstractTablePanel {
 
     public BrandsPanel() {

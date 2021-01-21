@@ -24,6 +24,12 @@ import com.rubynaxela.teaeditor.gui.components.StaticTable;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * The {@code AbstractTablePanel} class is the base class for the three table panels
+ * of the main window. Consists of a centered title, a table and three buttons
+ *
+ * @author Jacek Pawelski
+ */
 public abstract class AbstractTablePanel extends JPanel {
 
     protected static int PANEL_WIDTH = 460, PANEL_HEIGHT = 320;
@@ -50,10 +56,18 @@ public abstract class AbstractTablePanel extends JPanel {
         this.add(new DefaultJScrollPane(dataTable, PANEL_WIDTH - 10, 250));
     }
 
+    /**
+     * Sets a new title that is displayed above the table
+     *
+     * @param newTitle text of the new title displayed above the table
+     */
     public void changeTitle(String newTitle) {
         titleLabel.setText(newTitle);
     }
 
+    /**
+     * Updates the buttons status depending on the currently selected item. Must be implemented for specific cases
+     */
     public abstract void updateButtons();
 
     @Override

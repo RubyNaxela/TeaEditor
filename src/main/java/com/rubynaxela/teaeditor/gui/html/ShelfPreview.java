@@ -29,8 +29,17 @@ import java.util.Map;
 
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
+/**
+ * The {@code BrandPreview} class serves as a preview document for tea shelves
+ *
+ * @author Jacek Pawelski
+ * @see Shelf
+ */
 public final class ShelfPreview extends AbstractPreviewDocument {
 
+    /**
+     * @param shelf the {@link Shelf} this is a preview of. Empty when given {@code null}
+     */
     public ShelfPreview(@Nullable Shelf shelf) {
         if (shelf != null) {
 

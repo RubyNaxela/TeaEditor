@@ -29,6 +29,11 @@ import java.awt.*;
 
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
+/**
+ * The {@code BrandsPanel} class is an implementation of {@link AbstractTablePanel} constructed specifically for teas
+ *
+ * @author Jacek Pawelski
+ */
 public final class TeaBoxesPanel extends AbstractTablePanel {
 
     public TeaBoxesPanel() {

@@ -22,6 +22,7 @@ import com.rubynaxela.teaeditor.datatypes.database.AbstractPrimaryElement;
 import com.rubynaxela.teaeditor.gui.components.ColorPreviewBox;
 import com.rubynaxela.teaeditor.gui.components.RGBColorChooser;
 
+import javax.annotation.Nullable;
 import javax.swing.*;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
@@ -31,6 +32,15 @@ import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Utils.dialogElementPosition;
 import static com.rubynaxela.teaeditor.util.Utils.getOptionPane;
 
+/**
+ * The {@code INCDataDialogPanel} class is a custom dialog window that takes ID,
+ * name and color from the user, which are parameters of tea brands and shelves.
+ * Consists of two text fields and a {@link RGBColorChooser}
+ *
+ * @author Jacek Pawelski
+ * @see AbstractPrimaryElement
+ * @see RGBColorChooser
+ */
 public final class INCDataDialogPanel extends JPanel {
 
     public final JLabel idLabel, nameLabel, colorLabel;
@@ -40,7 +50,11 @@ public final class INCDataDialogPanel extends JPanel {
     public final ColorPreviewBox previewBox;
     public final JButton okButton;
 
-    public INCDataDialogPanel(AbstractPrimaryElement editedElement) {
+    /**
+     * @param editedElement parameters of the edited element will be initially displayed in the dialog. Passing {@code null}
+     *                      will result the text boxes to be empty and the color chooser to have white color selected
+     */
+    public INCDataDialogPanel(@Nullable AbstractPrimaryElement editedElement) {
         idLabel = new JLabel(getString("dialog.label.id"));
         nameLabel = new JLabel(getString("dialog.label.name"));
         colorLabel = new JLabel(getString("dialog.label.color"));

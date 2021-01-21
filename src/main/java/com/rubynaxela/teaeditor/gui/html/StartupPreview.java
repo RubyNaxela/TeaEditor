@@ -20,9 +20,16 @@ package com.rubynaxela.teaeditor.gui.html;
 
 import com.hp.gagawa.java.elements.Hr;
 import com.hp.gagawa.java.elements.P;
+import com.rubynaxela.teaeditor.datatypes.database.Shelf;
 
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
+/**
+ * The {@code BrandPreview} class serves as a welcome message displayed in the preview panel of the main window
+ *
+ * @author Jacek Pawelski
+ * @see Shelf
+ */
 public final class StartupPreview extends AbstractPreviewDocument {
 
     public StartupPreview() {

@@ -55,6 +55,12 @@ abstract class AbstractValidInputListener implements DocumentListener {
         this.errorTooltips = new HashMap<>();
     }
 
+    /**
+     * Displays an error message tooltip above an input component
+     *
+     * @param inputComponent the input component to display message above
+     * @param message        the error message text
+     */
     protected void displayError(JComponent inputComponent, String message) {
         if (!errorTooltips.containsKey(inputComponent)) {
             final BalloonTip errorTooltip = new BalloonTip(inputComponent,
@@ -66,6 +72,11 @@ abstract class AbstractValidInputListener implements DocumentListener {
         }
     }
 
+    /**
+     * Erases error messages for certain input components
+     *
+     * @param components array of components to remove the message from above
+     */
     protected void cancelError(JComponent... components) {
         for (JComponent component : components)
             if (errorTooltips.containsKey(component)) {
@@ -75,6 +86,11 @@ abstract class AbstractValidInputListener implements DocumentListener {
             }
     }
 
+    /**
+     * Custom implementation of this method will be the engine of the data validator
+     *
+     * @return whether input data is valid. Will be used to manage the state of passed button
+     */
     protected abstract boolean dataValid();
 
     @Override

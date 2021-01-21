@@ -26,6 +26,11 @@ import com.rubynaxela.teaeditor.util.Reference;
 
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
+/**
+ * The {@code BrandsPanel} class is an implementation of {@link AbstractTablePanel} constructed specifically for tea shelves
+ *
+ * @author Jacek Pawelski
+ */
 public final class ShelvesPanel extends AbstractTablePanel {
 
     public ShelvesPanel() {

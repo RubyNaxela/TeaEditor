@@ -32,8 +32,17 @@ import java.util.Map;
 
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 
+/**
+ * The {@code BrandPreview} class serves as a preview document for tea brands
+ *
+ * @author Jacek Pawelski
+ * @see Brand
+ */
 public final class BrandPreview extends AbstractPreviewDocument {
 
+    /**
+     * @param brand the {@link Brand} this is a preview of. Empty when given {@code null}
+     */
     public BrandPreview(@Nullable Brand brand) {
         if (brand != null) {
 

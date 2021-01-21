@@ -33,6 +33,16 @@ import static com.rubynaxela.teaeditor.util.DataFormat.*;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Utils.*;
 
+/**
+ * The {@code INCDataDialogPanel} class is a custom dialog window that takes ID,
+ * name and color from the user, which are parameters of tea brands and shelves.
+ * Consists of five text fields, two comboboxes and a {@link BrewingInstructionPanel},
+ * which consists of four text field and a checkbox
+ *
+ * @author Jacek Pawelski
+ * @see TeaBox
+ * @see BrewingInstructionPanel
+ */
 public final class TeaBoxDialogPanel extends JPanel {
 
     public final JLabel idLabel, nameLabel, brandLabel, shelfLabel, amountLabel, amountUnitLabel, starsLabel, descriptionLabel,
@@ -44,6 +54,11 @@ public final class TeaBoxDialogPanel extends JPanel {
     public final BrewingInstructionPanel brewingPanel;
     public final JButton okButton;
 
+    /**
+     * @param editedElement parameters of the edited element will be initially displayed in the dialog.
+     *                      Passing {@code null} will result all the text inputs to be empty and
+     *                      the comboboxes to be set to the currently selected brand and shelf
+     */
     public TeaBoxDialogPanel(TeaBox editedElement) {
         idLabel = new JLabel(getString("dialog.label.id"));
         nameLabel = new JLabel(getString("dialog.label.name"));

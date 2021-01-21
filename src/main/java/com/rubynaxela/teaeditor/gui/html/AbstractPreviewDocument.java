@@ -23,6 +23,12 @@ import com.hp.gagawa.java.elements.Head;
 import com.hp.gagawa.java.elements.Html;
 import com.hp.gagawa.java.elements.Style;
 
+/**
+ * The {@code AbstractPreviewDocument} class is the base class for
+ * HTML documents displayed in the preview panel of the main window
+ *
+ * @author Jacek Pawelski
+ */
 public abstract class AbstractPreviewDocument extends Html {
 
     public final Body body;
