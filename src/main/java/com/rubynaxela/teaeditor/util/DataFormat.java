@@ -104,8 +104,8 @@ public final class DataFormat {
      * Checks if given ID is unique throughout the database
      *
      * @param id            ID to check
-     * @param editedElement the element to exclude from searching. Required to prevent a behavior where a dialog window
-     *                      data validator rejects the currently edited element because its ID is already in the database
+     * @param editedElement the element to exclude from searching. Required to prevent a behavior where a dialog window data
+     *                      validator would reject the currently edited element because its ID is already in the database
      * @return whether the ID is unique
      */
     public static boolean isUniqueID(String id, @Nullable Identifiable editedElement) {
