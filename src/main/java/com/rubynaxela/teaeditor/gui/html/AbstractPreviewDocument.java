@@ -33,14 +33,10 @@ public abstract class AbstractPreviewDocument extends Html {
         this.head = new Head();
         this.appendChild(head);
         this.appendChild(body);
-        this.setGlobalStylesheet("body { font-size: 10px }" +
+        final Style style = new Style("text/css");
+        style.appendText("body { font-size: 10px }" +
                 ".title { font-size: 13px; font-weight: bold; text-align: center; }" +
                 "td { padding: 3px; }");
-    }
-
-    public void setGlobalStylesheet(String code) {
-        final Style style = new Style("text/css");
-        style.appendText(code);
         head.appendChild(style);
     }
 }
