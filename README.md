@@ -268,9 +268,9 @@
 > ##### 2. Zainstalować oprogramowanie Java Development Kit (JDK) w wersji 1.8+ - [link do strony instalacji](https://www.oracle.com/pl/java/technologies/javase/javase-jdk8-downloads.html)
 > ##### 3. Upewnić się, że w systemie zapisana jest zmienna środowiskowa `JAVA_HOME`, której wartością jest ścieżka do katalogu głównego JDK
 > ##### 4. Zainstalować narzędzie Gradle dla powłoki systemu - [link do strony instalacji](https://gradle.org/install/)
-> ##### 5. otworzyć katalog główny pobranej pakietu kodu źródłowego za pomocą powłoki systemu
-> ##### 6. wywołać polecenie `gradlew`
-> ##### 7. wywołać polecenie `gradle build`
+> ##### 5. Otworzyć katalog główny pobranej pakietu kodu źródłowego za pomocą powłoki systemu
+> ##### 6. Wywołać polecenie `gradlew`
+> ##### 7. Wywołać polecenie `gradle build`
 > Skompilowany plik .jar znajduje się w katalogu `./build/libs`
 
 ## Założenia projektowe
