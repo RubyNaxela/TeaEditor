@@ -327,6 +327,7 @@
 >   - Ustawienie motywu interfejsu następuje w klasie `util.LookAndFeel`
 >   - Narzędzie w klasie `util.OsCheck` służy do sprawdzenia systemu operacyjnego, na którym uruchomiony jest program
 >   - Klasa `util.Reference` przechowuje referencje do zasobów, skrótów klawiszowych oraz narzędziowych zmiennych globalnych, takich jak instancja okna głównego
+>   - Klasa `util.Utils` udostępnia szereg nieklasyfikowanych funkcji narzędziowych, które są używane w różnych miejscach w projekcie
 
 #### Szczegółowa dokumentcja
 
