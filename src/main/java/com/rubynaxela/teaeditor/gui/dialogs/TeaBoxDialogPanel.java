@@ -18,6 +18,7 @@
 
 package com.rubynaxela.teaeditor.gui.dialogs;
 
+import com.rubynaxela.teaeditor.datatypes.database.Identifiable;
 import com.rubynaxela.teaeditor.datatypes.database.TeaBox;
 import com.rubynaxela.teaeditor.gui.components.BrewingInstructionPanel;
 import com.rubynaxela.teaeditor.managers.DataManager;
@@ -45,14 +46,15 @@ import static com.rubynaxela.teaeditor.util.Utils.*;
  */
 public final class TeaBoxDialogPanel extends JPanel {
 
-    public final JLabel idLabel, nameLabel, brandLabel, shelfLabel, amountLabel, amountUnitLabel, starsLabel, descriptionLabel,
-            starsUnitLabel;
+    public final JLabel idLabel, nameLabel, brandLabel, shelfLabel,amountLabel,
+            amountUnitLabel, starsLabel, descriptionLabel, starsUnitLabel;
     public final JTextField idInput, nameInput, amountInput, starsInput;
     public final JComboBox<String> brandInput, shelfInput;
     public final JTextArea descriptionInput;
     public final JScrollPane descriptionPane;
     public final BrewingInstructionPanel brewingPanel;
     public final JButton okButton;
+    private final Identifiable editedElement;
 
     /**
      * @param editedElement parameters of the edited element will be initially displayed in the dialog.
@@ -85,6 +87,7 @@ public final class TeaBoxDialogPanel extends JPanel {
 
         initLayout();
         setup(editedElement);
+        this.editedElement = editedElement;
     }
 
     private void initLayout() {
@@ -148,7 +151,7 @@ public final class TeaBoxDialogPanel extends JPanel {
                 if (amountInput.getText().contains(",")) new Thread(() ->
                         amountInput.setText(amountInput.getText().replace(",", "."))).start();
                 boolean idValid = isValidId(idInput.getText()),
-                        idUnique = checkUniqueID(idInput.getText()),
+                        idUnique = isUniqueID(idInput.getText(), editedElement),
                         amountValid = isValidNumber(amountInput.getText()),
                         starsValid = isValidRating(starsInput.getText()),
                         tempValid = isValidInteger(brewingPanel.brewingTempInput.getText()),

@@ -19,15 +19,16 @@
 package com.rubynaxela.teaeditor.gui.dialogs;
 
 import com.rubynaxela.teaeditor.datatypes.database.AbstractPrimaryElement;
+import com.rubynaxela.teaeditor.datatypes.database.Identifiable;
 import com.rubynaxela.teaeditor.gui.components.ColorPreviewBox;
 import com.rubynaxela.teaeditor.gui.components.RGBColorChooser;
-import com.rubynaxela.teaeditor.util.DataFormat;
 
 import javax.annotation.Nullable;
 import javax.swing.*;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 
+import static com.rubynaxela.teaeditor.util.DataFormat.isUniqueID;
 import static com.rubynaxela.teaeditor.util.DataFormat.isValidId;
 import static com.rubynaxela.teaeditor.util.Reference.Resources.getString;
 import static com.rubynaxela.teaeditor.util.Utils.dialogElementPosition;
@@ -50,6 +51,7 @@ public final class INCDataDialogPanel extends JPanel {
     public final RGBColorChooser colorInput;
     public final ColorPreviewBox previewBox;
     public final JButton okButton;
+    private final Identifiable editedElement;
 
     /**
      * @param editedElement parameters of the edited element will be initially displayed in the dialog. Passing {@code null}
@@ -69,6 +71,7 @@ public final class INCDataDialogPanel extends JPanel {
 
         initLayout();
         setup(editedElement);
+        this.editedElement = editedElement;
     }
 
     private void initLayout() {
@@ -101,7 +104,7 @@ public final class INCDataDialogPanel extends JPanel {
             @Override
             protected boolean dataValid() {
                 boolean idValid = isValidId(idInput.getText());
-                boolean idUnique = DataFormat.checkUniqueID(idInput.getText());
+                boolean idUnique = isUniqueID(idInput.getText(), editedElement);
 
                 if (!idValid) displayError(idInput, getString("dialog.label.invalid.id"));
                 else if (!idUnique) displayError(idInput, getString("dialog.label.invalid.id.inuse"));

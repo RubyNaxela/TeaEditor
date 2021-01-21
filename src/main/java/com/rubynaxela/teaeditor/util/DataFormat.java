@@ -19,6 +19,7 @@
 package com.rubynaxela.teaeditor.util;
 
 import com.rubynaxela.teaeditor.datatypes.database.Brand;
+import com.rubynaxela.teaeditor.datatypes.database.Identifiable;
 import com.rubynaxela.teaeditor.datatypes.database.Shelf;
 import com.rubynaxela.teaeditor.datatypes.database.TeaBox;
 import com.rubynaxela.teaeditor.managers.DataManager;
@@ -102,14 +103,18 @@ public final class DataFormat {
     /**
      * Checks if given ID is unique throughout the database
      *
-     * @param id ID to check
+     * @param id            ID to check
+     * @param editedElement the element to exclude from searching. Required to prevent a behavior where a dialog window
+     *                      data validator rejects the currently edited element because its ID is already in the database
      * @return whether the ID is unique
      */
-    public static boolean checkUniqueID(String id) {
-        for (Brand brand : DataManager.getCurrentData().getBrands()) if (brand.getId().equals(id)) return false;
+    public static boolean isUniqueID(String id, @Nullable Identifiable editedElement) {
+        for (Brand brand : DataManager.getCurrentData().getBrands())
+            if (brand.getId().equals(id) && brand != editedElement) return false;
         for (Shelf shelf : DataManager.getCurrentData().getShelves()) {
-            if (shelf.getId().equals(id)) return false;
-            for (TeaBox teaBox : shelf.getTea_boxes()) if (teaBox.getId().equals(id)) return false;
+            if (shelf.getId().equals(id) && shelf != editedElement) return false;
+            for (TeaBox teaBox : shelf.getTea_boxes())
+                if (teaBox.getId().equals(id) && teaBox != editedElement) return false;
         }
         return true;
     }
@@ -180,6 +185,7 @@ public final class DataFormat {
      * @param unit   a unit to round to
      * @return a {@code double} containing the rounded number
      */
+    @SuppressWarnings("unused")
     public static double roundNumber(double number, double unit) {
         int whole = (int) (number / unit);
         return (number / unit) % 1 < 0.5 ? whole * number : (whole + 1) * number;
@@ -191,6 +197,7 @@ public final class DataFormat {
      * @param number a numeric value
      * @return a {@code double} containing the rounded number
      */
+    @SuppressWarnings("unused")
     public static int roundNumber(double number) {
         return roundNumber(number, CLOSE);
     }
